@@ -1,0 +1,20 @@
+{
+  "id": "ai-video-product-ad",
+  "name": "Video · Product Ad (4A)",
+  "description": "Product brief → AI storyboard frames → CTA with video preview card.",
+  "screenCount": 3,
+  "scenarioGuide": "V3 Scenario Video §3.3. productInput, scene1-3, ctaResult video preview.",
+  "scenarioDoc": "docs/AI_PLAYABLE_USER_CASE_SCENARIOS_V3_SCREEN_DETAIL.md",
+  "defaultTheme": "rose-creative",
+  "themes": [
+    "rose-creative",
+    "violet-pro"
+  ],
+  "flow": [
+    "brief",
+    "storyboard",
+    "cta-video-preview"
+  ],
+  "userCase": "video",
+  "scenario": "4A"
+}

@@ -1,0 +1,31 @@
+{
+  "id": "preview-template",
+  "name": "Ai Chat Qa Cards (template preview)",
+  "viewport": {
+    "width": 390,
+    "height": 844,
+    "safeArea": true
+  },
+  "theme": {
+    "primaryColor": "#06B6D4",
+    "backgroundColor": "#041016",
+    "textColor": "#ECFEFF",
+    "fontFamily": "system"
+  },
+  "template": {
+    "id": "ai-chat-qa-cards"
+  },
+  "cta": {
+    "label": "Get the app",
+    "type": "openStore"
+  },
+  "tracking": {
+    "enabled": true
+  },
+  "layout": {
+    "insetX": 20,
+    "insetY": 20,
+    "insetBottom": 24,
+    "gap": 14
+  }
+}

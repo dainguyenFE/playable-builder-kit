@@ -1,0 +1,18 @@
+---
+description: Create new playable — ask topic, auto-match template, run pnpm playable:new
+alwaysApply: true
+---
+
+# Create new playable
+
+Triggers: **create new playable**, **tạo playable mới**, **new campaign**, **tạo campaign**.
+
+1. Read **`ai/skills/playable-create-workflow/SKILL.md`** + **`ai/CLI-MAP.md`**
+2. Ask **campaign id** (kebab-case) if missing
+3. **Auto-match template** from user message (`pnpm playable:new --list` or registry) — **do NOT ask** studio / compose / scaffold
+4. **Ask chủ đề** (topic, text input) if user did not already provide it — **do NOT** run CLI without topic unless user says leave empty
+5. If template not matched yet, infer from topic using matching table in skill
+6. Run `pnpm playable:new <id> <engine> <template> [theme-id]` — engine from registry, not user choice
+7. Fill copy/JSON from topic → `pnpm playable:export <id>`
+
+Do not ask template when user already named one or keywords match an existing template.

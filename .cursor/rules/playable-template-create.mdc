@@ -1,0 +1,30 @@
+---
+description: Create new studio template — ask screens, theme, topic before running CLI
+alwaysApply: true
+---
+
+# Create new template
+
+Triggers: **create template**, **tạo template**, **tạo template mới**, **new template**.
+
+**Bắt buộc hỏi** (dùng AskQuestion) trước khi chạy lệnh — **không** tự clone template cũ, **không** bỏ qua bước hỏi.
+
+1. Read **`ai/skills/playable-template-authoring/SKILL.md`** § Create template workflow
+2. **Template id** (kebab-case) — hỏi nếu thiếu
+3. **Số màn hình** (1–8) — hỏi nếu thiếu
+4. **Theme** — chạy `pnpm template:create --list` hoặc đọc `data/studio/themes.json`
+5. **Chủ đề / brief** — **2 bước**:
+   - **4a** Hỏi: empty hay có chủ đề?
+   - **4b** Nếu **có chủ đề** → **hỏi tiếp** câu brief cụ thể — **không** tự đoán, **không** chạy CLI trước khi có trả lời
+   - Empty → `--empty` · Có brief → `--topic "<user text>"`
+
+```bash
+pnpm template:create --list
+pnpm template:create <id> --empty --screens <N> --theme <theme-id>
+pnpm template:create <id> --topic "<chủ đề>" --screens <N> --theme <theme-id>
+pnpm template:export <id>
+```
+
+Chỉ dùng `--from <template>` khi user **yêu cầu clone** template có sẵn.
+
+Sau tạo → trả lời theo **`playable-mkt-response`**.

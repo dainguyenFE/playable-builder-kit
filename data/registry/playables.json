@@ -1,0 +1,256 @@
+{
+  "playables": [],
+  "templates": [
+    {
+      "id": "ai-chat-ask-solve",
+      "name": "Chat · Ask & Solve (1A)",
+      "engine": "studio",
+      "status": "ready",
+      "category": "chat",
+      "scenario": "1A",
+      "previewPath": "/preview/template/ai-chat-ask-solve",
+      "description": "Chaotic week hook → user question → AI weekly plan stream → CTA with mini calendar hero.",
+      "screenCount": 4,
+      "scenarioGuide": "V3 Scenario 1A. problemHeadline, stickyNote1-5, userQuestion, aiAnswerBlocks, ctaMon-Fri, ctaBadge.",
+      "flow": [
+        "hook-sticky",
+        "input",
+        "stream",
+        "cta-calendar"
+      ]
+    },
+    {
+      "id": "ai-chat-qa-cards",
+      "name": "Chat · Quick Q&A Cards (1B)",
+      "engine": "studio",
+      "status": "ready",
+      "category": "chat",
+      "scenario": "1B",
+      "previewPath": "/preview/template/ai-chat-qa-cards",
+      "description": "Question picker → bad email before → AI improvement cards → CTA email result sheet.",
+      "screenCount": 4,
+      "scenarioGuide": "V3 Scenario 1B. quizOptions, beforeEmail, aiAnswerBlocks, ctaResult.",
+      "flow": [
+        "quiz",
+        "before-email",
+        "stream",
+        "cta-email"
+      ]
+    },
+    {
+      "id": "ai-writing-captions",
+      "name": "Writing · 3 Captions (2A)",
+      "engine": "studio",
+      "status": "ready",
+      "category": "writing",
+      "scenario": "2A",
+      "previewPath": "/preview/template/ai-writing-captions",
+      "description": "Product input → AI generating 3 captions → compare & pick → CTA caption deck.",
+      "screenCount": 4,
+      "scenarioGuide": "V3 Scenario 2A. productInput, result1-3, bestCaption, ctaResult.",
+      "flow": [
+        "input",
+        "generating",
+        "compare",
+        "cta-deck"
+      ]
+    },
+    {
+      "id": "ai-writing-rewrite",
+      "name": "Writing · Rewrite Copy (2B)",
+      "engine": "studio",
+      "status": "ready",
+      "category": "writing",
+      "scenario": "2B",
+      "previewPath": "/preview/template/ai-writing-rewrite",
+      "description": "Weak copy + issues → AI rewrite stream → score checklist → CTA before/after card.",
+      "screenCount": 4,
+      "scenarioGuide": "V3 Scenario 2B. beforeCopy, aiAnswerBlocks, scoreValue, ctaResult.",
+      "flow": [
+        "before",
+        "stream",
+        "score",
+        "cta-transform"
+      ]
+    },
+    {
+      "id": "ai-image-t2i",
+      "name": "Image · Text To Image (3A)",
+      "engine": "studio",
+      "status": "ready",
+      "category": "image",
+      "scenario": "3A",
+      "previewPath": "/preview/template/ai-image-t2i",
+      "description": "Prompt + styles → AI rendering pipeline → 3-image gallery → full image hero CTA.",
+      "screenCount": 4,
+      "scenarioGuide": "V3 Scenario 3A. promptText, style1-4, img-t2i on CTA.",
+      "flow": [
+        "prompt",
+        "rendering",
+        "gallery",
+        "cta-image-hero"
+      ]
+    },
+    {
+      "id": "ai-image-before-after",
+      "name": "Image · Photo Enhance (3B)",
+      "engine": "studio",
+      "status": "ready",
+      "category": "image",
+      "scenario": "3B",
+      "previewPath": "/preview/template/ai-image-before-after",
+      "description": "Blurry upload → AI enhancement scan → before/after slider → enhanced photo hero CTA.",
+      "screenCount": 4,
+      "scenarioGuide": "V3 Scenario 3B. problemHeadline, img-before/after, ctaChip1-3.",
+      "flow": [
+        "upload",
+        "enhancing",
+        "compare",
+        "cta-showcase"
+      ]
+    },
+    {
+      "id": "ai-resume-review",
+      "name": "Resume · Review (4B)",
+      "engine": "studio",
+      "status": "ready",
+      "category": "resume",
+      "scenario": "4B",
+      "previewPath": "/preview/template/ai-resume-review",
+      "description": "Upload CV → AI score + issues → before/after bullet → CTA score upgrade dashboard.",
+      "screenCount": 4,
+      "scenarioGuide": "V3 Scenario 4B. scoreValue, issueList, ctaResult bullet, ctaScore.",
+      "flow": [
+        "upload",
+        "score",
+        "rewrite",
+        "cta-dashboard"
+      ]
+    },
+    {
+      "id": "ai-tutor-quiz",
+      "name": "Tutor · Quiz + Explain (5A)",
+      "engine": "studio",
+      "status": "ready",
+      "category": "tutor",
+      "scenario": "5A",
+      "previewPath": "/preview/template/ai-tutor-quiz",
+      "description": "Geography quiz → answer reveal → memory checklist → CTA streak reward.",
+      "screenCount": 4,
+      "scenarioGuide": "V3 Scenario 5A. quizQuestion/Options, aiAnswerBlocks, lesson1-3, ctaBadge.",
+      "flow": [
+        "quiz",
+        "answer",
+        "memory",
+        "cta-reward"
+      ]
+    },
+    {
+      "id": "ai-travel-itinerary",
+      "name": "Travel · 3-Day Plan (7A)",
+      "engine": "studio",
+      "status": "ready",
+      "category": "travel",
+      "scenario": "7A",
+      "previewPath": "/preview/template/ai-travel-itinerary",
+      "description": "Destination input → detailed day cards → route & budget summary → CTA travel board.",
+      "screenCount": 4,
+      "scenarioGuide": "V3 Scenario 7A. destination, aiAnswerBlocks days, ctaDay1-3, ctaSpend.",
+      "flow": [
+        "input",
+        "itinerary",
+        "route-summary",
+        "cta-board"
+      ]
+    },
+    {
+      "id": "ai-finance-budget",
+      "name": "Finance · Monthly Budget (8A)",
+      "engine": "studio",
+      "status": "ready",
+      "category": "finance",
+      "scenario": "8A",
+      "previewPath": "/preview/template/ai-finance-budget",
+      "description": "Income input → AI budget breakdown → budget checklist → CTA ring dashboard.",
+      "screenCount": 4,
+      "scenarioGuide": "V3 Scenario 8A. incomeInput, aiAnswerBlocks categories, ctaSave, ctaEssentials.",
+      "flow": [
+        "income",
+        "breakdown",
+        "checklist",
+        "cta-dashboard"
+      ]
+    },
+    {
+      "id": "ai-agent-delegate",
+      "name": "Agent · Delegate Task (9A)",
+      "engine": "studio",
+      "status": "ready",
+      "category": "agent",
+      "scenario": "9A",
+      "previewPath": "/preview/template/ai-agent-delegate",
+      "description": "Task input → agent planning steps → content calendar cards → CTA agent calendar board.",
+      "screenCount": 4,
+      "scenarioGuide": "V3 Scenario 9A. taskInput, agent steps, agentMon-Fri, ctaMon-Wed-Fri.",
+      "flow": [
+        "task",
+        "steps",
+        "output",
+        "cta-calendar"
+      ]
+    },
+    {
+      "id": "ai-video-product-ad",
+      "name": "Video · Product Ad (4A)",
+      "engine": "studio",
+      "status": "ready",
+      "category": "video",
+      "scenario": "4A",
+      "previewPath": "/preview/template/ai-video-product-ad",
+      "description": "Product brief → AI storyboard frames → CTA with video preview card.",
+      "screenCount": 3,
+      "scenarioGuide": "V3 Scenario Video §3.3. productInput, scene1-3, ctaResult video preview.",
+      "flow": [
+        "brief",
+        "storyboard",
+        "cta-video-preview"
+      ]
+    },
+    {
+      "id": "ai-fitness-meal",
+      "name": "Fitness · Meal Plan (6A)",
+      "engine": "studio",
+      "status": "ready",
+      "category": "fitness",
+      "scenario": "6A",
+      "previewPath": "/preview/template/ai-fitness-meal",
+      "description": "Health goal picker → high-protein day stream → grocery checklist → meal timeline CTA.",
+      "screenCount": 4,
+      "scenarioGuide": "V3 Scenario 6A. goalOptions, aiAnswerBlocks meals, grocery1-6, ctaMeal1-4, ctaProtein.",
+      "flow": [
+        "goal",
+        "meal-stream",
+        "grocery",
+        "cta-calendar"
+      ]
+    },
+    {
+      "id": "ai-reco-questions",
+      "name": "Reco · Quick Questions (10A)",
+      "engine": "studio",
+      "status": "ready",
+      "category": "reco",
+      "scenario": "10A",
+      "previewPath": "/preview/template/ai-reco-questions",
+      "description": "Goal question → time available → 10-min AI plan → personalized unlock CTA.",
+      "screenCount": 4,
+      "scenarioGuide": "V3 Scenario 10A. goalOptions, timeOptions, aiAnswerBlocks, ctaGoal, ctaTime, ctaFeature.",
+      "flow": [
+        "goal-quiz",
+        "time-quiz",
+        "plan-stream",
+        "cta-unlock"
+      ]
+    }
+  ]
+}

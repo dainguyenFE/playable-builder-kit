@@ -1,0 +1,21 @@
+{
+  "id": "ai-image-before-after",
+  "name": "Image · Photo Enhance (3B)",
+  "description": "Blurry upload → AI enhancement scan → before/after slider → enhanced photo hero CTA.",
+  "screenCount": 4,
+  "scenarioGuide": "V3 Scenario 3B. problemHeadline, img-before/after, ctaChip1-3.",
+  "scenarioDoc": "docs/AI_PLAYABLE_USER_CASE_SCENARIOS_V3_SCREEN_DETAIL.md",
+  "defaultTheme": "emerald-plan",
+  "themes": [
+    "emerald-plan",
+    "violet-pro"
+  ],
+  "flow": [
+    "upload",
+    "enhancing",
+    "compare",
+    "cta-showcase"
+  ],
+  "userCase": "image",
+  "scenario": "3B"
+}

@@ -1,0 +1,11 @@
+{
+  "version": "1.0.0",
+  "blocks": [
+    "tap-to-start",
+    "intro-headline",
+    "chat-stream",
+    "chip-picker",
+    "result-card",
+    "store-cta"
+  ]
+}

@@ -1,0 +1,77 @@
+{
+  "version": 1,
+  "themes": {
+    "midnight-blue": {
+      "name": "Midnight Blue",
+      "primaryColor": "#3B82F6",
+      "backgroundColor": "#0B1220",
+      "textColor": "#F8FAFC",
+      "mutedColor": "#94A3B8",
+      "cardColor": "#1E293B"
+    },
+    "violet-pro": {
+      "name": "Violet Pro",
+      "primaryColor": "#7C3AED",
+      "backgroundColor": "#0F172A",
+      "textColor": "#FFFFFF",
+      "mutedColor": "#A78BFA",
+      "cardColor": "#1E1B4B"
+    },
+    "emerald-plan": {
+      "name": "Emerald Plan",
+      "primaryColor": "#10B981",
+      "backgroundColor": "#071210",
+      "textColor": "#ECFDF5",
+      "mutedColor": "#6EE7B7",
+      "cardColor": "#064E3B"
+    },
+    "rose-creative": {
+      "name": "Rose Creative",
+      "primaryColor": "#EC4899",
+      "backgroundColor": "#120818",
+      "textColor": "#FDF2F8",
+      "mutedColor": "#F9A8D4",
+      "cardColor": "#500724"
+    },
+    "amber-remix": {
+      "name": "Amber Remix",
+      "primaryColor": "#F59E0B",
+      "backgroundColor": "#14100A",
+      "textColor": "#FFFBEB",
+      "mutedColor": "#FCD34D",
+      "cardColor": "#451A03"
+    },
+    "aurora-voice": {
+      "name": "Aurora Voice",
+      "primaryColor": "#8B5CF6",
+      "backgroundColor": "#0E0A18",
+      "textColor": "#F5F3FF",
+      "mutedColor": "#C4B5FD",
+      "cardColor": "#2E1065"
+    },
+    "neon-cyan": {
+      "name": "Neon Cyan",
+      "primaryColor": "#06B6D4",
+      "backgroundColor": "#041016",
+      "textColor": "#ECFEFF",
+      "mutedColor": "#67E8F9",
+      "cardColor": "#164E63"
+    },
+    "slate-minimal": {
+      "name": "Slate Minimal",
+      "primaryColor": "#64748B",
+      "backgroundColor": "#0F172A",
+      "textColor": "#F1F5F9",
+      "mutedColor": "#94A3B8",
+      "cardColor": "#334155"
+    },
+    "light-clean": {
+      "name": "Light Clean",
+      "primaryColor": "#2563EB",
+      "backgroundColor": "#F8FAFC",
+      "textColor": "#0F172A",
+      "mutedColor": "#64748B",
+      "cardColor": "#E2E8F0"
+    }
+  }
+}

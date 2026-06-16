@@ -1,0 +1,229 @@
+{
+  "id": "chat-1b-v3",
+  "entryScreen": "s1",
+  "screens": [
+    {
+      "id": "s1",
+      "name": "Quiz",
+      "type": "demo",
+      "durationMs": 120000,
+      "elements": [
+        {
+          "id": "bg",
+          "type": "background",
+          "textKey": "backgroundGradient"
+        },
+        {
+          "id": "header",
+          "type": "app-header",
+          "badge": "Quick Q"
+        },
+        {
+          "id": "quiz",
+          "type": "quiz-options",
+          "questionKey": "quizQuestion",
+          "optionsKey": "quizOptions"
+        }
+      ],
+      "steps": [
+        {
+          "id": "bg",
+          "atMs": 0,
+          "action": "show",
+          "target": "bg",
+          "animation": "fade-in"
+        }
+      ],
+      "autoNext": {
+        "enabled": true,
+        "afterMs": 3800,
+        "target": "s2"
+      },
+      "clickNext": {
+        "enabled": true,
+        "target": "s2"
+      },
+      "transition": {
+        "animation": "fade-up",
+        "easing": "ease-out",
+        "durationMs": 420
+      }
+    },
+    {
+      "id": "s2",
+      "name": "Before",
+      "type": "demo",
+      "durationMs": 4000,
+      "elements": [
+        {
+          "id": "bg",
+          "type": "background",
+          "textKey": "backgroundGradient"
+        },
+        {
+          "id": "header",
+          "type": "app-header",
+          "badge": "Before"
+        },
+        {
+          "id": "before",
+          "type": "ai-result-card",
+          "textKey": "beforeEmail",
+          "variant": "before"
+        }
+      ],
+      "steps": [],
+      "autoNext": {
+        "enabled": true,
+        "afterMs": 4000,
+        "target": "s3"
+      },
+      "clickNext": {
+        "enabled": true,
+        "target": "s3"
+      },
+      "transition": {
+        "animation": "fade",
+        "easing": "ease-out",
+        "durationMs": 420
+      }
+    },
+    {
+      "id": "s3",
+      "name": "AI email cards",
+      "type": "demo",
+      "durationMs": 120000,
+      "transition": {
+        "animation": "fade"
+      },
+      "elements": [
+        {
+          "id": "bg",
+          "type": "background",
+          "textKey": "backgroundGradient"
+        },
+        {
+          "id": "resp",
+          "type": "ai-model-response",
+          "variant": "demo",
+          "textKey": "userQuestion"
+        }
+      ],
+      "steps": [],
+      "autoNext": {
+        "enabled": true,
+        "afterStreamMs": 5000,
+        "target": "screen_cta"
+      },
+      "clickNext": {
+        "enabled": true,
+        "target": "screen_cta"
+      }
+    },
+    {
+      "id": "screen_cta",
+      "name": "Install",
+      "type": "cta",
+      "ctaLayout": "overlay",
+      "durationMs": 60000,
+      "transition": {
+        "animation": "modal",
+        "easing": "ease-out",
+        "durationMs": 480
+      },
+      "elements": [
+        {
+          "id": "bg",
+          "type": "background",
+          "textKey": "backgroundGradient"
+        },
+        {
+          "id": "cta_result",
+          "type": "ai-result-card",
+          "textKey": "ctaResult",
+          "variant": "primary",
+          "hidden": false
+        },
+        {
+          "id": "benefits",
+          "type": "benefit-list",
+          "hidden": true
+        },
+        {
+          "id": "free_badge",
+          "type": "free-badge",
+          "textKey": "freeBadge",
+          "hidden": true
+        },
+        {
+          "id": "download_hint",
+          "type": "cta-download-hint",
+          "textKey": "ctaDownloadHint",
+          "hidden": true
+        },
+        {
+          "id": "arrow_lottie",
+          "type": "lottie",
+          "assetId": "lottie-ai-stars",
+          "variant": "cta-arrow-lottie",
+          "hidden": true
+        },
+        {
+          "id": "cta_button",
+          "type": "cta-button",
+          "textKey": "cta"
+        }
+      ],
+      "steps": [
+        {
+          "id": "res",
+          "atMs": 100,
+          "action": "show",
+          "target": "cta_result",
+          "animation": "scale-in"
+        },
+        {
+          "id": "bg",
+          "atMs": 0,
+          "action": "show",
+          "target": "bg",
+          "animation": "fade-in"
+        },
+        {
+          "id": "ben",
+          "atMs": 300,
+          "action": "show",
+          "target": "benefits",
+          "animation": "fade-up"
+        },
+        {
+          "id": "badge",
+          "atMs": 500,
+          "action": "show",
+          "target": "free_badge",
+          "animation": "pop-in"
+        },
+        {
+          "id": "hint",
+          "atMs": 700,
+          "action": "show",
+          "target": "download_hint",
+          "animation": "fade-in"
+        },
+        {
+          "id": "arrow",
+          "atMs": 900,
+          "action": "show",
+          "target": "arrow_lottie",
+          "animation": "fade-in"
+        },
+        {
+          "id": "pulse",
+          "atMs": 1100,
+          "action": "pulse",
+          "target": "cta_button"
+        }
+      ]
+    }
+  ]
+}

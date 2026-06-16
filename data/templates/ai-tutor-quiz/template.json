@@ -1,0 +1,21 @@
+{
+  "id": "ai-tutor-quiz",
+  "name": "Tutor · Quiz + Explain (5A)",
+  "description": "Geography quiz → answer reveal → memory checklist → CTA streak reward.",
+  "screenCount": 4,
+  "scenarioGuide": "V3 Scenario 5A. quizQuestion/Options, aiAnswerBlocks, lesson1-3, ctaBadge.",
+  "scenarioDoc": "docs/AI_PLAYABLE_USER_CASE_SCENARIOS_V3_SCREEN_DETAIL.md",
+  "defaultTheme": "midnight-blue",
+  "themes": [
+    "midnight-blue",
+    "violet-pro"
+  ],
+  "flow": [
+    "quiz",
+    "answer",
+    "memory",
+    "cta-reward"
+  ],
+  "userCase": "tutor",
+  "scenario": "5A"
+}

@@ -1,0 +1,44 @@
+{
+  "freeBadge": "Free to try",
+  "ctaDownloadHint": "👇 Tap to download — no card required",
+  "benefit1": "Unlimited AI requests during trial",
+  "benefit2": "Export & share in one tap",
+  "benefit3": "Works offline for saved chats",
+  "benefit4": "Cancel anytime in Settings",
+  "benefitsTitle": "What you'll get",
+  "productName": "AgentFlow",
+  "backgroundGradient": "radial-gradient(ellipse 120% 80% at 50% -12%, color-mix(in srgb, #7C3AED 38%, transparent), transparent 58%), linear-gradient(180deg, #0b1220 0%, #0f172a 100%)",
+  "problemHeadline": "Delegate work to your AI agent",
+  "taskInput": "Create a weekly content plan for my product.",
+  "userQuestion": "Weekly content plan for social",
+  "aiAnswerBlocks": [
+    {
+      "type": "text",
+      "text": "Agent is working…"
+    },
+    {
+      "type": "list",
+      "title": "Agent steps",
+      "items": [
+        "✓ Understand product goal",
+        "✓ Pick 3 content angles",
+        "✓ Create post schedule",
+        "✓ Draft hooks",
+        "✓ Add KPI checklist"
+      ]
+    }
+  ],
+  "outputHeadline": "Content plan ready",
+  "agentMon": "Mon · TikTok hook: 3 mistakes slowing your workflow",
+  "agentWed": "Wed · Carousel: Before/after using AI assistant",
+  "agentFri": "Fri · Email + post: Weekly productivity checklist",
+  "agentKpi1": "✓ Clear hook",
+  "agentKpi2": "✓ Platform matched",
+  "agentKpi3": "✓ CTA included",
+  "ctaHeadline": "Your content week is ready",
+  "ctaSubhead": "3 posts planned · 3 hooks drafted · 1 KPI checklist",
+  "ctaMon": "Mon · TikTok hook",
+  "ctaWed": "Wed · Carousel idea",
+  "ctaFri": "Fri · Email + post",
+  "cta": "Automate With AI"
+}

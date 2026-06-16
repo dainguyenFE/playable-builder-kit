@@ -1,0 +1,21 @@
+{
+  "id": "ai-writing-rewrite",
+  "name": "Writing · Rewrite Copy (2B)",
+  "description": "Weak copy + issues → AI rewrite stream → score checklist → CTA before/after card.",
+  "screenCount": 4,
+  "scenarioGuide": "V3 Scenario 2B. beforeCopy, aiAnswerBlocks, scoreValue, ctaResult.",
+  "scenarioDoc": "docs/AI_PLAYABLE_USER_CASE_SCENARIOS_V3_SCREEN_DETAIL.md",
+  "defaultTheme": "violet-pro",
+  "themes": [
+    "violet-pro",
+    "violet-pro"
+  ],
+  "flow": [
+    "before",
+    "stream",
+    "score",
+    "cta-transform"
+  ],
+  "userCase": "writing",
+  "scenario": "2B"
+}

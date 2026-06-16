@@ -1,0 +1,21 @@
+{
+  "id": "ai-image-t2i",
+  "name": "Image · Text To Image (3A)",
+  "description": "Prompt + styles → AI rendering pipeline → 3-image gallery → full image hero CTA.",
+  "screenCount": 4,
+  "scenarioGuide": "V3 Scenario 3A. promptText, style1-4, img-t2i on CTA.",
+  "scenarioDoc": "docs/AI_PLAYABLE_USER_CASE_SCENARIOS_V3_SCREEN_DETAIL.md",
+  "defaultTheme": "neon-cyan",
+  "themes": [
+    "neon-cyan",
+    "violet-pro"
+  ],
+  "flow": [
+    "prompt",
+    "rendering",
+    "gallery",
+    "cta-image-hero"
+  ],
+  "userCase": "image",
+  "scenario": "3A"
+}

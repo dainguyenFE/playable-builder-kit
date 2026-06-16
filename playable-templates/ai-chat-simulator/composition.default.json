@@ -1,0 +1,22 @@
+{
+  "id": "ai-chat-simulator-default",
+  "viewport": { "width": 390, "height": 844 },
+  "mode": "flow",
+  "flow": [
+    {
+      "id": "intro",
+      "blockRef": "blocks/tap-to-start",
+      "fromTemplate": "ai-chat-simulator"
+    },
+    {
+      "id": "interaction",
+      "blockRef": "blocks/chat-stream",
+      "fromTemplate": "ai-chat-simulator"
+    },
+    {
+      "id": "cta",
+      "blockRef": "blocks/store-cta",
+      "fromTemplate": "ai-chat-simulator"
+    }
+  ]
+}

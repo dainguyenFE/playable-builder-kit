@@ -1,0 +1,92 @@
+{
+  "freeBadge": "Free to try",
+  "ctaDownloadHint": "👇 Tap to download — no card required",
+  "benefit1": "Unlimited AI requests during trial",
+  "benefit2": "Export & share in one tap",
+  "benefit3": "Works offline for saved chats",
+  "benefit4": "Cancel anytime in Settings",
+  "benefitsTitle": "What you'll get",
+  "productName": "NutriAI",
+  "backgroundGradient": "radial-gradient(ellipse 120% 80% at 50% -12%, color-mix(in srgb, #10B981 38%, transparent), transparent 58%), linear-gradient(180deg, #0b1220 0%, #0f172a 100%)",
+  "quizQuestion": "What's your meal goal?",
+  "quizOptions": [
+    {
+      "label": "Lose weight",
+      "iconId": "lucide-scale",
+      "resultText": "Building plan…",
+      "targetScreen": "s2"
+    },
+    {
+      "label": "Gain muscle",
+      "iconId": "lucide-dumbbell",
+      "resultText": "Building plan…",
+      "targetScreen": "s2"
+    },
+    {
+      "label": "Eat healthier",
+      "iconId": "lucide-leaf",
+      "resultText": "Building plan…",
+      "targetScreen": "s2"
+    },
+    {
+      "label": "High protein",
+      "iconId": "lucide-egg",
+      "resultText": "High-protein day…",
+      "targetScreen": "s2"
+    }
+  ],
+  "pref1": "No pork",
+  "pref2": "Quick meals",
+  "pref3": "Budget friendly",
+  "userQuestion": "High-protein day plan",
+  "aiAnswerBlocks": [
+    {
+      "type": "text",
+      "text": "High-protein day plan:"
+    },
+    {
+      "type": "card",
+      "title": "Breakfast · 8:00",
+      "text": "Greek yogurt bowl with berries, granola, chia · Protein: 28g"
+    },
+    {
+      "type": "card",
+      "title": "Lunch · 12:30",
+      "text": "Chicken rice bowl with broccoli, avocado · Protein: 42g"
+    },
+    {
+      "type": "card",
+      "title": "Snack · 16:00",
+      "text": "Boiled eggs + banana · Protein: 14g"
+    },
+    {
+      "type": "card",
+      "title": "Dinner · 19:00",
+      "text": "Salmon, sweet potato, green beans · Protein: 38g"
+    },
+    {
+      "type": "progress",
+      "label": "Total protein",
+      "value": 122
+    }
+  ],
+  "grocery1": "Greek yogurt",
+  "grocery2": "Chicken breast",
+  "grocery3": "Broccoli",
+  "grocery4": "Eggs",
+  "grocery5": "Salmon",
+  "grocery6": "Sweet potato",
+  "checkpoint1": "✓ Protein each meal",
+  "checkpoint2": "✓ 2 vegetable servings",
+  "checkpoint3": "✓ Water reminder",
+  "checkpoint4": "○ Prep lunch box",
+  "proteinSummary": "122g protein planned",
+  "ctaHeadline": "Your high-protein day is ready",
+  "ctaSubhead": "Full weekly plan + grocery list in app",
+  "ctaMeal1": "8:00 · Yogurt bowl · 28g",
+  "ctaMeal2": "12:30 · Chicken bowl · 42g",
+  "ctaMeal3": "16:00 · Eggs + banana · 14g",
+  "ctaMeal4": "19:00 · Salmon plate · 38g",
+  "ctaProtein": "122g protein",
+  "cta": "Get My Full Plan"
+}

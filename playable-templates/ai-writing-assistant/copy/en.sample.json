@@ -1,0 +1,25 @@
+{
+  "locale": "en",
+  "theme": {
+    "bg": "#0f172a",
+    "fg": "#f8fafc",
+    "accent": "#22c55e",
+    "muted": "#94a3b8"
+  },
+  "slots": {
+    "headline": "Write faster with AI",
+    "subheadline": "Pick a task and see instant output.",
+    "continueLabel": "Continue",
+    "chip1": "Email campaign",
+    "chip2": "Blog outline",
+    "chip3": "Social captions",
+    "resultTitle": "Your draft is ready",
+    "resultBody": "Structured copy tailored to your audience — edit and ship in one tap.",
+    "benefit1": "Save hours on first drafts",
+    "benefit2": "On-brand tone controls",
+    "benefit3": "Export anywhere",
+    "ctaHeadline": "Start writing free",
+    "ctaSubhead": "Join thousands of marketers using AI daily.",
+    "ctaLabel": "Get the app"
+  }
+}

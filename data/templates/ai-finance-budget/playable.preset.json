@@ -1,0 +1,31 @@
+{
+  "id": "preview-template",
+  "name": "Ai Finance Budget (template preview)",
+  "viewport": {
+    "width": 390,
+    "height": 844,
+    "safeArea": true
+  },
+  "theme": {
+    "primaryColor": "#64748B",
+    "backgroundColor": "#0F172A",
+    "textColor": "#F1F5F9",
+    "fontFamily": "system"
+  },
+  "template": {
+    "id": "ai-finance-budget"
+  },
+  "cta": {
+    "label": "Get the app",
+    "type": "openStore"
+  },
+  "tracking": {
+    "enabled": true
+  },
+  "layout": {
+    "insetX": 20,
+    "insetY": 20,
+    "insetBottom": 24,
+    "gap": 14
+  }
+}

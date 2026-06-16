@@ -1,0 +1,72 @@
+/**
+ * UI: mobile 390×844 only. Shell below = desktop preview frame (do not add more @media).
+ * ai/skills/playable-viewport-shell/SKILL.md
+ * Sizing: ai/skills/playable-mobile-scaling/SKILL.md (390×844)
+ */
+
+.__ROUTE_CLASS__ {
+  box-sizing: border-box;
+  margin: 0;
+  min-height: 100%;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  background: #fff;
+}
+
+.__ROUTE_CLASS____app {
+  container-type: size;
+  container-name: page;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: calc(28 / 844 * 100cqh);
+  width: 100%;
+  max-width: 100%;
+  min-height: 100vh;
+  min-height: 100dvh;
+  margin: 0 auto;
+  padding: max(calc(32 / 844 * 100cqh), env(safe-area-inset-top))
+    max(calc(24 / 390 * 100cqw), env(safe-area-inset-right))
+    max(calc(48 / 844 * 100cqh), env(safe-area-inset-bottom))
+    max(calc(24 / 390 * 100cqw), env(safe-area-inset-left));
+  text-align: center;
+  background: linear-gradient(180deg, #0f172a 0%, #1e293b 100%);
+  color: #fff;
+}
+
+@media (min-width: 391px) {
+  .__ROUTE_CLASS____app {
+    max-width: 390px;
+  }
+}
+
+.__ROUTE_CLASS____headline {
+  margin: 0;
+  font-size: calc(32 / 390 * 100cqw);
+  font-weight: 700;
+  line-height: 1.2;
+}
+
+.__ROUTE_CLASS____subhead {
+  margin: calc(12 / 844 * 100cqh) 0 0;
+  font-size: calc(16 / 390 * 100cqw);
+  opacity: 0.85;
+  line-height: 1.5;
+}
+
+.__ROUTE_CLASS____hero {
+  max-width: min(calc(360 / 390 * 100cqw), 92%);
+  height: auto;
+  border-radius: calc(12 / 390 * 100cqw);
+}
+
+.__ROUTE_CLASS____cta {
+  padding: calc(16 / 844 * 100cqh) calc(32 / 390 * 100cqw);
+  border: none;
+  border-radius: calc(999 / 390 * 100cqw);
+  font-size: calc(17 / 390 * 100cqw);
+  font-weight: 600;
+  background: #22c55e;
+  color: #fff;
+  cursor: pointer;
+}

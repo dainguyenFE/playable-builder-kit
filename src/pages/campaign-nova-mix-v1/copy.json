@@ -1,0 +1,29 @@
+{
+  "locale": "en",
+  "theme": {
+    "bg": "#000000",
+    "fg": "#ffffff",
+    "accent": "#22c55e",
+    "muted": "#9ca3af",
+    "card": "#111827"
+  },
+  "slots": {
+    "headline": "Meet Nova AI",
+    "subheadline": "Your launch plan in one conversation.",
+    "tapLabel": "Tap to try",
+    "userPrompt": "Plan my mobile app launch in 2026",
+    "aiReply": "Start with ASO + TikTok UGC, layer Meta Advantage+, then referral loops once retention data is in.",
+    "chip1": "Launch plan",
+    "chip2": "Ad copy",
+    "chip3": "Competitor scan",
+    "resultTitle": "Your plan is ready",
+    "resultBody": "Nova structured channels, budget split, and week-one actions.",
+    "benefit1": "Actionable channel mix",
+    "benefit2": "Budget-aware priorities",
+    "benefit3": "Export to your team",
+    "continueLabel": "Continue",
+    "ctaHeadline": "Try Nova AI free",
+    "ctaSubhead": "Install and run your first prompt in seconds.",
+    "ctaLabel": "Get the app"
+  }
+}

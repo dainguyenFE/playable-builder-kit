@@ -1,0 +1,314 @@
+{
+  "id": "image-3a-v3",
+  "entryScreen": "s1",
+  "screens": [
+    {
+      "id": "s1",
+      "name": "Input",
+      "type": "demo",
+      "durationMs": 4000,
+      "transition": {
+        "animation": "slide"
+      },
+      "elements": [
+        {
+          "id": "bg",
+          "type": "background",
+          "textKey": "backgroundGradient"
+        },
+        {
+          "id": "header",
+          "type": "app-header",
+          "badge": "T2I"
+        },
+        {
+          "id": "lot",
+          "type": "lottie",
+          "assetId": "lottie-ai-scan"
+        },
+        {
+          "id": "prompt",
+          "type": "prompt-input",
+          "label": "Prompt"
+        }
+      ],
+      "steps": [
+        {
+          "id": "t",
+          "atMs": 400,
+          "action": "typeText",
+          "target": "prompt",
+          "value": "A futuristic café with neon lights, rainy window, cinematic mood"
+        }
+      ],
+      "autoNext": {
+        "enabled": true,
+        "afterMs": 3500,
+        "target": "s2"
+      },
+      "clickNext": {
+        "enabled": true,
+        "target": "s2"
+      }
+    },
+    {
+      "id": "s2",
+      "name": "Processing",
+      "type": "demo",
+      "durationMs": 4500,
+      "transition": {
+        "animation": "fade-up",
+        "easing": "ease-out",
+        "durationMs": 420
+      },
+      "elements": [
+        {
+          "id": "bg",
+          "type": "background",
+          "textKey": "backgroundGradient"
+        },
+        {
+          "id": "header",
+          "type": "app-header",
+          "badge": "Rendering"
+        },
+        {
+          "id": "load",
+          "type": "ai-loading-card",
+          "hidden": true
+        }
+      ],
+      "steps": [
+        {
+          "id": "bg",
+          "atMs": 0,
+          "action": "show",
+          "target": "bg",
+          "animation": "fade-in"
+        },
+        {
+          "id": "l",
+          "atMs": 300,
+          "action": "show",
+          "target": "load",
+          "animation": "fade-in"
+        }
+      ],
+      "autoNext": {
+        "enabled": true,
+        "afterMs": 4500,
+        "target": "s3"
+      },
+      "clickNext": {
+        "enabled": true,
+        "target": "s3"
+      }
+    },
+    {
+      "id": "s3",
+      "name": "Gallery",
+      "type": "demo",
+      "durationMs": 4500,
+      "elements": [
+        {
+          "id": "bg",
+          "type": "background",
+          "textKey": "backgroundGradient"
+        },
+        {
+          "id": "hl",
+          "type": "headline-block",
+          "textKey": "galleryHeadline",
+          "hidden": true
+        },
+        {
+          "id": "hero",
+          "type": "image-canvas",
+          "assetId": "img-t2i",
+          "hidden": true
+        },
+        {
+          "id": "styles",
+          "type": "benefit-list",
+          "keys": [
+            "style1",
+            "style2",
+            "style3",
+            "style4"
+          ],
+          "title": "",
+          "hidden": true
+        }
+      ],
+      "steps": [
+        {
+          "id": "bg",
+          "atMs": 0,
+          "action": "show",
+          "target": "bg",
+          "animation": "fade-in"
+        },
+        {
+          "id": "hl",
+          "atMs": 200,
+          "action": "show",
+          "target": "hl",
+          "animation": "fade-up"
+        },
+        {
+          "id": "hero",
+          "atMs": 500,
+          "action": "show",
+          "target": "hero",
+          "animation": "pop-in"
+        },
+        {
+          "id": "styles",
+          "atMs": 900,
+          "action": "show",
+          "target": "styles",
+          "animation": "fade-up"
+        }
+      ],
+      "autoNext": {
+        "enabled": true,
+        "afterMs": 4500,
+        "target": "screen_cta"
+      },
+      "clickNext": {
+        "enabled": true,
+        "target": "screen_cta"
+      },
+      "transition": {
+        "animation": "pop-in",
+        "easing": "ease-out",
+        "durationMs": 420
+      }
+    },
+    {
+      "id": "screen_cta",
+      "name": "CTA",
+      "type": "cta",
+      "ctaLayout": "bottom",
+      "durationMs": 60000,
+      "transition": {
+        "animation": "fade-up",
+        "easing": "ease-out",
+        "durationMs": 450
+      },
+      "elements": [
+        {
+          "id": "bg",
+          "type": "background",
+          "textKey": "backgroundGradient"
+        },
+        {
+          "id": "free_badge",
+          "type": "free-badge",
+          "textKey": "freeBadge"
+        },
+        {
+          "id": "cta_result",
+          "type": "hero-image",
+          "assetId": "img-t2i",
+          "hidden": true
+        },
+        {
+          "id": "cta_headline",
+          "type": "headline-block",
+          "textKey": "ctaHeadline"
+        },
+        {
+          "id": "cta_sub",
+          "type": "subheadline-block",
+          "textKey": "ctaSubhead"
+        },
+        {
+          "id": "benefits",
+          "type": "benefit-list",
+          "hidden": true
+        },
+        {
+          "id": "download_hint",
+          "type": "cta-download-hint",
+          "textKey": "ctaDownloadHint",
+          "hidden": true
+        },
+        {
+          "id": "cta_arrow",
+          "type": "cta-arrow",
+          "hidden": true
+        },
+        {
+          "id": "cta_button",
+          "type": "cta-button",
+          "textKey": "cta"
+        }
+      ],
+      "steps": [
+        {
+          "id": "res",
+          "atMs": 100,
+          "action": "show",
+          "target": "cta_result",
+          "animation": "pop-in"
+        },
+        {
+          "id": "bg",
+          "atMs": 0,
+          "action": "show",
+          "target": "bg",
+          "animation": "fade-in"
+        },
+        {
+          "id": "badge",
+          "atMs": 150,
+          "action": "show",
+          "target": "free_badge",
+          "animation": "pop-in"
+        },
+        {
+          "id": "hl",
+          "atMs": 350,
+          "action": "show",
+          "target": "cta_headline",
+          "animation": "fade-up"
+        },
+        {
+          "id": "sub",
+          "atMs": 550,
+          "action": "show",
+          "target": "cta_sub",
+          "animation": "fade-in"
+        },
+        {
+          "id": "ben",
+          "atMs": 750,
+          "action": "show",
+          "target": "benefits",
+          "animation": "fade-up"
+        },
+        {
+          "id": "hint",
+          "atMs": 950,
+          "action": "show",
+          "target": "download_hint",
+          "animation": "fade-in"
+        },
+        {
+          "id": "arrow",
+          "atMs": 1150,
+          "action": "show",
+          "target": "cta_arrow",
+          "animation": "fade-in"
+        },
+        {
+          "id": "pulse",
+          "atMs": 1450,
+          "action": "pulse",
+          "target": "cta_button"
+        }
+      ]
+    }
+  ]
+}

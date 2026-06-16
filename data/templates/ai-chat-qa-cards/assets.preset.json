@@ -1,0 +1,63 @@
+{
+  "assets": [
+    {
+      "id": "lucide-mail",
+      "type": "icon",
+      "path": "icons/lucide/mail.svg",
+      "label": "mail"
+    },
+    {
+      "id": "lucide-calendar",
+      "type": "icon",
+      "path": "icons/lucide/calendar.svg",
+      "label": "calendar"
+    },
+    {
+      "id": "lucide-file-text",
+      "type": "icon",
+      "path": "icons/lucide/file-text.svg",
+      "label": "file-text"
+    },
+    {
+      "id": "lucide-zap",
+      "type": "icon",
+      "path": "icons/lucide/zap.svg",
+      "label": "zap"
+    },
+    {
+      "id": "lottie-ai-confetti",
+      "type": "lottie",
+      "path": "lottie/lottie-ai-confetti.json"
+    },
+    {
+      "id": "lottie-ai-chat",
+      "type": "lottie",
+      "path": "lottie/lottie-ai-chat.json"
+    },
+    {
+      "id": "lottie-ai-loading",
+      "type": "lottie",
+      "path": "lottie/lottie-ai-loading.json"
+    },
+    {
+      "id": "lottie-ai-stars",
+      "type": "lottie",
+      "path": "lottie/lottie-ai-stars.json"
+    },
+    {
+      "id": "lottie-ai-robot",
+      "type": "lottie",
+      "path": "lottie/lottie-ai-robot.json"
+    },
+    {
+      "id": "lottie-ai-scan",
+      "type": "lottie",
+      "path": "lottie/lottie-ai-scan.json"
+    },
+    {
+      "id": "lottie-ai-brain",
+      "type": "lottie",
+      "path": "lottie/lottie-ai-brain.json"
+    }
+  ]
+}

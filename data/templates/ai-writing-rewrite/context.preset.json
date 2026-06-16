@@ -1,0 +1,45 @@
+{
+  "freeBadge": "Free to try",
+  "ctaDownloadHint": "👇 Tap to download — no card required",
+  "benefit1": "Unlimited AI requests during trial",
+  "benefit2": "Export & share in one tap",
+  "benefit3": "Works offline for saved chats",
+  "benefit4": "Cancel anytime in Settings",
+  "benefitsTitle": "What you'll get",
+  "productName": "CopyLift",
+  "backgroundGradient": "radial-gradient(ellipse 120% 80% at 50% -12%, color-mix(in srgb, #7C3AED 38%, transparent), transparent 58%), linear-gradient(180deg, #0b1220 0%, #0f172a 100%)",
+  "problemHeadline": "This copy feels weak...",
+  "beforeCopy": "Our product is good and helps you work faster.\n\nIssues: Generic benefit · No emotion · No clear outcome",
+  "userQuestion": "Rewrite this for conversion",
+  "aiAnswerBlocks": [
+    {
+      "type": "text",
+      "text": "Improved version:"
+    },
+    {
+      "type": "text",
+      "text": "Move faster with an AI workspace that turns scattered ideas into clear, ready-to-use content in seconds."
+    },
+    {
+      "type": "text",
+      "text": "Alternative headline: Create better content before your coffee gets cold."
+    },
+    {
+      "type": "list",
+      "title": "What improved",
+      "items": [
+        "✓ Clearer benefit",
+        "✓ Stronger verb",
+        "✓ Specific outcome",
+        "✓ Better CTA"
+      ]
+    }
+  ],
+  "scoreValue": "Copy Score: 42 → 91",
+  "issueList": "✓ Clearer benefit\n✓ Stronger verb\n✓ Specific outcome\n✓ Better CTA",
+  "ctaHeadline": "Your copy is now stronger",
+  "ctaSubhead": "Unlock unlimited rewrites in the app.",
+  "ctaResult": "Before:\nOur product is good and helps you work faster.\n\nAfter:\nMove faster with an AI workspace that turns scattered ideas into clear, ready-to-use content in seconds.",
+  "ctaBadge": "+49 copy score",
+  "cta": "Rewrite My Copy"
+}

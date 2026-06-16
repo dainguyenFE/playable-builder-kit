@@ -1,0 +1,81 @@
+{
+  "freeBadge": "Free to try",
+  "ctaDownloadHint": "👇 Tap to download — no card required",
+  "benefit1": "Unlimited AI requests during trial",
+  "benefit2": "Export & share in one tap",
+  "benefit3": "Works offline for saved chats",
+  "benefit4": "Cancel anytime in Settings",
+  "benefitsTitle": "What you'll get",
+  "productName": "StudyPal",
+  "backgroundGradient": "radial-gradient(ellipse 120% 80% at 50% -12%, color-mix(in srgb, #3B82F6 38%, transparent), transparent 58%), linear-gradient(180deg, #0b1220 0%, #0f172a 100%)",
+  "quizQuestion": "What is the capital of Canada?",
+  "quizOptions": [
+    {
+      "label": "Toronto",
+      "iconId": "lucide-map-pin",
+      "resultText": "Checking…",
+      "targetScreen": "s2"
+    },
+    {
+      "label": "Vancouver",
+      "iconId": "lucide-map-pin",
+      "resultText": "Checking…",
+      "targetScreen": "s2"
+    },
+    {
+      "label": "Ottawa",
+      "iconId": "lucide-map-pin",
+      "resultText": "Correct!",
+      "targetScreen": "s2"
+    },
+    {
+      "label": "Montreal",
+      "iconId": "lucide-map-pin",
+      "resultText": "Checking…",
+      "targetScreen": "s2"
+    }
+  ],
+  "userQuestion": "Why is Ottawa the capital?",
+  "aiAnswerBlocks": [
+    {
+      "type": "text",
+      "text": "Correct answer: Ottawa"
+    },
+    {
+      "type": "text",
+      "text": "Ottawa is the capital of Canada. Toronto is the largest city, but it is not the capital."
+    },
+    {
+      "type": "card",
+      "title": "Country",
+      "text": "Canada"
+    },
+    {
+      "type": "card",
+      "title": "Capital",
+      "text": "Ottawa"
+    },
+    {
+      "type": "card",
+      "title": "Largest city",
+      "text": "Toronto"
+    },
+    {
+      "type": "list",
+      "title": "Remember",
+      "items": [
+        "✓ Ottawa = capital",
+        "✓ Toronto = largest city",
+        "✓ Both start with O"
+      ]
+    }
+  ],
+  "memoryHeadline": "Remember: Ottawa = Official capital",
+  "lesson1": "✓ Ottawa = capital",
+  "lesson2": "✓ Toronto = largest city",
+  "lesson3": "✓ Canada = country",
+  "ctaHeadline": "1 Question Mastered",
+  "ctaSubhead": "Day 1 · Geography · +10 XP · Next: World capitals",
+  "ctaBadge": "+10 XP",
+  "cta": "Keep Learning"
+}

@@ -1,0 +1,268 @@
+{
+  "id": "finance-8a-v3",
+  "entryScreen": "s1",
+  "screens": [
+    {
+      "id": "s1",
+      "name": "Input",
+      "type": "demo",
+      "durationMs": 3500,
+      "transition": {
+        "animation": "slide"
+      },
+      "elements": [
+        {
+          "id": "bg",
+          "type": "background",
+          "textKey": "backgroundGradient"
+        },
+        {
+          "id": "header",
+          "type": "app-header",
+          "badge": "Budget"
+        },
+        {
+          "id": "prompt",
+          "type": "prompt-input",
+          "label": "Income"
+        }
+      ],
+      "steps": [
+        {
+          "id": "t",
+          "atMs": 400,
+          "action": "typeText",
+          "target": "prompt",
+          "value": "$2,500/month"
+        }
+      ],
+      "autoNext": {
+        "enabled": true,
+        "afterMs": 3000,
+        "target": "s2"
+      },
+      "clickNext": {
+        "enabled": true,
+        "target": "s2"
+      }
+    },
+    {
+      "id": "s2",
+      "name": "Breakdown",
+      "type": "demo",
+      "durationMs": 120000,
+      "transition": {
+        "animation": "fade"
+      },
+      "elements": [
+        {
+          "id": "bg",
+          "type": "background",
+          "textKey": "backgroundGradient"
+        },
+        {
+          "id": "resp",
+          "type": "ai-model-response",
+          "variant": "demo",
+          "textKey": "userQuestion"
+        }
+      ],
+      "steps": [],
+      "autoNext": {
+        "enabled": true,
+        "afterStreamMs": 5000,
+        "target": "s3"
+      },
+      "clickNext": {
+        "enabled": true,
+        "target": "s3"
+      }
+    },
+    {
+      "id": "s3",
+      "name": "Checkpoint",
+      "type": "demo",
+      "durationMs": 4000,
+      "elements": [
+        {
+          "id": "bg",
+          "type": "background",
+          "textKey": "backgroundGradient"
+        },
+        {
+          "id": "checks",
+          "type": "benefit-list",
+          "keys": [
+            "checkpoint1",
+            "checkpoint2",
+            "checkpoint3",
+            "checkpoint4"
+          ],
+          "title": "",
+          "hidden": true
+        }
+      ],
+      "steps": [
+        {
+          "id": "bg",
+          "atMs": 0,
+          "action": "show",
+          "target": "bg",
+          "animation": "fade-in"
+        },
+        {
+          "id": "c",
+          "atMs": 400,
+          "action": "show",
+          "target": "checks",
+          "animation": "fade-up"
+        }
+      ],
+      "autoNext": {
+        "enabled": true,
+        "afterMs": 4000,
+        "target": "screen_cta"
+      },
+      "clickNext": {
+        "enabled": true,
+        "target": "screen_cta"
+      },
+      "transition": {
+        "animation": "fade-up",
+        "easing": "ease-out",
+        "durationMs": 420
+      }
+    },
+    {
+      "id": "screen_cta",
+      "name": "CTA",
+      "type": "cta",
+      "ctaLayout": "bottom",
+      "durationMs": 60000,
+      "transition": {
+        "animation": "fade-up",
+        "easing": "ease-out",
+        "durationMs": 450
+      },
+      "elements": [
+        {
+          "id": "bg",
+          "type": "background",
+          "textKey": "backgroundGradient"
+        },
+        {
+          "id": "free_badge",
+          "type": "free-badge",
+          "textKey": "freeBadge"
+        },
+        {
+          "id": "cta_result",
+          "type": "benefit-list",
+          "keys": [
+            "ctaSave",
+            "ctaEssentials",
+            "ctaFlexible",
+            "ctaBuffer"
+          ],
+          "title": "",
+          "hidden": true
+        },
+        {
+          "id": "cta_headline",
+          "type": "headline-block",
+          "textKey": "ctaHeadline"
+        },
+        {
+          "id": "cta_sub",
+          "type": "subheadline-block",
+          "textKey": "ctaSubhead"
+        },
+        {
+          "id": "benefits",
+          "type": "benefit-list",
+          "hidden": true
+        },
+        {
+          "id": "download_hint",
+          "type": "cta-download-hint",
+          "textKey": "ctaDownloadHint",
+          "hidden": true
+        },
+        {
+          "id": "cta_arrow",
+          "type": "cta-arrow",
+          "hidden": true
+        },
+        {
+          "id": "cta_button",
+          "type": "cta-button",
+          "textKey": "cta"
+        }
+      ],
+      "steps": [
+        {
+          "id": "res",
+          "atMs": 100,
+          "action": "show",
+          "target": "cta_result",
+          "animation": "fade-up"
+        },
+        {
+          "id": "bg",
+          "atMs": 0,
+          "action": "show",
+          "target": "bg",
+          "animation": "fade-in"
+        },
+        {
+          "id": "badge",
+          "atMs": 150,
+          "action": "show",
+          "target": "free_badge",
+          "animation": "pop-in"
+        },
+        {
+          "id": "hl",
+          "atMs": 350,
+          "action": "show",
+          "target": "cta_headline",
+          "animation": "fade-up"
+        },
+        {
+          "id": "sub",
+          "atMs": 550,
+          "action": "show",
+          "target": "cta_sub",
+          "animation": "fade-in"
+        },
+        {
+          "id": "ben",
+          "atMs": 750,
+          "action": "show",
+          "target": "benefits",
+          "animation": "fade-up"
+        },
+        {
+          "id": "hint",
+          "atMs": 950,
+          "action": "show",
+          "target": "download_hint",
+          "animation": "fade-in"
+        },
+        {
+          "id": "arrow",
+          "atMs": 1150,
+          "action": "show",
+          "target": "cta_arrow",
+          "animation": "fade-in"
+        },
+        {
+          "id": "pulse",
+          "atMs": 1450,
+          "action": "pulse",
+          "target": "cta_button"
+        }
+      ]
+    }
+  ]
+}

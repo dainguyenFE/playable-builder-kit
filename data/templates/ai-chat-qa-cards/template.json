@@ -1,0 +1,21 @@
+{
+  "id": "ai-chat-qa-cards",
+  "name": "Chat · Quick Q&A Cards (1B)",
+  "description": "Question picker → bad email before → AI improvement cards → CTA email result sheet.",
+  "screenCount": 4,
+  "scenarioGuide": "V3 Scenario 1B. quizOptions, beforeEmail, aiAnswerBlocks, ctaResult.",
+  "scenarioDoc": "docs/AI_PLAYABLE_USER_CASE_SCENARIOS_V3_SCREEN_DETAIL.md",
+  "defaultTheme": "neon-cyan",
+  "themes": [
+    "neon-cyan",
+    "violet-pro"
+  ],
+  "flow": [
+    "quiz",
+    "before-email",
+    "stream",
+    "cta-email"
+  ],
+  "userCase": "chat",
+  "scenario": "1B"
+}

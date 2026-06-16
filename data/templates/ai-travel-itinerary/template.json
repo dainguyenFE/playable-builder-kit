@@ -1,0 +1,21 @@
+{
+  "id": "ai-travel-itinerary",
+  "name": "Travel · 3-Day Plan (7A)",
+  "description": "Destination input → detailed day cards → route & budget summary → CTA travel board.",
+  "screenCount": 4,
+  "scenarioGuide": "V3 Scenario 7A. destination, aiAnswerBlocks days, ctaDay1-3, ctaSpend.",
+  "scenarioDoc": "docs/AI_PLAYABLE_USER_CASE_SCENARIOS_V3_SCREEN_DETAIL.md",
+  "defaultTheme": "emerald-plan",
+  "themes": [
+    "emerald-plan",
+    "violet-pro"
+  ],
+  "flow": [
+    "input",
+    "itinerary",
+    "route-summary",
+    "cta-board"
+  ],
+  "userCase": "travel",
+  "scenario": "7A"
+}

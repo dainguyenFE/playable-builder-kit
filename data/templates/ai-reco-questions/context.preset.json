@@ -1,0 +1,115 @@
+{
+  "freeBadge": "Free to try",
+  "ctaDownloadHint": "👇 Tap to download — no card required",
+  "benefit1": "Unlimited AI requests during trial",
+  "benefit2": "Export & share in one tap",
+  "benefit3": "Works offline for saved chats",
+  "benefit4": "Cancel anytime in Settings",
+  "benefitsTitle": "What you'll get",
+  "productName": "AI Planner",
+  "backgroundGradient": "radial-gradient(ellipse 120% 80% at 50% -12%, color-mix(in srgb, #2563EB 38%, transparent), transparent 58%), linear-gradient(180deg, #0b1220 0%, #0f172a 100%)",
+  "quizQuestion": "What do you want AI to help with?",
+  "quizOptions": [
+    {
+      "label": "Save time",
+      "iconId": "lucide-clock",
+      "resultText": "Saving time…",
+      "targetScreen": "s2"
+    },
+    {
+      "label": "Learn faster",
+      "iconId": "lucide-zap",
+      "resultText": "Learning plan…",
+      "targetScreen": "s2"
+    },
+    {
+      "label": "Create content",
+      "iconId": "lucide-pen",
+      "resultText": "Content plan…",
+      "targetScreen": "s2"
+    },
+    {
+      "label": "Stay organized",
+      "iconId": "lucide-calendar",
+      "resultText": "Organizing…",
+      "targetScreen": "s2"
+    }
+  ],
+  "timeQuestion": "How much time do you have daily?",
+  "timeOptions": [
+    {
+      "label": "5 min",
+      "iconId": "lucide-clock",
+      "resultText": "5 min plan…",
+      "targetScreen": "s3"
+    },
+    {
+      "label": "10 min",
+      "iconId": "lucide-clock",
+      "resultText": "10 min plan…",
+      "targetScreen": "s3"
+    },
+    {
+      "label": "20 min",
+      "iconId": "lucide-clock",
+      "resultText": "20 min plan…",
+      "targetScreen": "s3"
+    },
+    {
+      "label": "30 min",
+      "iconId": "lucide-clock",
+      "resultText": "30 min plan…",
+      "targetScreen": "s3"
+    }
+  ],
+  "timeMicrocopy": "AI will build a realistic plan.",
+  "userQuestion": "10-minute productivity plan",
+  "aiAnswerBlocks": [
+    {
+      "type": "text",
+      "text": "Your 10-minute AI productivity plan:"
+    },
+    {
+      "type": "card",
+      "title": "Minute 0-2",
+      "text": "Brain dump tasks"
+    },
+    {
+      "type": "card",
+      "title": "Minute 2-5",
+      "text": "AI groups them by priority"
+    },
+    {
+      "type": "card",
+      "title": "Minute 5-8",
+      "text": "Pick top 3 actions"
+    },
+    {
+      "type": "card",
+      "title": "Minute 8-10",
+      "text": "Start first tiny task"
+    },
+    {
+      "type": "list",
+      "title": "Checklist",
+      "items": [
+        "✓ Daily plan",
+        "✓ Priority grouping",
+        "✓ First action selected"
+      ]
+    },
+    {
+      "type": "text",
+      "text": "Best feature for you: AI Daily Planner"
+    }
+  ],
+  "ctaHeadline": "Your AI plan is ready",
+  "ctaSubhead": "Unlock 7-day plan, reminders, and progress tracking",
+  "ctaGoal": "Goal: Save time",
+  "ctaTime": "Daily time: 10 minutes",
+  "ctaFeature": "Recommended: AI Daily Planner",
+  "ctaExtra1": "7-day plan",
+  "ctaExtra2": "Task reminders",
+  "ctaExtra3": "Progress tracking",
+  "cta": "Unlock My Full Plan"
+}

@@ -1,0 +1,57 @@
+{
+  "freeBadge": "Free to try",
+  "ctaDownloadHint": "👇 Tap to download — no card required",
+  "benefit1": "Unlimited AI requests during trial",
+  "benefit2": "Export & share in one tap",
+  "benefit3": "Works offline for saved chats",
+  "benefit4": "Cancel anytime in Settings",
+  "benefitsTitle": "What you'll get",
+  "productName": "TripMind",
+  "backgroundGradient": "radial-gradient(ellipse 120% 80% at 50% -12%, color-mix(in srgb, #10B981 38%, transparent), transparent 58%), linear-gradient(180deg, #0b1220 0%, #0f172a 100%)",
+  "problemHeadline": "Plan a 3-day Tokyo trip in seconds",
+  "destinationInput": "Tokyo · 3 days · Foodie · Mid-range",
+  "userQuestion": "Tokyo 3-day itinerary",
+  "aiAnswerBlocks": [
+    {
+      "type": "text",
+      "text": "Tokyo 3-day itinerary:"
+    },
+    {
+      "type": "card",
+      "title": "Day 1 · Shibuya + Harajuku",
+      "text": "Morning: check in · Afternoon: Shibuya Crossing, Hachiko, Harajuku · Evening: ramen · Food ¥3,000-4,500"
+    },
+    {
+      "type": "card",
+      "title": "Day 2 · Asakusa + Ueno",
+      "text": "Morning: Senso-ji Temple · Afternoon: Nakamise, Ueno Park · Evening: izakaya · Food ¥3,500-5,000"
+    },
+    {
+      "type": "card",
+      "title": "Day 3 · Shinjuku + Shopping",
+      "text": "Morning: Shinjuku Gyoen · Afternoon: Lumine, Don Quijote · Evening: sushi dinner · Shopping ¥5,000-15,000"
+    },
+    {
+      "type": "list",
+      "title": "AI Tip",
+      "items": [
+        "Keep Day 2 slower — more walking",
+        "Use JR/Yamanote line",
+        "Hotel return before 22:00"
+      ]
+    }
+  ],
+  "summaryHeadline": "Route & budget summary",
+  "summarySubhead": "Food ¥10,500-15,500 · Transport ¥2,000-3,600",
+  "summary1": "Day 1: Shibuya → Harajuku",
+  "summary2": "Day 2: Asakusa → Ueno",
+  "summary3": "Day 3: Shinjuku → Airport prep",
+  "summary4": "Rest: hotel before 22:00",
+  "ctaHeadline": "Your Tokyo 3-Day Plan is Ready",
+  "ctaSubhead": "Estimated ¥7,000 - ¥15,000/day",
+  "ctaDay1": "Day 1 · Shibuya + Harajuku · ramen + street snacks",
+  "ctaDay2": "Day 2 · Asakusa + Ueno · Senso-ji + izakaya",
+  "ctaDay3": "Day 3 · Shinjuku · shopping + sushi dinner",
+  "ctaSpend": "Estimated daily spend: ¥7,000 - ¥15,000/day",
+  "cta": "Open Full Itinerary"
+}

@@ -1,0 +1,173 @@
+{
+  "version": 1,
+  "assets": [
+    {
+      "id": "img-t2i-cyberpunk",
+      "type": "image",
+      "path": "images/t2i-cyberpunk.jpg",
+      "label": "Neon city art"
+    },
+    {
+      "id": "img-chat-hero",
+      "type": "image",
+      "path": "images/chat-hero.jpg",
+      "label": "AI chat hero"
+    },
+    {
+      "id": "img-writing-doc",
+      "type": "image",
+      "path": "images/writing-doc.jpg",
+      "label": "Writing workspace"
+    },
+    {
+      "id": "img-plan-board",
+      "type": "image",
+      "path": "images/plan-board.jpg",
+      "label": "Planning board"
+    },
+    {
+      "id": "img-cat-cute",
+      "type": "image",
+      "path": "images/cat-cute.svg",
+      "label": "Cute cat"
+    },
+    {
+      "id": "img-i2i-before",
+      "type": "image",
+      "path": "images/i2i-before.jpg",
+      "label": "Portrait before"
+    },
+    {
+      "id": "img-i2i-after",
+      "type": "image",
+      "path": "images/i2i-after.jpg",
+      "label": "Portrait styled"
+    },
+    {
+      "id": "img-audio-cover",
+      "type": "image",
+      "path": "images/audio-cover.jpg",
+      "label": "Podcast mic"
+    },
+    {
+      "id": "icon-sparkles",
+      "type": "icon",
+      "path": "icons/icon-sparkles.svg",
+      "label": "Sparkles"
+    },
+    {
+      "id": "icon-hand",
+      "type": "icon",
+      "path": "icons/icon-hand.svg",
+      "label": "Hand"
+    },
+    {
+      "id": "icon-mouse-pointer-click",
+      "type": "icon",
+      "path": "icons/icon-mouse-pointer-click.svg",
+      "label": "Tap pointer"
+    },
+    {
+      "id": "icon-chevron-right",
+      "type": "icon",
+      "path": "icons/icon-chevron-right.svg",
+      "label": "Chevron right"
+    },
+    {
+      "id": "icon-star",
+      "type": "icon",
+      "path": "icons/icon-star.svg",
+      "label": "Star"
+    },
+    {
+      "id": "icon-zap",
+      "type": "icon",
+      "path": "icons/icon-zap.svg",
+      "label": "Zap"
+    },
+    {
+      "id": "icon-heart",
+      "type": "icon",
+      "path": "icons/icon-heart.svg",
+      "label": "Heart"
+    },
+    {
+      "id": "icon-circle-check",
+      "type": "icon",
+      "path": "icons/icon-circle-check.svg",
+      "label": "Check circle"
+    },
+    {
+      "id": "lottie-loading-dots",
+      "type": "lottie",
+      "path": "lottie/lottie-loading-dots.json",
+      "label": "Loading dots"
+    },
+    {
+      "id": "lottie-success",
+      "type": "lottie",
+      "path": "lottie/lottie-success.json",
+      "label": "Success check"
+    },
+    {
+      "id": "lottie-confetti",
+      "type": "lottie",
+      "path": "lottie/lottie-confetti.json",
+      "label": "Confetti burst"
+    },
+    {
+      "id": "img-chat-answer",
+      "type": "image",
+      "path": "images/chat-answer.jpg",
+      "label": "Analytics dashboard"
+    },
+    {
+      "id": "img-text-hero",
+      "type": "image",
+      "path": "images/text-campaign-hero.jpg",
+      "label": "Productivity desk"
+    },
+    {
+      "id": "lottie-ai-loading",
+      "type": "lottie",
+      "path": "lottie/lottie-ai-loading.json",
+      "label": "AI loading"
+    },
+    {
+      "id": "lottie-ai-success",
+      "type": "lottie",
+      "path": "lottie/lottie-ai-success.json",
+      "label": "Success check"
+    },
+    {
+      "id": "lottie-ai-confetti",
+      "type": "lottie",
+      "path": "lottie/lottie-ai-confetti.json",
+      "label": "Confetti"
+    },
+    {
+      "id": "lottie-ai-robot",
+      "type": "lottie",
+      "path": "lottie/lottie-ai-robot.json",
+      "label": "AI robot"
+    },
+    {
+      "id": "lottie-ai-chat",
+      "type": "lottie",
+      "path": "lottie/lottie-ai-chat.json",
+      "label": "Chat bubbles"
+    },
+    {
+      "id": "lottie-ai-scan",
+      "type": "lottie",
+      "path": "lottie/lottie-ai-scan.json",
+      "label": "AI scan"
+    },
+    {
+      "id": "lottie-ai-stars",
+      "type": "lottie",
+      "path": "lottie/lottie-ai-stars.json",
+      "label": "Magic stars"
+    }
+  ]
+}

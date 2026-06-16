@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Edit template</title>
+  <link rel="stylesheet" href="/studio/studio.css" />
+</head>
+<body class="studio-home">
+  <header class="studio-home__header">
+    <p><a href="/">← Studio</a></p>
+    <h1 id="edit-title">Template</h1>
+    <p>V3 screen contract · chỉnh JSON trong <code>data/templates/&lt;id&gt;/</code> → preview + zone inspector.</p>
+  </header>
+  <main class="studio-home__main">
+    <div id="meta-panel" class="studio-template-meta"></div>
+    <p>
+      <a id="link-preview" class="studio-card__btn studio-card__btn--accent" href="#">Open preview + zone inspector</a>
+    </p>
+    <ul id="file-list"></ul>
+    <section>
+      <h2>Regenerate from V3 doc</h2>
+      <pre><code>pnpm template:catalog:generate
+pnpm template:export &lt;id&gt;</code></pre>
+      <p>Source: <code>docs/AI_PLAYABLE_USER_CASE_SCENARIOS_V3_SCREEN_DETAIL.md</code></p>
+    </section>
+  </main>
+  <script type="module">
+    const id = location.pathname.split("/").filter(Boolean).pop();
+    document.getElementById("edit-title").textContent = id;
+    document.getElementById("link-preview").href = `/preview/template/${id}`;
+
+    const metaPanel = document.getElementById("meta-panel");
+    try {
+      const meta = await fetch(`/template-data/studio/${id}/template.json`).then((r) => r.json());
+      const flow = (meta.flow ?? []).map((s) => `<span class="studio-flow-chip">${s}</span>`).join('<span class="studio-flow-arrow">→</span>');
+      metaPanel.innerHTML = `
+        <div class="studio-card studio-card--template">
+          <div class="studio-card__badges">
+            ${meta.userCase ? `<span class="studio-badge studio-badge--uc">${meta.userCase}</span>` : ""}
+            ${meta.scenario ? `<span class="studio-badge studio-badge--scenario">${meta.scenario}</span>` : ""}
+            <span class="studio-badge studio-badge--screens">${meta.screenCount ?? "?"} screens</span>
+          </div>
+          <p class="studio-card__desc">${meta.description ?? ""}</p>
+          ${flow ? `<div class="studio-card__flow">${flow}</div>` : ""}
+          <p class="studio-card__guide">${meta.scenarioGuide ?? ""}</p>
+        </div>`;
+    } catch {
+      metaPanel.hidden = true;
+    }
+
+    const files = [
+      "template.json",
+      "playable.preset.json",
+      "context.preset.json",
+      "scenario.preset.json",
+      "assets.preset.json",
+      "editable-zones.preset.json",
+    ];
+    const ul = document.getElementById("file-list");
+    for (const f of files) {
+      const li = document.createElement("li");
+      li.innerHTML = `<code>data/templates/${id}/${f}</code>`;
+      ul.appendChild(li);
+    }
+  </script>
+</body>
+</html>

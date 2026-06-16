@@ -1,0 +1,62 @@
+{
+  "name": "playable-builder-kit",
+  "private": true,
+  "type": "module",
+  "packageManager": "pnpm@9.15.9",
+  "engines": {
+    "node": ">=20.19.0"
+  },
+  "scripts": {
+    "setup": "bash scripts/setup-env.sh",
+    "setup:yes": "bash scripts/setup-env.sh --yes",
+    "dev": "vite",
+    "build": "node scripts/build-all.mjs",
+    "build:single": "node scripts/build-single.mjs",
+    "verify:applovin": "node scripts/verify-applovin.mjs",
+    "preview": "vite preview",
+    "pages": "node scripts/list-routes.mjs",
+    "routes": "node scripts/list-routes.mjs",
+    "new:page": "node scripts/create-page.mjs",
+    "new:route": "node scripts/create-page.mjs",
+    "new:playable": "node scripts/create-page.mjs",
+    "new:landing": "node scripts/create-page.mjs",
+    "new:minimal": "node scripts/create-page.mjs",
+    "sync:appsflyer": "node scripts/sync-appsflyer-from-playables.mjs",
+    "compose:list": "node scripts/compose-list.mjs",
+    "compose:create": "node scripts/compose-create.mjs",
+    "compose:validate": "node scripts/compose-validate.mjs",
+    "compose:scaffold": "node scripts/compose-scaffold.mjs",
+    "compose:build": "node scripts/compose-build.mjs",
+    "studio:list": "node scripts/studio-list.mjs",
+    "studio:create": "node scripts/studio-create.mjs",
+    "studio:validate": "node scripts/studio-validate.mjs",
+    "studio:patch": "node scripts/studio-patch.mjs",
+    "studio:export": "node scripts/studio-export.mjs",
+    "studio:asset": "node scripts/studio-asset.mjs",
+    "studio:asset:seed": "node scripts/studio-asset-seed.mjs",
+    "studio:asset:seed:lucide": "node scripts/studio-asset-seed-lucide.mjs",
+    "studio:asset:fetch:media": "node scripts/studio-asset-fetch-media.mjs",
+    "studio:asset:setup": "pnpm studio:asset:fetch:media && pnpm studio:asset:seed:lucide",
+    "playable": "node scripts/studio-cli.mjs",
+    "playable:new": "node scripts/playable-new.mjs",
+    "playable:export": "node scripts/playable-export.mjs",
+    "playable:delete": "node scripts/playable-delete.mjs",
+    "playable:clone": "node scripts/playable-clone.mjs",
+    "template:create": "node scripts/template-create.mjs",
+    "template:export": "node scripts/template-export.mjs",
+    "template:upgrade": "node scripts/generate-ai-template-catalog.mjs",
+    "template:catalog:generate": "node scripts/generate-ai-template-catalog.mjs",
+    "template:save-from-playable": "node scripts/template-save-from-playable.mjs"
+  },
+  "dependencies": {
+    "lottie-web": "^5.13.0"
+  },
+  "devDependencies": {
+    "lucide-static": "0.469.0",
+    "sharp": "^0.34.5",
+    "svgo": "^4.0.1",
+    "vite": "^7.0.0",
+    "vite-plugin-image-optimizer": "^2.0.3",
+    "vite-plugin-singlefile": "^2.3.2"
+  }
+}

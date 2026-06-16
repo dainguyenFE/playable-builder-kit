@@ -1,0 +1,20 @@
+{
+  "freeBadge": "Free to try",
+  "ctaDownloadHint": "👇 Tap to download — no card required",
+  "benefit1": "Unlimited AI requests during trial",
+  "benefit2": "Export & share in one tap",
+  "benefit3": "Works offline for saved chats",
+  "benefit4": "Cancel anytime in Settings",
+  "benefitsTitle": "What you'll get",
+  "productName": "PhotoGlow",
+  "backgroundGradient": "radial-gradient(ellipse 120% 80% at 50% -12%, color-mix(in srgb, #10B981 38%, transparent), transparent 58%), linear-gradient(180deg, #0b1220 0%, #0f172a 100%)",
+  "problemHeadline": "Fix blurry photos in one tap",
+  "problemSubhead": "Photo uploaded · Before · Low quality",
+  "enhanceStatus": "Detecting blur… Boosting light… Restoring details…",
+  "ctaHeadline": "Photo enhanced by AI",
+  "ctaSubhead": "Sharper · Brighter · Cleaner",
+  "ctaChip1": "Sharpen +38%",
+  "ctaChip2": "Light +24%",
+  "ctaChip3": "Noise -41%",
+  "cta": "Enhance My Photos"
+}

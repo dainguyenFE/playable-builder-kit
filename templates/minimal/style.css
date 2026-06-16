@@ -1,0 +1,29 @@
+/**
+ * UI: mobile 390×844 only. Shell below = desktop preview frame (do not add more @media).
+ * ai/skills/playable-viewport-shell/SKILL.md
+ * Sizing: ai/skills/playable-mobile-scaling/SKILL.md (390×844)
+ */
+
+.__ROUTE_CLASS__ {
+  box-sizing: border-box;
+  margin: 0;
+  min-height: 100%;
+  background: #fff;
+}
+
+.__ROUTE_CLASS____app {
+  container-type: size;
+  container-name: page;
+  box-sizing: border-box;
+  width: 100%;
+  max-width: 100%;
+  min-height: 100vh;
+  min-height: 100dvh;
+  margin: 0 auto;
+}
+
+@media (min-width: 391px) {
+  .__ROUTE_CLASS____app {
+    max-width: 390px;
+  }
+}

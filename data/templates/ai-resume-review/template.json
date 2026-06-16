@@ -1,0 +1,21 @@
+{
+  "id": "ai-resume-review",
+  "name": "Resume · Review (4B)",
+  "description": "Upload CV → AI score + issues → before/after bullet → CTA score upgrade dashboard.",
+  "screenCount": 4,
+  "scenarioGuide": "V3 Scenario 4B. scoreValue, issueList, ctaResult bullet, ctaScore.",
+  "scenarioDoc": "docs/AI_PLAYABLE_USER_CASE_SCENARIOS_V3_SCREEN_DETAIL.md",
+  "defaultTheme": "slate-minimal",
+  "themes": [
+    "slate-minimal",
+    "violet-pro"
+  ],
+  "flow": [
+    "upload",
+    "score",
+    "rewrite",
+    "cta-dashboard"
+  ],
+  "userCase": "resume",
+  "scenario": "4B"
+}

@@ -1,0 +1,22 @@
+{
+  "locale": "en",
+  "theme": {
+    "bg": "#0f0f0f",
+    "fg": "#ffffff",
+    "accent": "#3b82f6",
+    "muted": "#a3a3a3"
+  },
+  "slots": {
+    "headline": "Meet your AI assistant",
+    "subheadline": "See how fast it answers real marketing questions.",
+    "tapLabel": "Tap to try",
+    "userPrompt": "What are the top channels for app launch?",
+    "aiReply": "ASO, paid search, TikTok UGC, Meta Advantage+, and influencer referrals — prioritized by your budget.",
+    "chip1": "App launch plan",
+    "chip2": "Write ad copy",
+    "chip3": "Analyze competitors",
+    "ctaHeadline": "Ready to try it?",
+    "ctaSubhead": "Install free and run your first prompt in seconds.",
+    "ctaLabel": "Get the app"
+  }
+}

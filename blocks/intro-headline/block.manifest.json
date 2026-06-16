@@ -1,0 +1,12 @@
+{
+  "id": "intro-headline",
+  "name": "Intro headline",
+  "region": ["header", "fullscreen"],
+  "behaviorType": "static-headline",
+  "description": "Headline + subheadline with continue button.",
+  "interactions": ["tap-continue"],
+  "copySlots": ["headline", "subheadline", "continueLabel"],
+  "assetSlots": [{ "key": "logo", "required": false }],
+  "trackingEvents": ["scene_view"],
+  "skills": ["playable-mobile-scaling"]
+}

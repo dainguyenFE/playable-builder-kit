@@ -1,0 +1,31 @@
+{
+  "id": "preview-template",
+  "name": "Ai Image Before After (template preview)",
+  "viewport": {
+    "width": 390,
+    "height": 844,
+    "safeArea": true
+  },
+  "theme": {
+    "primaryColor": "#10B981",
+    "backgroundColor": "#071210",
+    "textColor": "#ECFDF5",
+    "fontFamily": "system"
+  },
+  "template": {
+    "id": "ai-image-before-after"
+  },
+  "cta": {
+    "label": "Get the app",
+    "type": "openStore"
+  },
+  "tracking": {
+    "enabled": true
+  },
+  "layout": {
+    "insetX": 20,
+    "insetY": 20,
+    "insetBottom": 24,
+    "gap": 14
+  }
+}

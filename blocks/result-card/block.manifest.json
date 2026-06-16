@@ -1,0 +1,12 @@
+{
+  "id": "result-card",
+  "name": "Result card",
+  "region": ["main"],
+  "behaviorType": "result-card",
+  "description": "AI output summary with benefits list.",
+  "interactions": ["tap-continue"],
+  "copySlots": ["resultTitle", "resultBody", "benefit1", "benefit2", "benefit3", "continueLabel"],
+  "assetSlots": [],
+  "trackingEvents": ["demo_completed"],
+  "skills": ["playable-mobile-scaling"]
+}

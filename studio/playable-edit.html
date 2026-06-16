@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Edit playable</title>
+  <link rel="stylesheet" href="/studio/studio.css" />
+</head>
+<body class="studio-home">
+  <header class="studio-home__header">
+    <p><a href="/">← Studio</a></p>
+    <h1 id="edit-title">Playable</h1>
+    <p>Edit JSON in <code>playables/&lt;id&gt;/</code> then refresh preview.</p>
+  </header>
+  <main class="studio-home__main">
+    <p>
+      <a id="link-preview" href="#">Open mobile preview</a>
+      ·
+      <code>pnpm studio:export &lt;id&gt;</code>
+    </p>
+    <ul id="file-list"></ul>
+  </main>
+  <script type="module">
+    const id = location.pathname.split("/").pop();
+    document.getElementById("edit-title").textContent = id;
+    document.getElementById("link-preview").href = `/preview/${id}`;
+    const files = ["manifest.json", "playable.json", "context.json", "scenario.json", "assets.json"];
+    const ul = document.getElementById("file-list");
+    for (const f of files) {
+      const li = document.createElement("li");
+      li.innerHTML = `<code>playables/${id}/${f}</code>`;
+      ul.appendChild(li);
+    }
+  </script>
+</body>
+</html>

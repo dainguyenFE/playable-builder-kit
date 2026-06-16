@@ -1,0 +1,92 @@
+{
+  "freeBadge": "Free to try",
+  "ctaDownloadHint": "👇 Tap to download — no card required",
+  "benefit1": "Unlimited AI requests during trial",
+  "benefit2": "Export & share in one tap",
+  "benefit3": "Works offline for saved chats",
+  "benefit4": "Cancel anytime in Settings",
+  "benefitsTitle": "What you'll get",
+  "productName": "MindLoop",
+  "backgroundGradient": "radial-gradient(ellipse 120% 80% at 50% -12%, color-mix(in srgb, #3B82F6 38%, transparent), transparent 58%), linear-gradient(180deg, #0b1220 0%, #0f172a 100%)",
+  "problemHeadline": "Your week feels messy?",
+  "problemSubhead": "Ask AI to turn chaos into a clear plan.",
+  "stickyNote1": "Meeting notes",
+  "stickyNote2": "Gym?",
+  "stickyNote3": "Client follow-up",
+  "stickyNote4": "Finish report",
+  "stickyNote5": "Plan weekend",
+  "hintPill": "Tap to ask AI",
+  "userQuestion": "Help me plan my week in a simple way.",
+  "chip1": "Work priorities",
+  "chip2": "Workout time",
+  "chip3": "Focus blocks",
+  "chip4": "Weekend plan",
+  "inputMicrocopy": "AI understands messy requests.",
+  "aiAnswerBlocks": [
+    {
+      "type": "text",
+      "text": "Here is a simple weekly plan:"
+    },
+    {
+      "type": "list",
+      "title": "Top 3 priorities",
+      "items": [
+        "Finish the client report by Wednesday",
+        "Batch all follow-up emails on Tuesday",
+        "Keep Friday afternoon for review"
+      ]
+    },
+    {
+      "type": "list",
+      "title": "Focus blocks",
+      "items": [
+        "Mon 9:00 - 10:30: Deep work",
+        "Tue 14:00 - 15:00: Email batch",
+        "Wed 10:00 - 11:30: Report polish"
+      ]
+    },
+    {
+      "type": "list",
+      "title": "Wellness slots",
+      "items": [
+        "Tue evening: 30-min workout",
+        "Thu morning: short walk",
+        "Sat: reset and grocery planning"
+      ]
+    },
+    {
+      "type": "list",
+      "title": "Checklist",
+      "items": [
+        "✓ Pick top 3 priorities",
+        "✓ Add focus blocks",
+        "✓ Reserve workout time",
+        "○ Review on Friday"
+      ]
+    },
+    {
+      "type": "card",
+      "title": "Priority 1 · Client report · Wed",
+      "text": "Focus block · 90 min · No meetings"
+    },
+    {
+      "type": "card",
+      "title": "Wellness · Workout · Tue evening",
+      "text": "Recommended recovery slot."
+    },
+    {
+      "type": "progress",
+      "label": "Plan readiness",
+      "value": 78
+    }
+  ],
+  "ctaHeadline": "Your AI Weekly Plan is Ready",
+  "ctaSubhead": "Open the full plan with calendar blocks and reminders.",
+  "ctaMon": "Mon · Deep work · 9:00",
+  "ctaTue": "Tue · Email batch · 14:00",
+  "ctaWed": "Wed · Report finish · 10:00",
+  "ctaThu": "Thu · Walk + admin · 8:00",
+  "ctaFri": "Fri · Weekly review · 16:00",
+  "ctaBadge": "Saved 2.5 hours this week",
+  "cta": "Open Full Plan"
+}

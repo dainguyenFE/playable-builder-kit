@@ -1,0 +1,21 @@
+{
+  "id": "ai-chat-ask-solve",
+  "name": "Chat · Ask & Solve (1A)",
+  "description": "Chaotic week hook → user question → AI weekly plan stream → CTA with mini calendar hero.",
+  "screenCount": 4,
+  "scenarioGuide": "V3 Scenario 1A. problemHeadline, stickyNote1-5, userQuestion, aiAnswerBlocks, ctaMon-Fri, ctaBadge.",
+  "scenarioDoc": "docs/AI_PLAYABLE_USER_CASE_SCENARIOS_V3_SCREEN_DETAIL.md",
+  "defaultTheme": "midnight-blue",
+  "themes": [
+    "midnight-blue",
+    "neon-cyan"
+  ],
+  "flow": [
+    "hook-sticky",
+    "input",
+    "stream",
+    "cta-calendar"
+  ],
+  "userCase": "chat",
+  "scenario": "1A"
+}

@@ -1,0 +1,15 @@
+{
+  "version": "1.0.0",
+  "templates": [
+  {
+    "id": "ai-chat-simulator",
+    "status": "ready",
+    "category": "ai-product-intro"
+  },
+  {
+    "id": "ai-writing-assistant",
+    "status": "ready",
+    "category": "ai-product-intro"
+  }
+]
+}

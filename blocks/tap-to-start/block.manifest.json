@@ -1,0 +1,12 @@
+{
+  "id": "tap-to-start",
+  "name": "Tap to start",
+  "region": ["fullscreen", "main"],
+  "behaviorType": "tap-to-start",
+  "description": "Full-screen intro; user taps to advance.",
+  "interactions": ["tap-continue"],
+  "copySlots": ["headline", "subheadline", "tapLabel"],
+  "assetSlots": [],
+  "trackingEvents": ["playable_start", "first_interaction"],
+  "skills": ["playable-mobile-scaling", "playable-interactions"]
+}

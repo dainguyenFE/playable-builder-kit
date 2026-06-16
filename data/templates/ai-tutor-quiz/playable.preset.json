@@ -1,0 +1,31 @@
+{
+  "id": "preview-template",
+  "name": "Ai Tutor Quiz (template preview)",
+  "viewport": {
+    "width": 390,
+    "height": 844,
+    "safeArea": true
+  },
+  "theme": {
+    "primaryColor": "#3B82F6",
+    "backgroundColor": "#0B1220",
+    "textColor": "#F8FAFC",
+    "fontFamily": "system"
+  },
+  "template": {
+    "id": "ai-tutor-quiz"
+  },
+  "cta": {
+    "label": "Get the app",
+    "type": "openStore"
+  },
+  "tracking": {
+    "enabled": true
+  },
+  "layout": {
+    "insetX": 20,
+    "insetY": 20,
+    "insetBottom": 24,
+    "gap": 14
+  }
+}

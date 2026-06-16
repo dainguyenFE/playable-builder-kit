@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Playable Studio</title>
+  <link rel="stylesheet" href="/studio/studio.css" />
+</head>
+<body class="studio-home">
+  <header class="studio-home__header">
+    <div class="studio-home__header-row">
+      <div class="studio-home__header-copy">
+        <h1>Playable Studio</h1>
+        <p data-chat-hint="notebook">Prompt → preview → save. Dùng notebook bên trái để gửi prompt.</p>
+      </div>
+    </div>
+  </header>
+  <div class="studio-home__layout">
+    <aside class="studio-notebook" aria-label="Prompt notebook">
+      <div class="studio-notebook__head">
+        <h2>Prompt notebook</h2>
+        <p>Ví dụ câu prompt — chỉnh <code>&lt;id&gt;</code> cho đúng template/playable.</p>
+      </div>
+      <div id="prompt-notebook" class="studio-notebook__body"></div>
+    </aside>
+    <main class="studio-home__main">
+      <section class="studio-catalog">
+        <div class="studio-catalog__head">
+          <h2>Playables</h2>
+          <input
+            type="search"
+            id="playable-search"
+            class="studio-catalog__search"
+            placeholder="Search playables…"
+            autocomplete="off"
+            aria-label="Search playables"
+          />
+        </div>
+        <div id="playable-list" class="studio-card-grid" role="list"></div>
+        <p id="playable-empty" class="studio-catalog__empty" hidden>No playables match your search.</p>
+      </section>
+      <section class="studio-catalog studio-catalog--templates">
+        <div class="studio-catalog__head">
+          <div class="studio-catalog__head-copy">
+            <h2>Templates</h2>
+            <p class="studio-catalog__subtitle">V3 screen-level scenarios · 14 flows · auto + tap transitions</p>
+          </div>
+          <input
+            type="search"
+            id="template-search"
+            class="studio-catalog__search"
+            placeholder="Search templates…"
+            autocomplete="off"
+            aria-label="Search templates"
+          />
+        </div>
+        <div id="template-filters" class="studio-template-filters" role="tablist" aria-label="Filter by user case"></div>
+        <div id="template-list" class="studio-card-grid" role="list"></div>
+        <p id="template-empty" class="studio-catalog__empty" hidden>No templates match your search.</p>
+      </section>
+    </main>
+  </div>
+  <script type="module" src="/studio/home.js"></script>
+</body>
+</html>

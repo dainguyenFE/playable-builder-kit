@@ -1,0 +1,12 @@
+{
+  "id": "chip-picker",
+  "name": "Choice chips",
+  "region": ["main"],
+  "behaviorType": "chip-picker",
+  "description": "Pick one of three use-case chips.",
+  "interactions": ["tap-choice"],
+  "copySlots": ["headline", "chip1", "chip2", "chip3"],
+  "assetSlots": [],
+  "trackingEvents": ["choice_selected", "demo_completed"],
+  "skills": ["playable-mobile-scaling", "playable-interactions"]
+}

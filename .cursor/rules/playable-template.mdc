@@ -1,0 +1,36 @@
+---
+description: Playable Builder Kit — read ai/ folder (shareable with Claude)
+globs:
+  - src/pages/**/*
+  - src/core/**/*
+  - src/skills/**/*
+  - templates/**/*
+  - ai/**/*
+alwaysApply: true
+---
+
+# Playable Builder Kit
+
+**Start:** `ai/README.md` → `ai/INSTRUCTIONS.md` → `ai/SKILLS-INDEX.md`
+
+**Install / setup:** `playable-setup` rule → `bash scripts/setup-env.sh --yes` (after user approves).
+
+**Create new playable:** `ai/skills/playable-create-workflow/SKILL.md` + `ai/CLI-MAP.md` → `pnpm playable:new`
+
+| Task | Skill under `ai/skills/` |
+|------|--------------------------|
+| **Reply to Marketing (short)** | `playable-mkt-response` — after every create/edit/delete |
+| **Create playable (ask first)** | `playable-create-workflow` |
+| Single HTML deliverable | `playable-single-file-deliver` |
+| New page | `playable-new-route` |
+| Viewport shell (UI = mobile only) | `playable-viewport-shell` — mandatory |
+| CSS 390×844 (font, margin, padding tỷ lệ màn) | `playable-mobile-scaling` — mandatory |
+| Images / Lucide | `playable-assets` |
+| Lottie | `playable-lottie` |
+| Store CTA | `playable-store-cta` |
+| Interactions | `playable-interactions` |
+| AppLovin | `playable-applovin-compliance` |
+
+Build: `pnpm build:single <page>` then `pnpm verify:applovin <page>`.
+
+`ai/skills/` = AI docs. `src/skills/` = JavaScript only.

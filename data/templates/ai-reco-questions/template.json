@@ -1,0 +1,21 @@
+{
+  "id": "ai-reco-questions",
+  "name": "Reco · Quick Questions (10A)",
+  "description": "Goal question → time available → 10-min AI plan → personalized unlock CTA.",
+  "screenCount": 4,
+  "scenarioGuide": "V3 Scenario 10A. goalOptions, timeOptions, aiAnswerBlocks, ctaGoal, ctaTime, ctaFeature.",
+  "scenarioDoc": "docs/AI_PLAYABLE_USER_CASE_SCENARIOS_V3_SCREEN_DETAIL.md",
+  "defaultTheme": "light-clean",
+  "themes": [
+    "light-clean",
+    "midnight-blue"
+  ],
+  "flow": [
+    "goal-quiz",
+    "time-quiz",
+    "plan-stream",
+    "cta-unlock"
+  ],
+  "userCase": "reco",
+  "scenario": "10A"
+}

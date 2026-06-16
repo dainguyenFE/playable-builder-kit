@@ -1,0 +1,12 @@
+{
+  "id": "chat-stream",
+  "name": "AI chat stream (simulated)",
+  "region": ["main", "fullscreen"],
+  "behaviorType": "chat-stream",
+  "description": "Simulated chat: user chip → typing → AI reply.",
+  "interactions": ["tap-chip", "auto-advance"],
+  "copySlots": ["userPrompt", "aiReply", "chip1", "chip2", "chip3"],
+  "assetSlots": [{ "key": "avatar", "required": false }],
+  "trackingEvents": ["first_interaction", "demo_completed"],
+  "skills": ["playable-mobile-scaling", "playable-interactions"]
+}

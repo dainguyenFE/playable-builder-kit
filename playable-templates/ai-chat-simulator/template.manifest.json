@@ -1,0 +1,29 @@
+{
+  "id": "ai-chat-simulator",
+  "name": "AI Chat Simulator",
+  "category": "ai-product-intro",
+  "version": "1.0.0",
+  "description": "Simulated AI chat: intro → chips → reply → CTA.",
+  "goal": ["app-install", "product-awareness"],
+  "defaultViewport": { "width": 390, "height": 844 },
+  "blocks": ["tap-to-start", "chat-stream", "store-cta"],
+  "copySlots": [
+    "headline",
+    "subheadline",
+    "tapLabel",
+    "userPrompt",
+    "aiReply",
+    "chip1",
+    "chip2",
+    "chip3",
+    "ctaHeadline",
+    "ctaSubhead",
+    "ctaLabel"
+  ],
+  "trackingEvents": [
+    "playable_start",
+    "first_interaction",
+    "demo_completed",
+    "cta_click"
+  ]
+}

@@ -1,0 +1,21 @@
+{
+  "id": "ai-writing-captions",
+  "name": "Writing · 3 Captions (2A)",
+  "description": "Product input → AI generating 3 captions → compare & pick → CTA caption deck.",
+  "screenCount": 4,
+  "scenarioGuide": "V3 Scenario 2A. productInput, result1-3, bestCaption, ctaResult.",
+  "scenarioDoc": "docs/AI_PLAYABLE_USER_CASE_SCENARIOS_V3_SCREEN_DETAIL.md",
+  "defaultTheme": "rose-creative",
+  "themes": [
+    "rose-creative",
+    "violet-pro"
+  ],
+  "flow": [
+    "input",
+    "generating",
+    "compare",
+    "cta-deck"
+  ],
+  "userCase": "writing",
+  "scenario": "2A"
+}

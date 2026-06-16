@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en" data-playable-mode="preview">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <title>Preview</title>
+  <link rel="stylesheet" href="/studio/studio.css" />
+  <link rel="stylesheet" href="/src/runtime/studio/styles/studio.css" />
+  <link rel="stylesheet" href="/studio/compose-preview-shell.css" />
+</head>
+<body class="studio-preview">
+  <header class="studio-preview__bar">
+    <div class="studio-preview__bar-start">
+      <a href="/" class="studio-preview__back">← Studio</a>
+      <div class="studio-preview__title-block">
+        <span id="preview-badge" class="studio-preview__badge" hidden>Preview</span>
+        <h1 id="preview-title" class="studio-preview__title">Preview</h1>
+      </div>
+    </div>
+    <div class="studio-preview__bar-center">
+      <label id="theme-picker-wrap" class="studio-preview__theme" hidden>
+        <span class="studio-preview__field-label">Theme</span>
+        <select id="theme-picker" class="studio-preview__theme-select"></select>
+      </label>
+      <label id="toggle-zones-wrap" class="studio-preview__toggle-zones" hidden>
+        <input type="checkbox" id="toggle-zones" />
+        <span>Zone labels</span>
+      </label>
+    </div>
+    <div class="studio-preview__bar-actions">
+      <div id="chat-target-toggle" class="studio-preview__chat-target"></div>
+      <div class="studio-preview__playback">
+        <button type="button" id="btn-pause" class="studio-preview__btn studio-preview__btn--ghost" hidden>Pause</button>
+        <button type="button" id="btn-resume" class="studio-preview__btn studio-preview__btn--ghost" hidden disabled>Resume</button>
+        <button type="button" id="btn-restart" class="studio-preview__btn studio-preview__btn--primary">Restart</button>
+      </div>
+      <a id="btn-download" class="studio-preview__download" href="#" hidden>Download HTML</a>
+    </div>
+  </header>
+  <div class="studio-preview__body">
+    <aside class="studio-notebook studio-preview__notebook" aria-label="Prompt notebook">
+      <div class="studio-notebook__head">
+        <h2>Prompt notebook</h2>
+        <p>Ví dụ câu prompt — chỉnh <code>&lt;id&gt;</code> cho đúng template/playable.</p>
+      </div>
+      <div id="prompt-notebook" class="studio-notebook__body"></div>
+    </aside>
+    <aside class="studio-assets studio-preview__assets" aria-label="Asset library">
+      <div id="asset-panel" class="studio-assets__body"></div>
+    </aside>
+    <div class="studio-preview__stage">
+      <div class="studio-preview__device-stage">
+        <div class="studio-preview__device-toolbar">
+          <label class="studio-preview__device-picker">
+            <span class="studio-preview__field-label">Device</span>
+            <select id="device-picker" class="studio-preview__device-select"></select>
+          </label>
+          <p class="studio-preview__frame-caption" id="device-caption">Device preview</p>
+        </div>
+        <div class="studio-preview__device-scaler" id="device-scaler">
+          <div class="studio-preview__device-shell" id="device-shell">
+          <div class="studio-preview__device-island" aria-hidden="true"></div>
+          <div class="studio-preview__frame" id="device-frame">
+            <div id="playable-root"></div>
+          </div>
+          <div class="studio-preview__device-home" aria-hidden="true"></div>
+          </div>
+        </div>
+      </div>
+      <aside class="studio-preview__inspector" id="zone-inspector">
+        <header class="pb-zone-panel__header">
+          <h2>Inspector</h2>
+          <p data-chat-hint="inspector">Screens → zones. Click zone → <strong>Add to chat</strong> in inspector.</p>
+        </header>
+        <div id="zone-panel" class="pb-zone-panel"></div>
+        <div id="zone-compose-note" class="pb-zone-panel__compose" hidden>
+          <p>Compose: <code>composition.json</code> flow steps.</p>
+        </div>
+      </aside>
+    </div>
+  </div>
+  <script type="module" src="/studio/preview.js"></script>
+</body>
+</html>

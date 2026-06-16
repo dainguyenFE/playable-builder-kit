@@ -1,0 +1,27 @@
+{
+  "id": "ai-writing-assistant",
+  "name": "AI Writing Assistant",
+  "category": "ai-product-intro",
+  "version": "1.0.0",
+  "description": "Pick a writing use case → see AI result card → CTA.",
+  "goal": ["app-install", "leadgen"],
+  "defaultViewport": { "width": 390, "height": 844 },
+  "blocks": ["intro-headline", "chip-picker", "result-card", "store-cta"],
+  "copySlots": [
+    "headline",
+    "subheadline",
+    "continueLabel",
+    "chip1",
+    "chip2",
+    "chip3",
+    "resultTitle",
+    "resultBody",
+    "benefit1",
+    "benefit2",
+    "benefit3",
+    "ctaHeadline",
+    "ctaSubhead",
+    "ctaLabel"
+  ],
+  "trackingEvents": ["playable_start", "choice_selected", "demo_completed", "cta_click"]
+}

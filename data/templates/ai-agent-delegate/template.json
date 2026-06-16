@@ -1,0 +1,21 @@
+{
+  "id": "ai-agent-delegate",
+  "name": "Agent · Delegate Task (9A)",
+  "description": "Task input → agent planning steps → content calendar cards → CTA agent calendar board.",
+  "screenCount": 4,
+  "scenarioGuide": "V3 Scenario 9A. taskInput, agent steps, agentMon-Fri, ctaMon-Wed-Fri.",
+  "scenarioDoc": "docs/AI_PLAYABLE_USER_CASE_SCENARIOS_V3_SCREEN_DETAIL.md",
+  "defaultTheme": "violet-pro",
+  "themes": [
+    "violet-pro",
+    "violet-pro"
+  ],
+  "flow": [
+    "task",
+    "steps",
+    "output",
+    "cta-calendar"
+  ],
+  "userCase": "agent",
+  "scenario": "9A"
+}

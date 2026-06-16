@@ -1,0 +1,63 @@
+{
+  "assets": [
+    {
+      "id": "lucide-scale",
+      "type": "icon",
+      "path": "icons/lucide/scale.svg",
+      "label": "scale"
+    },
+    {
+      "id": "lucide-dumbbell",
+      "type": "icon",
+      "path": "icons/lucide/dumbbell.svg",
+      "label": "dumbbell"
+    },
+    {
+      "id": "lucide-leaf",
+      "type": "icon",
+      "path": "icons/lucide/leaf.svg",
+      "label": "leaf"
+    },
+    {
+      "id": "img-meal",
+      "type": "image",
+      "path": "images/plan-board.jpg",
+      "label": "Meals"
+    },
+    {
+      "id": "lottie-ai-confetti",
+      "type": "lottie",
+      "path": "lottie/lottie-ai-confetti.json"
+    },
+    {
+      "id": "lottie-ai-chat",
+      "type": "lottie",
+      "path": "lottie/lottie-ai-chat.json"
+    },
+    {
+      "id": "lottie-ai-loading",
+      "type": "lottie",
+      "path": "lottie/lottie-ai-loading.json"
+    },
+    {
+      "id": "lottie-ai-stars",
+      "type": "lottie",
+      "path": "lottie/lottie-ai-stars.json"
+    },
+    {
+      "id": "lottie-ai-robot",
+      "type": "lottie",
+      "path": "lottie/lottie-ai-robot.json"
+    },
+    {
+      "id": "lottie-ai-scan",
+      "type": "lottie",
+      "path": "lottie/lottie-ai-scan.json"
+    },
+    {
+      "id": "lottie-ai-brain",
+      "type": "lottie",
+      "path": "lottie/lottie-ai-brain.json"
+    }
+  ]
+}

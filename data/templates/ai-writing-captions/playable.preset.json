@@ -1,0 +1,31 @@
+{
+  "id": "preview-template",
+  "name": "Ai Writing Captions (template preview)",
+  "viewport": {
+    "width": 390,
+    "height": 844,
+    "safeArea": true
+  },
+  "theme": {
+    "primaryColor": "#EC4899",
+    "backgroundColor": "#120818",
+    "textColor": "#FDF2F8",
+    "fontFamily": "system"
+  },
+  "template": {
+    "id": "ai-writing-captions"
+  },
+  "cta": {
+    "label": "Get the app",
+    "type": "openStore"
+  },
+  "tracking": {
+    "enabled": true
+  },
+  "layout": {
+    "insetX": 20,
+    "insetY": 20,
+    "insetBottom": 24,
+    "gap": 14
+  }
+}

@@ -1,0 +1,336 @@
+{
+  "id": "write-2a-v3",
+  "entryScreen": "s1",
+  "screens": [
+    {
+      "id": "s1",
+      "name": "Input",
+      "type": "demo",
+      "durationMs": 3800,
+      "transition": {
+        "animation": "slide"
+      },
+      "elements": [
+        {
+          "id": "bg",
+          "type": "background",
+          "textKey": "backgroundGradient"
+        },
+        {
+          "id": "header",
+          "type": "app-header",
+          "badge": "Captions"
+        },
+        {
+          "id": "prompt",
+          "type": "prompt-input",
+          "label": "Product name"
+        }
+      ],
+      "steps": [
+        {
+          "id": "t",
+          "atMs": 400,
+          "action": "typeText",
+          "target": "prompt",
+          "value": "Matcha Energy Drink"
+        }
+      ],
+      "autoNext": {
+        "enabled": true,
+        "afterMs": 3300,
+        "target": "s2"
+      },
+      "clickNext": {
+        "enabled": true,
+        "target": "s2"
+      }
+    },
+    {
+      "id": "s2",
+      "name": "Processing",
+      "type": "demo",
+      "durationMs": 5000,
+      "transition": {
+        "animation": "fade-up",
+        "easing": "ease-out",
+        "durationMs": 420
+      },
+      "elements": [
+        {
+          "id": "bg",
+          "type": "background",
+          "textKey": "backgroundGradient"
+        },
+        {
+          "id": "header",
+          "type": "app-header",
+          "badge": "Generating"
+        },
+        {
+          "id": "prompt",
+          "type": "prompt-input",
+          "label": "Product",
+          "hidden": true
+        },
+        {
+          "id": "load",
+          "type": "ai-loading-card",
+          "hidden": true
+        }
+      ],
+      "steps": [
+        {
+          "id": "bg",
+          "atMs": 0,
+          "action": "show",
+          "target": "bg",
+          "animation": "fade-in"
+        },
+        {
+          "id": "p",
+          "atMs": 200,
+          "action": "show",
+          "target": "prompt"
+        },
+        {
+          "id": "t",
+          "atMs": 400,
+          "action": "typeText",
+          "target": "prompt",
+          "value": "Matcha Energy Drink"
+        },
+        {
+          "id": "l",
+          "atMs": 1200,
+          "action": "show",
+          "target": "load",
+          "animation": "fade-in"
+        }
+      ],
+      "autoNext": {
+        "enabled": true,
+        "afterMs": 5000,
+        "target": "s3"
+      },
+      "clickNext": {
+        "enabled": true,
+        "target": "s3"
+      }
+    },
+    {
+      "id": "s3",
+      "name": "Compare captions",
+      "type": "demo",
+      "durationMs": 4000,
+      "elements": [
+        {
+          "id": "bg",
+          "type": "background",
+          "textKey": "backgroundGradient"
+        },
+        {
+          "id": "hl",
+          "type": "headline-block",
+          "textKey": "resultsHeadline",
+          "hidden": true
+        },
+        {
+          "id": "r1",
+          "type": "ai-result-card",
+          "textKey": "result1",
+          "hidden": true
+        },
+        {
+          "id": "r2",
+          "type": "ai-result-card",
+          "textKey": "result2",
+          "hidden": true
+        },
+        {
+          "id": "r3",
+          "type": "ai-result-card",
+          "textKey": "result3",
+          "hidden": true
+        }
+      ],
+      "steps": [
+        {
+          "id": "bg",
+          "atMs": 0,
+          "action": "show",
+          "target": "bg",
+          "animation": "fade-in"
+        },
+        {
+          "id": "hl",
+          "atMs": 200,
+          "action": "show",
+          "target": "hl",
+          "animation": "fade-up"
+        },
+        {
+          "id": "r0",
+          "atMs": 600,
+          "action": "show",
+          "target": "r1",
+          "animation": "fade-up"
+        },
+        {
+          "id": "r1",
+          "atMs": 1300,
+          "action": "show",
+          "target": "r2",
+          "animation": "fade-up"
+        },
+        {
+          "id": "r2",
+          "atMs": 2000,
+          "action": "show",
+          "target": "r3",
+          "animation": "fade-up"
+        }
+      ],
+      "autoNext": {
+        "enabled": true,
+        "afterMs": 4000,
+        "target": "screen_cta"
+      },
+      "clickNext": {
+        "enabled": true,
+        "target": "screen_cta"
+      },
+      "transition": {
+        "animation": "fade-up",
+        "easing": "ease-out",
+        "durationMs": 420
+      }
+    },
+    {
+      "id": "screen_cta",
+      "name": "CTA",
+      "type": "cta",
+      "ctaLayout": "bottom",
+      "durationMs": 60000,
+      "transition": {
+        "animation": "fade-up",
+        "easing": "ease-out",
+        "durationMs": 450
+      },
+      "elements": [
+        {
+          "id": "bg",
+          "type": "background",
+          "textKey": "backgroundGradient"
+        },
+        {
+          "id": "free_badge",
+          "type": "free-badge",
+          "textKey": "freeBadge"
+        },
+        {
+          "id": "cta_result",
+          "type": "ai-result-card",
+          "textKey": "ctaResult",
+          "variant": "primary",
+          "hidden": true
+        },
+        {
+          "id": "cta_headline",
+          "type": "headline-block",
+          "textKey": "ctaHeadline"
+        },
+        {
+          "id": "cta_sub",
+          "type": "subheadline-block",
+          "textKey": "ctaSubhead"
+        },
+        {
+          "id": "benefits",
+          "type": "benefit-list",
+          "hidden": true
+        },
+        {
+          "id": "download_hint",
+          "type": "cta-download-hint",
+          "textKey": "ctaDownloadHint",
+          "hidden": true
+        },
+        {
+          "id": "cta_arrow",
+          "type": "cta-arrow",
+          "hidden": true
+        },
+        {
+          "id": "cta_button",
+          "type": "cta-button",
+          "textKey": "cta"
+        }
+      ],
+      "steps": [
+        {
+          "id": "res",
+          "atMs": 100,
+          "action": "show",
+          "target": "cta_result",
+          "animation": "scale-in"
+        },
+        {
+          "id": "bg",
+          "atMs": 0,
+          "action": "show",
+          "target": "bg",
+          "animation": "fade-in"
+        },
+        {
+          "id": "badge",
+          "atMs": 150,
+          "action": "show",
+          "target": "free_badge",
+          "animation": "pop-in"
+        },
+        {
+          "id": "hl",
+          "atMs": 350,
+          "action": "show",
+          "target": "cta_headline",
+          "animation": "fade-up"
+        },
+        {
+          "id": "sub",
+          "atMs": 550,
+          "action": "show",
+          "target": "cta_sub",
+          "animation": "fade-in"
+        },
+        {
+          "id": "ben",
+          "atMs": 750,
+          "action": "show",
+          "target": "benefits",
+          "animation": "fade-up"
+        },
+        {
+          "id": "hint",
+          "atMs": 950,
+          "action": "show",
+          "target": "download_hint",
+          "animation": "fade-in"
+        },
+        {
+          "id": "arrow",
+          "atMs": 1150,
+          "action": "show",
+          "target": "cta_arrow",
+          "animation": "fade-in"
+        },
+        {
+          "id": "pulse",
+          "atMs": 1450,
+          "action": "pulse",
+          "target": "cta_button"
+        }
+      ]
+    }
+  ]
+}

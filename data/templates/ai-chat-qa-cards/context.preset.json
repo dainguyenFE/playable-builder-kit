@@ -1,0 +1,74 @@
+{
+  "freeBadge": "Free to try",
+  "ctaDownloadHint": "👇 Tap to download — no card required",
+  "benefit1": "Unlimited AI requests during trial",
+  "benefit2": "Export & share in one tap",
+  "benefit3": "Works offline for saved chats",
+  "benefit4": "Cancel anytime in Settings",
+  "benefitsTitle": "What you'll get",
+  "productName": "MindLoop",
+  "backgroundGradient": "radial-gradient(ellipse 120% 80% at 50% -12%, color-mix(in srgb, #06B6D4 38%, transparent), transparent 58%), linear-gradient(180deg, #0b1220 0%, #0f172a 100%)",
+  "quizQuestion": "What do you want AI to fix?",
+  "quizOptions": [
+    {
+      "label": "Write better emails",
+      "iconId": "lucide-mail",
+      "resultText": "Analyzing your email…",
+      "targetScreen": "s2"
+    },
+    {
+      "label": "Plan my day",
+      "iconId": "lucide-calendar",
+      "resultText": "Structuring your day…",
+      "targetScreen": "s2"
+    },
+    {
+      "label": "Summarize notes",
+      "iconId": "lucide-file-text",
+      "resultText": "Summarizing key points…",
+      "targetScreen": "s2"
+    },
+    {
+      "label": "Learn faster",
+      "iconId": "lucide-zap",
+      "resultText": "Creating a study sprint…",
+      "targetScreen": "s2"
+    }
+  ],
+  "beforeEmail": "Subject: Update\n\nHi,\nJust checking if you saw my last message.\nCan you reply when you can?\nThanks.\n\nIssues: Too vague · Weak subject · No clear next step",
+  "userQuestion": "Improve this follow-up email",
+  "aiAnswerBlocks": [
+    {
+      "type": "card",
+      "title": "Subject",
+      "text": "Quick follow-up on tomorrow's demo"
+    },
+    {
+      "type": "text",
+      "text": "Hi Alex,\n\nJust following up on my previous message about tomorrow's demo.\nCould you confirm if the 3 PM slot still works for you?\n\nIf another time is better, I'm happy to adjust.\n\nThanks!"
+    },
+    {
+      "type": "list",
+      "title": "Improvements",
+      "items": [
+        "✓ Clear subject",
+        "✓ Polite tone",
+        "✓ One specific CTA",
+        "✓ Easy to reply"
+      ]
+    },
+    {
+      "type": "list",
+      "title": "Tone options",
+      "items": [
+        "Professional",
+        "Friendly",
+        "Shorter"
+      ]
+    }
+  ],
+  "ctaHeadline": "Your polished email is ready",
+  "ctaSubhead": "Edit tone, length, and send faster in the app.",
+  "ctaResult": "Subject: Quick follow-up on tomorrow's demo\n\nHi Alex, just following up on my previous message about tomorrow's demo.\nCould you confirm if the 3 PM slot still works for you?",
+  "cta": "Open AI Writer"
+}

@@ -1,0 +1,31 @@
+{
+  "id": "preview-template",
+  "name": "Ai Reco Questions (template preview)",
+  "viewport": {
+    "width": 390,
+    "height": 844,
+    "safeArea": true
+  },
+  "theme": {
+    "primaryColor": "#2563EB",
+    "backgroundColor": "#F8FAFC",
+    "textColor": "#0F172A",
+    "fontFamily": "system"
+  },
+  "template": {
+    "id": "ai-reco-questions"
+  },
+  "cta": {
+    "label": "Get the app",
+    "type": "openStore"
+  },
+  "tracking": {
+    "enabled": true
+  },
+  "layout": {
+    "insetX": 20,
+    "insetY": 20,
+    "insetBottom": 24,
+    "gap": 14
+  }
+}

@@ -1,0 +1,244 @@
+{
+  "id": "reco-10a-v3",
+  "entryScreen": "s1",
+  "screens": [
+    {
+      "id": "s1",
+      "name": "Quiz",
+      "type": "demo",
+      "durationMs": 120000,
+      "elements": [
+        {
+          "id": "bg",
+          "type": "background",
+          "textKey": "backgroundGradient"
+        },
+        {
+          "id": "header",
+          "type": "app-header",
+          "badge": "Goal"
+        },
+        {
+          "id": "quiz",
+          "type": "quiz-options",
+          "questionKey": "quizQuestion",
+          "optionsKey": "quizOptions"
+        }
+      ],
+      "steps": [
+        {
+          "id": "bg",
+          "atMs": 0,
+          "action": "show",
+          "target": "bg",
+          "animation": "fade-in"
+        }
+      ],
+      "autoNext": {
+        "enabled": true,
+        "afterMs": 3500,
+        "target": "s2"
+      },
+      "clickNext": {
+        "enabled": true,
+        "target": "s2"
+      },
+      "transition": {
+        "animation": "fade-up",
+        "easing": "ease-out",
+        "durationMs": 420
+      }
+    },
+    {
+      "id": "s2",
+      "name": "Quiz",
+      "type": "demo",
+      "durationMs": 120000,
+      "elements": [
+        {
+          "id": "bg",
+          "type": "background",
+          "textKey": "backgroundGradient"
+        },
+        {
+          "id": "header",
+          "type": "app-header",
+          "badge": "Time"
+        },
+        {
+          "id": "quiz",
+          "type": "quiz-options",
+          "questionKey": "timeQuestion",
+          "optionsKey": "timeOptions"
+        }
+      ],
+      "steps": [
+        {
+          "id": "bg",
+          "atMs": 0,
+          "action": "show",
+          "target": "bg",
+          "animation": "fade-in"
+        }
+      ],
+      "autoNext": {
+        "enabled": true,
+        "afterMs": 3500,
+        "target": "s3"
+      },
+      "clickNext": {
+        "enabled": true,
+        "target": "s3"
+      },
+      "transition": {
+        "animation": "fade-up",
+        "easing": "ease-out",
+        "durationMs": 420
+      }
+    },
+    {
+      "id": "s3",
+      "name": "Personalized plan",
+      "type": "demo",
+      "durationMs": 120000,
+      "transition": {
+        "animation": "fade"
+      },
+      "elements": [
+        {
+          "id": "bg",
+          "type": "background",
+          "textKey": "backgroundGradient"
+        },
+        {
+          "id": "resp",
+          "type": "ai-model-response",
+          "variant": "demo",
+          "textKey": "userQuestion"
+        }
+      ],
+      "steps": [],
+      "autoNext": {
+        "enabled": true,
+        "afterStreamMs": 5000,
+        "target": "screen_cta"
+      },
+      "clickNext": {
+        "enabled": true,
+        "target": "screen_cta"
+      }
+    },
+    {
+      "id": "screen_cta",
+      "name": "CTA",
+      "type": "cta",
+      "ctaLayout": "center",
+      "durationMs": 60000,
+      "transition": {
+        "animation": "modal",
+        "easing": "ease-out",
+        "durationMs": 500
+      },
+      "elements": [
+        {
+          "id": "bg",
+          "type": "background",
+          "textKey": "backgroundGradient"
+        },
+        {
+          "id": "confetti",
+          "type": "lottie",
+          "assetId": "lottie-ai-confetti"
+        },
+        {
+          "id": "free_badge",
+          "type": "free-badge",
+          "textKey": "freeBadge"
+        },
+        {
+          "id": "cta_result",
+          "type": "benefit-list",
+          "keys": [
+            "ctaGoal",
+            "ctaTime",
+            "ctaFeature",
+            "ctaExtra1",
+            "ctaExtra2",
+            "ctaExtra3"
+          ],
+          "title": "",
+          "hidden": true
+        },
+        {
+          "id": "cta_headline",
+          "type": "headline-block",
+          "textKey": "ctaHeadline"
+        },
+        {
+          "id": "cta_sub",
+          "type": "subheadline-block",
+          "textKey": "ctaSubhead"
+        },
+        {
+          "id": "benefits",
+          "type": "benefit-list"
+        },
+        {
+          "id": "cta_button",
+          "type": "cta-button",
+          "textKey": "cta"
+        }
+      ],
+      "steps": [
+        {
+          "id": "res",
+          "atMs": 100,
+          "action": "show",
+          "target": "cta_result",
+          "animation": "fade-up"
+        },
+        {
+          "id": "bg",
+          "atMs": 0,
+          "action": "show",
+          "target": "bg",
+          "animation": "fade-in"
+        },
+        {
+          "id": "badge",
+          "atMs": 200,
+          "action": "show",
+          "target": "free_badge",
+          "animation": "scale-in"
+        },
+        {
+          "id": "hl",
+          "atMs": 400,
+          "action": "show",
+          "target": "cta_headline",
+          "animation": "fade-up"
+        },
+        {
+          "id": "sub",
+          "atMs": 600,
+          "action": "show",
+          "target": "cta_sub",
+          "animation": "fade-in"
+        },
+        {
+          "id": "ben",
+          "atMs": 800,
+          "action": "show",
+          "target": "benefits",
+          "animation": "fade-up"
+        },
+        {
+          "id": "pulse",
+          "atMs": 1200,
+          "action": "pulse",
+          "target": "cta_button"
+        }
+      ]
+    }
+  ]
+}

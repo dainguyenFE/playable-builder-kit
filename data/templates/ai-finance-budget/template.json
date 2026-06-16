@@ -1,0 +1,21 @@
+{
+  "id": "ai-finance-budget",
+  "name": "Finance · Monthly Budget (8A)",
+  "description": "Income input → AI budget breakdown → budget checklist → CTA ring dashboard.",
+  "screenCount": 4,
+  "scenarioGuide": "V3 Scenario 8A. incomeInput, aiAnswerBlocks categories, ctaSave, ctaEssentials.",
+  "scenarioDoc": "docs/AI_PLAYABLE_USER_CASE_SCENARIOS_V3_SCREEN_DETAIL.md",
+  "defaultTheme": "slate-minimal",
+  "themes": [
+    "slate-minimal",
+    "violet-pro"
+  ],
+  "flow": [
+    "income",
+    "breakdown",
+    "checklist",
+    "cta-dashboard"
+  ],
+  "userCase": "finance",
+  "scenario": "8A"
+}

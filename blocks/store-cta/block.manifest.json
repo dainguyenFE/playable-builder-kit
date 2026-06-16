@@ -1,0 +1,12 @@
+{
+  "id": "store-cta",
+  "name": "Store CTA",
+  "region": ["footer", "fullscreen"],
+  "behaviorType": "store-cta",
+  "description": "End card with CTA — bindStoreCta on #cta.",
+  "interactions": ["cta-click"],
+  "copySlots": ["ctaHeadline", "ctaSubhead", "ctaLabel"],
+  "assetSlots": [],
+  "trackingEvents": ["cta_visible", "cta_click"],
+  "skills": ["playable-store-cta", "playable-applovin-compliance"]
+}

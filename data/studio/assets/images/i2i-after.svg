@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 180 220" fill="none">
+  <defs><linearGradient id="a" x1="0" y1="0" x2="180" y2="220"><stop stop-color="#7c3aed"/><stop offset="1" stop-color="#06b6d4"/></linearGradient></defs>
+  <rect width="180" height="220" fill="url(#a)"/>
+  <circle cx="90" cy="80" r="44" fill="#fff" opacity="0.25"/>
+  <rect x="30" y="130" width="120" height="70" rx="12" fill="#fff" opacity="0.2"/>
+  <text x="90" y="210" fill="#fff" font-size="11" text-anchor="middle" font-family="system-ui" font-weight="600">After</text>
+</svg>

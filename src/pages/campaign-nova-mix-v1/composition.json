@@ -1,0 +1,42 @@
+{
+  "id": "campaign-nova-mix-v1",
+  "viewport": {
+    "width": 390,
+    "height": 844
+  },
+  "mode": "flow",
+  "flow": [
+    {
+      "id": "intro",
+      "blockRef": "blocks/tap-to-start",
+      "fromTemplate": "ai-chat-simulator",
+      "copyOverrides": {
+        "headline": "Meet Nova AI",
+        "subheadline": "Your launch plan in one conversation."
+      }
+    },
+    {
+      "id": "interaction",
+      "blockRef": "blocks/chat-stream",
+      "fromTemplate": "ai-chat-simulator",
+      "copyOverrides": {
+        "userPrompt": "Plan my mobile app launch in 2026",
+        "aiReply": "Start with ASO + TikTok UGC, layer Meta Advantage+, then referral loops once retention data is in."
+      }
+    },
+    {
+      "id": "result",
+      "blockRef": "blocks/result-card",
+      "fromTemplate": "ai-writing-assistant"
+    },
+    {
+      "id": "cta",
+      "blockRef": "blocks/store-cta",
+      "fromTemplate": "ai-chat-simulator",
+      "copyOverrides": {
+        "ctaHeadline": "Try Nova AI free",
+        "ctaLabel": "Get the app"
+      }
+    }
+  ]
+}

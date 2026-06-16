@@ -1,0 +1,21 @@
+{
+  "id": "ai-fitness-meal",
+  "name": "Fitness · Meal Plan (6A)",
+  "description": "Health goal picker → high-protein day stream → grocery checklist → meal timeline CTA.",
+  "screenCount": 4,
+  "scenarioGuide": "V3 Scenario 6A. goalOptions, aiAnswerBlocks meals, grocery1-6, ctaMeal1-4, ctaProtein.",
+  "scenarioDoc": "docs/AI_PLAYABLE_USER_CASE_SCENARIOS_V3_SCREEN_DETAIL.md",
+  "defaultTheme": "emerald-plan",
+  "themes": [
+    "emerald-plan",
+    "neon-cyan"
+  ],
+  "flow": [
+    "goal",
+    "meal-stream",
+    "grocery",
+    "cta-calendar"
+  ],
+  "userCase": "fitness",
+  "scenario": "6A"
+}

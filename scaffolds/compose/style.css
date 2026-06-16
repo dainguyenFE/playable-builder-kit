@@ -1,0 +1,44 @@
+/**
+ * Composed playable page — viewport shell + runtime blocks.
+ * ai/skills/playable-viewport-shell/SKILL.md
+ */
+@import "../../src/runtime/styles/runtime.css";
+
+.__ROUTE_CLASS__ {
+  box-sizing: border-box;
+  margin: 0;
+  min-height: 100%;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  background: #fff;
+}
+
+.__ROUTE_CLASS____app {
+  container-type: size;
+  container-name: page;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  max-width: 100%;
+  min-height: 100vh;
+  min-height: 100dvh;
+  margin: 0 auto;
+  padding: calc(16 / 844 * 100cqh) calc(16 / 390 * 100cqw);
+  background: var(--pb-bg, #0f0f0f);
+  color: var(--pb-fg, #fff);
+  overflow-x: hidden;
+  overflow-y: auto;
+}
+
+@media (min-width: 391px) {
+  .__ROUTE_CLASS____app {
+    max-width: 390px;
+  }
+}
+
+.__ROUTE_CLASS____step {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  min-height: calc(400 / 844 * 100cqh);
+}

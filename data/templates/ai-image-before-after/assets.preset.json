@@ -1,0 +1,51 @@
+{
+  "assets": [
+    {
+      "id": "img-before",
+      "type": "image",
+      "path": "images/i2i-before.jpg",
+      "label": "Before"
+    },
+    {
+      "id": "img-after",
+      "type": "image",
+      "path": "images/i2i-after.jpg",
+      "label": "After"
+    },
+    {
+      "id": "lottie-ai-confetti",
+      "type": "lottie",
+      "path": "lottie/lottie-ai-confetti.json"
+    },
+    {
+      "id": "lottie-ai-chat",
+      "type": "lottie",
+      "path": "lottie/lottie-ai-chat.json"
+    },
+    {
+      "id": "lottie-ai-loading",
+      "type": "lottie",
+      "path": "lottie/lottie-ai-loading.json"
+    },
+    {
+      "id": "lottie-ai-stars",
+      "type": "lottie",
+      "path": "lottie/lottie-ai-stars.json"
+    },
+    {
+      "id": "lottie-ai-robot",
+      "type": "lottie",
+      "path": "lottie/lottie-ai-robot.json"
+    },
+    {
+      "id": "lottie-ai-scan",
+      "type": "lottie",
+      "path": "lottie/lottie-ai-scan.json"
+    },
+    {
+      "id": "lottie-ai-brain",
+      "type": "lottie",
+      "path": "lottie/lottie-ai-brain.json"
+    }
+  ]
+}

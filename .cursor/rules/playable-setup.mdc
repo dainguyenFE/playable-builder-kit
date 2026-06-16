@@ -1,0 +1,28 @@
+# Environment setup (install)
+
+Triggers: **install**, **setup**, **cài đặt**, **cài môi trường**, **bootstrap**, **first time setup**.
+
+**Before** `pnpm dev`, `pnpm build`, `pnpm playable:new`, or any other project command — ensure the dev environment exists.
+
+## Prerequisites
+
+| Tool | Version |
+|------|---------|
+| **Node.js** | >= 20.19 (LTS 22 recommended) — Vite 7 |
+| **pnpm** | 9.x (lockfile v9) |
+
+## When user asks to install / setup
+
+1. **Ask permission** — explain what may be installed (Node, pnpm, `node_modules`).
+2. After approval, run:
+
+```bash
+bash scripts/setup-env.sh --yes
+```
+
+3. If the script fails (no Homebrew/nvm/fnm), give manual links: [nodejs.org](https://nodejs.org/) then re-run the script.
+4. Then verify: `node -v`, `pnpm -v`, and `pnpm dev` if requested.
+
+**Do not** run `pnpm install` alone when Node or pnpm is missing — use `scripts/setup-env.sh` first.
+
+Full rules: `ai/INSTRUCTIONS.md` § Environment setup.

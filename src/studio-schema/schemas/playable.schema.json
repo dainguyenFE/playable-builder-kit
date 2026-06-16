@@ -1,0 +1,46 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "playable.schema.json",
+  "type": "object",
+  "required": ["id", "name", "viewport", "theme"],
+  "properties": {
+    "id": { "type": "string", "pattern": "^[a-z0-9]+(?:-[a-z0-9]+)*$" },
+    "name": { "type": "string", "minLength": 1 },
+    "viewport": {
+      "type": "object",
+      "required": ["width", "height"],
+      "properties": {
+        "width": { "type": "number" },
+        "height": { "type": "number" },
+        "safeArea": { "type": "boolean" }
+      }
+    },
+    "theme": {
+      "type": "object",
+      "properties": {
+        "primaryColor": { "type": "string" },
+        "backgroundColor": { "type": "string" },
+        "textColor": { "type": "string" },
+        "fontFamily": { "type": "string" }
+      }
+    },
+    "template": { "type": "object", "properties": { "id": { "type": "string" } } },
+    "context": { "type": "object", "properties": { "id": { "type": "string" } } },
+    "scenario": { "type": "object", "properties": { "id": { "type": "string" } } },
+    "cta": {
+      "type": "object",
+      "properties": {
+        "label": { "type": "string" },
+        "type": { "type": "string" },
+        "url": { "type": "string" }
+      }
+    },
+    "tracking": {
+      "type": "object",
+      "properties": {
+        "enabled": { "type": "boolean" },
+        "events": { "type": "array", "items": { "type": "string" } }
+      }
+    }
+  }
+}

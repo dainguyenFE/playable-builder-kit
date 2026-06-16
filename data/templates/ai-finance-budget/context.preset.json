@@ -1,0 +1,50 @@
+{
+  "freeBadge": "Free to try",
+  "ctaDownloadHint": "👇 Tap to download — no card required",
+  "benefit1": "Unlimited AI requests during trial",
+  "benefit2": "Export & share in one tap",
+  "benefit3": "Works offline for saved chats",
+  "benefit4": "Cancel anytime in Settings",
+  "benefitsTitle": "What you'll get",
+  "productName": "BudgetAI",
+  "backgroundGradient": "radial-gradient(ellipse 120% 80% at 50% -12%, color-mix(in srgb, #64748B 38%, transparent), transparent 58%), linear-gradient(180deg, #0b1220 0%, #0f172a 100%)",
+  "problemHeadline": "Build a smarter monthly budget",
+  "incomeInput": "$2,500/month · Save more",
+  "userQuestion": "Monthly budget for $2,500",
+  "aiAnswerBlocks": [
+    {
+      "type": "text",
+      "text": "Suggested budget for $2,500/month:"
+    },
+    {
+      "type": "list",
+      "items": [
+        "Essentials: $1,250 · rent, bills, groceries",
+        "Savings: $500 · emergency fund",
+        "Flexible: $450 · food out, shopping",
+        "Debt/Goals: $200 · extra payments",
+        "Buffer: $100 · unexpected costs"
+      ]
+    },
+    {
+      "type": "text",
+      "text": "AI suggests saving 20% first, then limiting flexible spending."
+    },
+    {
+      "type": "progress",
+      "label": "Savings rate",
+      "value": 20
+    }
+  ],
+  "checkpoint1": "✓ Move $500 to savings first",
+  "checkpoint2": "✓ Set food-out cap to $180",
+  "checkpoint3": "✓ Review subscriptions this week",
+  "checkpoint4": "○ Add emergency fund goal",
+  "ctaHeadline": "Your monthly budget is ready",
+  "ctaSubhead": "$2,500 planned · Save $500/month",
+  "ctaSave": "Save: $500/month",
+  "ctaEssentials": "Essentials: $1,250",
+  "ctaFlexible": "Flexible cap: $450",
+  "ctaBuffer": "Emergency buffer: $100",
+  "cta": "Create My Budget"
+}

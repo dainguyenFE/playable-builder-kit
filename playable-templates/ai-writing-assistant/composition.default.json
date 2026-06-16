@@ -1,0 +1,27 @@
+{
+  "id": "ai-writing-assistant-default",
+  "viewport": { "width": 390, "height": 844 },
+  "mode": "flow",
+  "flow": [
+    {
+      "id": "intro",
+      "blockRef": "blocks/intro-headline",
+      "fromTemplate": "ai-writing-assistant"
+    },
+    {
+      "id": "pick",
+      "blockRef": "blocks/chip-picker",
+      "fromTemplate": "ai-writing-assistant"
+    },
+    {
+      "id": "result",
+      "blockRef": "blocks/result-card",
+      "fromTemplate": "ai-writing-assistant"
+    },
+    {
+      "id": "cta",
+      "blockRef": "blocks/store-cta",
+      "fromTemplate": "ai-writing-assistant"
+    }
+  ]
+}
