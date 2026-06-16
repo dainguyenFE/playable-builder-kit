@@ -88,3 +88,31 @@ export function createPausableTimeout(delayMs, callback, clock) {
     },
   };
 }
+
+/**
+ * @param {number} intervalMs
+ * @param {() => void} callback
+ * @param {{ isPaused: () => boolean }} clock
+ */
+export function createPausableInterval(intervalMs, callback, clock) {
+  /** @type {ReturnType<typeof setInterval> | null} */
+  let intervalId = null;
+
+  function clear() {
+    if (intervalId) clearInterval(intervalId);
+    intervalId = null;
+  }
+
+  function schedule() {
+    clear();
+    if (clock.isPaused()) return;
+    intervalId = setInterval(callback, intervalMs);
+  }
+
+  return {
+    start: schedule,
+    pause: clear,
+    resume: schedule,
+    cancel: clear,
+  };
+}

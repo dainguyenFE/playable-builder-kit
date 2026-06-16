@@ -54,12 +54,12 @@ export function buildPromptUrl(text, target = getChatTarget()) {
 
 export function notebookHintText(target = getChatTarget()) {
   const label = getChatTargetLabel(target);
-  return `Prompt → preview → save. Dùng notebook bên trái để gửi prompt vào ${label}.`;
+  return `Prompt examples name <strong>template/playable · screen · zone</strong> — use <strong>Add to chat</strong> to send into ${label}.`;
 }
 
 export function inspectorHintText(target = getChatTarget()) {
   const label = getChatTargetLabel(target);
-  return `Screens → zones. Click zone → <strong>Add to chat</strong> gửi vào ${label}.`;
+  return `Pick screen → zone → <strong>Add to chat</strong> sends scoped prompt (template/playable · screen · zone) into ${label}.`;
 }
 
 function dispatchChange(target) {

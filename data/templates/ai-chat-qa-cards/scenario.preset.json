@@ -145,8 +145,33 @@
           "hidden": false
         },
         {
-          "id": "benefits",
-          "type": "benefit-list",
+          "id": "benefits_title",
+          "type": "benefit-title",
+          "textKey": "benefitsTitle",
+          "hidden": true
+        },
+        {
+          "id": "ben1",
+          "type": "benefit-item",
+          "textKey": "benefit1",
+          "hidden": true
+        },
+        {
+          "id": "ben2",
+          "type": "benefit-item",
+          "textKey": "benefit2",
+          "hidden": true
+        },
+        {
+          "id": "ben3",
+          "type": "benefit-item",
+          "textKey": "benefit3",
+          "hidden": true
+        },
+        {
+          "id": "ben4",
+          "type": "benefit-item",
+          "textKey": "benefit4",
           "hidden": true
         },
         {
@@ -190,36 +215,64 @@
           "animation": "fade-in"
         },
         {
-          "id": "ben",
+          "id": "step_benefits_title",
           "atMs": 300,
           "action": "show",
-          "target": "benefits",
-          "animation": "fade-up"
+          "target": "benefits_title",
+          "animation": "fade-in"
+        },
+        {
+          "id": "step_ben1",
+          "atMs": 420,
+          "action": "show",
+          "target": "ben1",
+          "animation": "fade-in"
+        },
+        {
+          "id": "step_ben2",
+          "atMs": 580,
+          "action": "show",
+          "target": "ben2",
+          "animation": "fade-in"
+        },
+        {
+          "id": "step_ben3",
+          "atMs": 740,
+          "action": "show",
+          "target": "ben3",
+          "animation": "fade-in"
+        },
+        {
+          "id": "step_ben4",
+          "atMs": 900,
+          "action": "show",
+          "target": "ben4",
+          "animation": "fade-in"
         },
         {
           "id": "badge",
-          "atMs": 500,
+          "atMs": 1080,
           "action": "show",
           "target": "free_badge",
           "animation": "pop-in"
         },
         {
           "id": "hint",
-          "atMs": 700,
+          "atMs": 1280,
           "action": "show",
           "target": "download_hint",
           "animation": "fade-in"
         },
         {
           "id": "arrow",
-          "atMs": 900,
+          "atMs": 1480,
           "action": "show",
           "target": "arrow_lottie",
           "animation": "fade-in"
         },
         {
           "id": "pulse",
-          "atMs": 1100,
+          "atMs": 1680,
           "action": "pulse",
           "target": "cta_button"
         }

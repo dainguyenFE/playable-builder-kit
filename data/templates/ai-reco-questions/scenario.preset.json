@@ -156,17 +156,39 @@
           "textKey": "freeBadge"
         },
         {
-          "id": "cta_result",
-          "type": "benefit-list",
-          "keys": [
-            "ctaGoal",
-            "ctaTime",
-            "ctaFeature",
-            "ctaExtra1",
-            "ctaExtra2",
-            "ctaExtra3"
-          ],
-          "title": "",
+          "id": "cta_res1",
+          "type": "benefit-item",
+          "textKey": "ctaGoal",
+          "hidden": true
+        },
+        {
+          "id": "cta_res2",
+          "type": "benefit-item",
+          "textKey": "ctaTime",
+          "hidden": true
+        },
+        {
+          "id": "cta_res3",
+          "type": "benefit-item",
+          "textKey": "ctaFeature",
+          "hidden": true
+        },
+        {
+          "id": "cta_res4",
+          "type": "benefit-item",
+          "textKey": "ctaExtra1",
+          "hidden": true
+        },
+        {
+          "id": "cta_res5",
+          "type": "benefit-item",
+          "textKey": "ctaExtra2",
+          "hidden": true
+        },
+        {
+          "id": "cta_res6",
+          "type": "benefit-item",
+          "textKey": "ctaExtra3",
           "hidden": true
         },
         {
@@ -180,8 +202,34 @@
           "textKey": "ctaSubhead"
         },
         {
-          "id": "benefits",
-          "type": "benefit-list"
+          "id": "benefits_title",
+          "type": "benefit-title",
+          "textKey": "benefitsTitle",
+          "hidden": false
+        },
+        {
+          "id": "ben1",
+          "type": "benefit-item",
+          "textKey": "benefit1",
+          "hidden": false
+        },
+        {
+          "id": "ben2",
+          "type": "benefit-item",
+          "textKey": "benefit2",
+          "hidden": false
+        },
+        {
+          "id": "ben3",
+          "type": "benefit-item",
+          "textKey": "benefit3",
+          "hidden": false
+        },
+        {
+          "id": "ben4",
+          "type": "benefit-item",
+          "textKey": "benefit4",
+          "hidden": false
         },
         {
           "id": "cta_button",
@@ -191,11 +239,46 @@
       ],
       "steps": [
         {
-          "id": "res",
+          "id": "step_cta_res1",
           "atMs": 100,
           "action": "show",
-          "target": "cta_result",
-          "animation": "fade-up"
+          "target": "cta_res1",
+          "animation": "fade-in"
+        },
+        {
+          "id": "step_cta_res2",
+          "atMs": 260,
+          "action": "show",
+          "target": "cta_res2",
+          "animation": "fade-in"
+        },
+        {
+          "id": "step_cta_res3",
+          "atMs": 420,
+          "action": "show",
+          "target": "cta_res3",
+          "animation": "fade-in"
+        },
+        {
+          "id": "step_cta_res4",
+          "atMs": 580,
+          "action": "show",
+          "target": "cta_res4",
+          "animation": "fade-in"
+        },
+        {
+          "id": "step_cta_res5",
+          "atMs": 740,
+          "action": "show",
+          "target": "cta_res5",
+          "animation": "fade-in"
+        },
+        {
+          "id": "step_cta_res6",
+          "atMs": 900,
+          "action": "show",
+          "target": "cta_res6",
+          "animation": "fade-in"
         },
         {
           "id": "bg",
@@ -226,15 +309,43 @@
           "animation": "fade-in"
         },
         {
-          "id": "ben",
+          "id": "step_benefits_title",
           "atMs": 800,
           "action": "show",
-          "target": "benefits",
-          "animation": "fade-up"
+          "target": "benefits_title",
+          "animation": "fade-in"
+        },
+        {
+          "id": "step_ben1",
+          "atMs": 920,
+          "action": "show",
+          "target": "ben1",
+          "animation": "fade-in"
+        },
+        {
+          "id": "step_ben2",
+          "atMs": 1080,
+          "action": "show",
+          "target": "ben2",
+          "animation": "fade-in"
+        },
+        {
+          "id": "step_ben3",
+          "atMs": 1240,
+          "action": "show",
+          "target": "ben3",
+          "animation": "fade-in"
+        },
+        {
+          "id": "step_ben4",
+          "atMs": 1400,
+          "action": "show",
+          "target": "ben4",
+          "animation": "fade-in"
         },
         {
           "id": "pulse",
-          "atMs": 1200,
+          "atMs": 1750,
           "action": "pulse",
           "target": "cta_button"
         }

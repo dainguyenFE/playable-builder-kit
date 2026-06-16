@@ -4,6 +4,7 @@
 import { trackEvent } from "./tracking.js";
 import { bindStoreCta } from "../../skills/store-cta.js";
 import { findAsset, resolveAssetSrc } from "./assets.js";
+import { delayWithClock } from "./playback-clock.js";
 
 const MODEL_META = {
   Gemini: { icon: "✦", color: "#4285F4" },
@@ -72,19 +73,19 @@ async function streamAnswer(container, blocks, assets, clock, speed = 12) {
       for (let i = 0; i < full.length; i += 1) {
         if (clock?.waitWhilePaused) await clock.waitWhilePaused();
         p.textContent += full[i];
-        await new Promise((r) => setTimeout(r, speed));
+        await delayWithClock(clock, speed);
       }
     } else {
       const wrap = document.createElement("div");
       wrap.className = "pb-ai-answer-block pb-ai-answer-block--enter";
       wrap.innerHTML = renderAnswerBlock(block, assets);
       container.appendChild(wrap);
-      await new Promise((r) => setTimeout(r, 180));
+      await delayWithClock(clock, 180);
     }
   }
 }
 
-function initModelPicker(pickerEl, { onSelect, models }) {
+function initModelPicker(pickerEl, { onSelect, models, clock, createPausableInterval, registerPlaybackHook }) {
   const list = pickerEl.querySelector("[data-ai-model-list]");
   if (!list) return () => {};
 
@@ -99,13 +100,21 @@ function initModelPicker(pickerEl, { onSelect, models }) {
   };
 
   tick();
-  const timer = setInterval(tick, 750);
+  let cycleTimer = null;
+  if (createPausableInterval && clock) {
+    cycleTimer = createPausableInterval(750, tick, clock);
+    cycleTimer.start();
+    registerPlaybackHook?.(cycleTimer);
+  } else {
+    const timer = setInterval(tick, 750);
+    cycleTimer = { cancel: () => clearInterval(timer) };
+  }
 
   const onClick = (e) => {
     const btn = e.target.closest(".pb-ai-model:not(.pb-ai-model--disabled)");
     if (!btn || picked) return;
     picked = true;
-    clearInterval(timer);
+    cycleTimer?.cancel?.();
     items.forEach((el) => el.classList.remove("pb-ai-model--active"));
     btn.classList.add("pb-ai-model--picked");
     const model = btn.dataset.model;
@@ -116,7 +125,7 @@ function initModelPicker(pickerEl, { onSelect, models }) {
   list.addEventListener("click", onClick);
 
   return () => {
-    clearInterval(timer);
+    cycleTimer?.cancel?.();
     list.removeEventListener("click", onClick);
   };
 }
@@ -181,7 +190,7 @@ async function initModelResponse(responseEl, opts) {
   await streamAnswer(streamEl, blocks, assets, clock, 10);
 
   if (withModal && overlay && onSwitch) {
-    await new Promise((r) => setTimeout(r, 400));
+    await delayWithClock(clock, 400);
     showSwitchModal(overlay, { models, exclude: model, onPick: onSwitch });
   } else if (content) {
     const cta = content.querySelector(".pb-el--cta-button");
@@ -208,6 +217,9 @@ export function initAiModalFlow({
   assets,
   navigate,
   clock,
+  registerPlaybackHook,
+  createPausableTimeout,
+  createPausableInterval,
 }) {
   const models = context.aiModels ?? flowState.models;
   const question = context.userQuestion ?? "";
@@ -224,6 +236,9 @@ export function initAiModalFlow({
     cleanups.push(
       initModelPicker(picker, {
         models,
+        createPausableInterval,
+        registerPlaybackHook,
+        clock,
         onSelect: (model) => {
           flowState.selected = [model];
           navigate(screen.clickNext?.target || "screen_2");
@@ -231,6 +246,9 @@ export function initAiModalFlow({
       }),
     );
   }
+
+  /** @type {ReturnType<typeof createPausableTimeout> | null} */
+  let autoNextTimer = null;
 
   if (response && responseWrap) {
     const variant = responseWrap.dataset.variant || "primary";
@@ -253,13 +271,18 @@ export function initAiModalFlow({
         navigate(screen.clickNext?.target || "screen_3");
       },
       onComplete: () => {
-        if (!showSwitchModal && screen.autoNext?.enabled && screen.autoNext.target) {
+        if (!showSwitchModal && screen.autoNext?.enabled && screen.autoNext.target && createPausableTimeout) {
           const delay = screen.autoNext.afterStreamMs ?? screen.autoNext.afterMs ?? 1200;
-          setTimeout(() => navigate(screen.autoNext.target), delay);
+          autoNextTimer = createPausableTimeout(delay, () => navigate(screen.autoNext.target), clock);
+          autoNextTimer.start();
+          registerPlaybackHook?.(autoNextTimer);
         }
       },
     });
   }
 
-  return () => cleanups.forEach((fn) => fn());
+  return () => {
+    autoNextTimer?.cancel?.();
+    cleanups.forEach((fn) => fn());
+  };
 }

@@ -1,37 +1,45 @@
 import { addToChat } from "./add-to-chat.js";
 import { getChatTargetLabel } from "./chat-target.js";
 
-/** Prompt examples for Studio home sidebar — copy / Add to chat. */
+/**
+ * Prompt examples — every prompt names template/playable · screen · zone
+ * so AI knows exactly where to edit.
+ *
+ * Pattern:
+ *   Edit template "<id>" screen N "<name>" (screen_id) zone N "<name>" (zone_id): …
+ *   Edit playable "<id>" screen N "<name>" (screen_id): …
+ *   Add / Delete zone | screen | template | playable …
+ */
 export const PROMPT_NOTEBOOK = [
   {
     id: "template",
     title: "Template",
     items: [
       {
-        label: "Tạo template mới",
+        label: "Create template",
         prompt:
-          "Create template nova-chat-flow from ai-chat-assistant. Đăng ký registry nếu cần.",
+          'Create template "nova-chat-flow" from template "ai-chat-assistant". Register in registry if needed.',
       },
       {
-        label: "Edit template (nhiều yêu cầu)",
-        prompt: `Edit template ai-chat-assistant:
-1. Đổi headline zone 4 — copy ngắn hơn, tone playful
-2. Screen 1 auto chuyển screen 2 sau 2000ms
-3. Tăng padding 2 bên lên 28px (layout.insetX)`,
+        label: "Edit template (multi-request)",
+        prompt: `Edit template "ai-chat-assistant":
+1. screen 1 "Hook" (screen_hook) zone 4 "headline" (headline) — shorter copy, playful tone
+2. screen 1 "Hook" (screen_hook) transition — auto-advance to screen 2 after 2000ms
+3. layout — increase insetX to 28px (all screens)`,
       },
       {
-        label: "Đổi theme / background",
+        label: "Edit theme / background",
         prompt:
-          "Edit template ai-text-to-image: đổi background zone sang gradient tím hồng, theme rose-creative",
+          'Edit template "ai-text-to-image" screen 1 "Hook" (screen_hook) zone 1 "bg" (bg): gradient purple-pink background. Theme: rose-creative.',
       },
       {
-        label: "Build template (sau khi OK preview)",
-        prompt: "Build template ai-chat-assistant",
+        label: "Build template",
+        prompt: 'Build template "ai-chat-assistant" (export single HTML after preview OK).',
       },
       {
-        label: "Save template (từ playable)",
+        label: "Save template from playable",
         prompt:
-          "Save playable my-campaign as template my-campaign-v2",
+          'Save playable "my-campaign" as template "my-campaign-v2".',
       },
     ],
   },
@@ -40,34 +48,35 @@ export const PROMPT_NOTEBOOK = [
     title: "Playable",
     items: [
       {
-        label: "Tạo playable mới",
+        label: "Create playable",
         prompt:
-          "Create new playable nova-chat-spring — studio template ai-chat-assistant, theme midnight-blue",
+          'Create playable "nova-chat-spring" from template "ai-chat-assistant", theme midnight-blue.',
       },
       {
         label: "Clone playable",
         prompt:
-          'Clone playable "nova-chat-v2" from playable "nova-chat-v1"',
+          'Clone playable "nova-chat-v2" from playable "nova-chat-v1".',
       },
       {
-        label: "Clone playable (list nguồn)",
+        label: "Clone playable (list sources)",
         prompt:
-          "Clone playable — list playables có sẵn (pnpm playable:clone --list), hỏi user chọn nguồn nếu tên không khớp, rồi chạy: pnpm playable:clone <new-id> <source-id>",
+          'Clone playable — list available playables (pnpm playable:clone --list), ask user to pick source, then: pnpm playable:clone <new-id> <source-id>',
       },
       {
-        label: "Edit copy playable",
-        prompt: `Edit playable nova-chat-spring:
-1. Đổi product name và CTA
-2. Screen chat — đổi câu hỏi user demo
-3. Giữ nguyên flow 3 màn`,
+        label: "Edit playable copy",
+        prompt: `Edit playable "nova-chat-spring":
+1. screen 1 "Hook" (screen_hook) — update product name and CTA copy
+2. screen 2 "Chat" (screen_chat) zone 2 "user_bubble" (user_bubble) — change demo user question
+3. Keep 3-screen flow unchanged`,
       },
       {
-        label: "Export HTML (campaign)",
-        prompt: "Export playable nova-chat-spring to single HTML for AppLovin",
+        label: "Export HTML",
+        prompt:
+          'Export playable "nova-chat-spring" to single HTML for AppLovin.',
       },
       {
-        label: "Xóa playable",
-        prompt: "Delete playable nova-chat-spring",
+        label: "Delete playable",
+        prompt: 'Delete playable "nova-chat-spring".',
       },
     ],
   },
@@ -76,39 +85,49 @@ export const PROMPT_NOTEBOOK = [
     title: "Zones",
     items: [
       {
-        label: "Create zone mới",
-        prompt: `Edit template ai-chat-assistant — screen screen_hook:
-Thêm zone mới "promo_strip" type subheadline-block, textKey promoStrip, hidden true.
+        label: "Add zone",
+        prompt: `Add zone to template "ai-chat-assistant" screen 1 "Hook" (screen_hook):
+New zone "promo_strip" type subheadline-block, textKey promoStrip, hidden true.
 Step: show promo_strip at 1600ms animation fade-up.
-Thêm context.promoStrip = "Limited offer — try free today".`,
+Add context.promoStrip = "Limited offer — try free today".`,
       },
       {
-        label: "Create zone (image / Lottie)",
-        prompt: `Edit template ai-text-to-image — screen screen_demo:
-Thêm zone hero_result type hero-image, assetId img-t2i-cyberpunk, hidden true.
-Step show at 1200ms pop-in. Đảm bảo asset có trong assets.preset.json.`,
+        label: "Add benefit lines (split zones)",
+        prompt: `Add zones to template "ai-chat-assistant" screen 1 "Hook" (screen_hook):
+benefit-title (benefitsTitle) + benefit-item ben1…ben3 (benefit1…benefit3) — one zone per line, stagger show steps 800ms/960ms/1120ms.`,
+      },
+      {
+        label: "Add zone (image / Lottie)",
+        prompt: `Add zone to template "ai-text-to-image" screen 2 "Demo" (screen_demo):
+New zone "hero_result" type hero-image, assetId img-t2i-cyberpunk, hidden true.
+Step: show hero_result at 1200ms pop-in. Ensure asset exists in assets.preset.json.`,
       },
       {
         label: "Edit zone (copy + timing)",
-        prompt: `Edit template ai-chat-assistant zone headline (screen Hook):
+        prompt: `Edit template "ai-chat-assistant" screen 1 "Hook" (screen_hook) zone 1 "headline" (headline):
 1. context.problemHeadline → "Get instant AI answers"
-2. Step show headline: đổi atMs từ 450ms → 600ms, animation fade-up
-Preview /preview/template/ai-chat-assistant để kiểm tra.`,
+2. step show headline: atMs 450ms → 600ms, animation fade-up
+Preview: /preview/template/ai-chat-assistant`,
       },
       {
-        label: "Edit zone (từ inspector)",
+        label: "Edit zone (from inspector)",
         prompt:
-          "Preview template ai-chat-assistant → inspector chọn zone → Add to chat → chỉnh theo patch paths trong context (đổi text / steps / assetId).",
+          'Preview template "ai-chat-assistant" → inspector: pick screen + zone → Add to chat → edit copy / steps / assetId per patch paths in context.',
       },
       {
         label: "Delete zone",
-        prompt: `Edit template ai-chat-assistant — screen screen_hook:
-Xóa zone tap_hint và hand_tap: remove khỏi elements[] và mọi steps có target là 2 id đó.`,
+        prompt: `Delete zone from template "ai-chat-assistant" screen 1 "Hook" (screen_hook):
+Remove zones "tap_hint" and "hand_tap" from elements[] and all steps with target tap_hint or hand_tap.`,
       },
       {
-        label: "Ẩn zone (không xóa)",
+        label: "Split large list zone",
+        prompt: `Edit template "ai-travel-itinerary" screen 3 "Summary" (s3):
+Replace single benefit-list "cards" with benefit-item zones sum1…sum4 (summary1…summary4) — one inspector zone per bullet, staggered show steps.`,
+      },
+      {
+        label: "Hide zone (keep element)",
         prompt:
-          "Edit template ai-chat-assistant zone pills on screen Hook: set elements[].hidden true và remove các steps show pills.",
+          'Edit template "ai-chat-assistant" screen 1 "Hook" (screen_hook) zone "pills" (pills): set elements[].hidden true and remove show steps for pills.',
       },
     ],
   },
@@ -117,22 +136,22 @@ Xóa zone tap_hint và hand_tap: remove khỏi elements[] và mọi steps có ta
     title: "Screens",
     items: [
       {
-        label: "Thêm screen mới",
-        prompt: `Edit template ai-chat-assistant:
-Thêm screen screen_cta sau screen_result với transition slide-left.
-Elements: headline (textKey ctaHeadline), cta (type cta-button).
+        label: "Add screen",
+        prompt: `Add screen to template "ai-chat-assistant" after screen 2 "Demo" (screen_demo):
+New screen "screen_cta" name "CTA", transition slide-left.
+Zones: headline (textKey ctaHeadline), cta_button (type cta-button).
 context.ctaHeadline = "Start free today".
-Screen trước: autoNext.target = screen_cta.`,
+Rewire screen 2 autoNext.target → screen_cta.`,
       },
       {
-        label: "Sửa transition screen",
+        label: "Edit screen transition",
         prompt:
-          "Edit playable test-1 screen screen_hook: autoNext sau 2500ms sang screen_demo, clickNext enabled.",
+          'Edit playable "test-1" screen 1 "Hook" (screen_hook) transition: autoNext after 2500ms → screen_demo, clickNext enabled.',
       },
       {
-        label: "Xóa screen",
-        prompt: `Edit template ai-chat-assistant:
-Xóa screen screen_extra — rewire screen trước autoNext/clickNext sang màn kế tiếp, remove mọi steps target zones chỉ thuộc screen đó.`,
+        label: "Delete screen",
+        prompt: `Delete screen from template "ai-chat-assistant":
+Remove screen "screen_extra" — rewire previous screen autoNext/clickNext to next screen, remove steps for zones only on screen_extra.`,
       },
     ],
   },
@@ -141,39 +160,42 @@ Xóa screen screen_extra — rewire screen trước autoNext/clickNext sang màn
     title: "Assets",
     items: [
       {
-        label: "Save image (từ file đính kèm chat)",
-        prompt: `Save image with name "abc"
-(đính kèm ảnh trong chat — agent chạy: pnpm studio:asset save abc --image <file>)`,
+        label: "Save image (attach in chat)",
+        prompt: `Save image "abc" for template "ai-chat-assistant"
+(attach image in chat — agent runs: pnpm studio:asset save abc --image <file>)`,
       },
       {
-        label: "Save Lottie (từ file đính kèm chat)",
-        prompt: `Save lottie with name "abc"
-(đính kèm file .json trong chat — agent chạy: pnpm studio:asset save abc --lottie <file>)`,
+        label: "Save Lottie (attach in chat)",
+        prompt: `Save lottie "abc" for template "ai-chat-assistant"
+(attach .json in chat — agent runs: pnpm studio:asset save abc --lottie <file>)`,
       },
       {
-        label: "Dùng asset — zone",
-        prompt: `Use asset image "abc" for zone <zone-id> on screen <screen-id>`,
+        label: "Use asset — zone",
+        prompt:
+          'Use asset image "abc" for template "ai-chat-assistant" screen 2 "Demo" (screen_demo) zone 3 "hero_result" (hero_result).',
       },
       {
-        label: "Dùng asset — background",
-        prompt: `Use asset image "abc" for background on screen <screen-id>`,
+        label: "Use asset — background",
+        prompt:
+          'Use asset image "abc" for template "ai-chat-assistant" screen 1 "Hook" (screen_hook) zone 1 "bg" (bg) background.',
       },
       {
         label: "Delete image / Lottie",
-        prompt: `Delete image "abc"`,
+        prompt: 'Delete asset image "abc" from template "ai-chat-assistant".',
       },
       {
         label: "Add icon",
-        prompt: `asset add icon "icon-sparkles"
-(đính kèm file .svg Lucide — agent: pnpm studio:asset save icon-sparkles --icon <file>)`,
+        prompt: `Add icon "icon-sparkles" for template "ai-chat-assistant"
+(attach .svg Lucide — agent: pnpm studio:asset save icon-sparkles --icon <file>)`,
       },
       {
         label: "Use icon",
-        prompt: `asset use icon "icon-sparkles" for zone <zone-id> on screen <screen-id>`,
+        prompt:
+          'Use icon "icon-sparkles" for template "ai-chat-assistant" screen 1 "Hook" (screen_hook) zone 2 "badge" (free_badge).',
       },
       {
         label: "Delete icon",
-        prompt: `asset delete icon "icon-sparkles"`,
+        prompt: 'Delete icon "icon-sparkles" from template "ai-chat-assistant".',
       },
     ],
   },
@@ -182,19 +204,19 @@ Xóa screen screen_extra — rewire screen trước autoNext/clickNext sang màn
     title: "Preview & flow",
     items: [
       {
-        label: "Flow chuẩn",
+        label: "Standard flow",
         prompt:
-          "Preview template ai-chat-assistant → chỉnh theo brief → preview lại → build template khi OK",
+          'Preview template "ai-chat-assistant" → edit per brief → preview again → build template when OK.',
       },
       {
-        label: "Thêm Lottie / ảnh",
+        label: "Add Lottie / image",
         prompt:
-          "Edit template ai-chat-assistant: thêm hand-tap Lottie trên màn có tap-hint, hero image rõ hơn",
+          'Edit template "ai-chat-assistant" screen 1 "Hook" (screen_hook): add hand-tap Lottie on tap-hint zone, sharper hero image on zone hero.',
       },
       {
-        label: "Transition giữa screens",
+        label: "Screen transition",
         prompt:
-          "Edit template ai-planning-board screen 2: tap anywhere chuyển screen 3, auto sau 8s",
+          'Edit template "ai-planning-board" screen 2 "Board" (screen_board) transition: tap anywhere → screen 3, auto after 8s.',
       },
     ],
   },

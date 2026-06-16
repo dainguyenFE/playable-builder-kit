@@ -1,7 +1,11 @@
 import { bindStoreCta } from "../../skills/store-cta.js";
 import { trackEvent } from "./tracking.js";
 import { createActionRunner } from "./action-runner.js";
-import { createPausableStepScheduler, createPausableTimeout } from "./playback-scheduler.js";
+import {
+  createPausableInterval,
+  createPausableStepScheduler,
+  createPausableTimeout,
+} from "./playback-scheduler.js";
 import { createPlaybackClock } from "./playback-clock.js";
 import { renderScreenElements } from "./screen-renderer.js";
 import { applyStudioTheme } from "./theme.js";
@@ -27,6 +31,8 @@ export function bootPlayableStudio({ root, bundle, mode = "preview", previewKind
   const clock = createPlaybackClock();
   let stepScheduler = null;
   let autoNextTimer = null;
+  /** @type {Set<{ pause?: () => void, resume?: () => void, cancel?: () => void }>} */
+  const playbackHooks = new Set();
   /** @type {import('lottie-web').AnimationItem[]} */
   let lottieInstances = [];
   let screenIndex = 0;
@@ -95,11 +101,22 @@ export function bootPlayableStudio({ root, bundle, mode = "preview", previewKind
     }
   }
 
+  function registerPlaybackHook(hook) {
+    playbackHooks.add(hook);
+    return () => playbackHooks.delete(hook);
+  }
+
+  function clearPlaybackHooks() {
+    for (const hook of playbackHooks) hook.cancel?.();
+    playbackHooks.clear();
+  }
+
   function teardownScreenPlayback() {
     stepScheduler?.cancel();
     stepScheduler = null;
     autoNextTimer?.cancel();
     autoNextTimer = null;
+    clearPlaybackHooks();
     if (typeof teardownScreenPlayback._cleanupAiModal === "function") {
       teardownScreenPlayback._cleanupAiModal();
       teardownScreenPlayback._cleanupAiModal = null;
@@ -125,14 +142,10 @@ export function bootPlayableStudio({ root, bundle, mode = "preview", previewKind
 
   function mountScreen(screenId, opts = {}) {
     const fromInspector = Boolean(opts.fromInspector);
-    const wasPaused = fromInspector && clock.isPaused();
 
     teardownScreenPlayback();
     clock.reset();
-    if (wasPaused) clock.pause();
-
-    if (wasPaused) app.classList.add("pb-studio--paused");
-    else app.classList.remove("pb-studio--paused");
+    app.classList.remove("pb-studio--paused");
 
     const screen = screensById.get(screenId);
     if (!screen) return;
@@ -180,7 +193,7 @@ export function bootPlayableStudio({ root, bundle, mode = "preview", previewKind
 
     initLottieMounts(lottieMounts, assets).then((instances) => {
       lottieInstances = instances;
-      if (wasPaused || clock.isPaused()) setPausedVisual(true);
+      if (clock.isPaused()) setPausedVisual(true);
     });
 
     const ctaBtn = content.querySelector("#cta");
@@ -201,6 +214,9 @@ export function bootPlayableStudio({ root, bundle, mode = "preview", previewKind
         assets,
         navigate: (target) => mountScreen(target),
         clock,
+        registerPlaybackHook,
+        createPausableTimeout,
+        createPausableInterval,
       });
       teardownScreenPlayback._cleanupAiModal = cleanupAiModal;
     }
@@ -237,12 +253,6 @@ export function bootPlayableStudio({ root, bundle, mode = "preview", previewKind
       autoNextTimer.start();
     }
 
-    if (wasPaused) {
-      stepScheduler.pause();
-      autoNextTimer?.pause();
-      setPausedVisual(true);
-    }
-
     emitScreenChange(screenId, screen, { fromInspector });
     emitPlaybackState();
   }
@@ -252,6 +262,7 @@ export function bootPlayableStudio({ root, bundle, mode = "preview", previewKind
     clock.pause();
     stepScheduler?.pause();
     autoNextTimer?.pause();
+    for (const hook of playbackHooks) hook.pause?.();
     setPausedVisual(true);
     emitPlaybackState();
   }
@@ -261,6 +272,7 @@ export function bootPlayableStudio({ root, bundle, mode = "preview", previewKind
     clock.resume();
     stepScheduler?.resume();
     autoNextTimer?.resume();
+    for (const hook of playbackHooks) hook.resume?.();
     setPausedVisual(false);
     emitPlaybackState();
   }

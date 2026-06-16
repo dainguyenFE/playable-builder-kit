@@ -132,23 +132,29 @@ Reference implementation: **`src/pages/test-2/style.css`**.
 
 ## Playable Studio (JSON runtime)
 
-Studio playables use **`.pb-studio__app`** — not `.route-*` pages.
+Studio playables scale inside **`.pb-studio__content`** — not `.route-*` pages.
 
-1. **Container:** `container-type: size` on `.pb-studio__app` (already in `src/runtime/studio/styles/studio.css`).
+1. **Container:** `container-type: size` on `.pb-studio__content` (UI) and `.pb-studio__stage` (background / overlay). `.pb-studio__app` holds design vars only — **not** a scale container.
 2. **Design canvas vars:** `--pb-design-w` / `--pb-design-h` from `playable.json` → `viewport` (set by `fluid-scale.js`).
 3. **Formulas** — use vars, not hardcoded 390/844:
 
 ```css
-/* width axis */
+/* width axis — cqw/cqh resolve against .pb-studio__content */
 font-size: calc(28 / var(--pb-design-w) * 100cqw);
 padding: calc(14 / var(--pb-design-h) * 100cqh) calc(20 / var(--pb-design-w) * 100cqw);
 
-/* typography — prefer em on app base (16px @ design width) */
-.pb-studio__app .pb-headline { font-size: 1.75em; }
+/* typography — prefer em on content base (16px @ design width) */
+.pb-studio__content .pb-headline { font-size: 1.75em; }   /* keep */
+.pb-studio__content .pb-subhead { font-size: 1em; }
+.pb-studio__content .pb-body { font-size: 0.9375em; }
+
+/* CTA — 80% of content column */
+.pb-studio__content > .pb-el--cta-button { width: var(--pb-cta-width, 80%); align-self: center; }
+.pb-studio__content .pb-btn--cta { width: 100%; }
 ```
 
-4. **Do not** use root `rem` — `rem` follows `<html>`, not the phone frame. Use **cqw/cqh** or **em** under `.pb-studio__app`.
-5. **Preview** device sizes (iPhone, Galaxy, Pixel) change container — UI must scale via cqw/cqh/em only.
+4. **Do not** use root `rem` — `rem` follows `<html>`, not the phone frame. Use **cqw/cqh** or **em** under `.pb-studio__content`.
+5. **Preview** device sizes (iPhone, Galaxy, Pixel) change frame — UI must scale via cqw/cqh/em only.
 6. Full studio zones/assets/backgrounds → **`playable-studio-fluid/SKILL.md`**.
 
 ---

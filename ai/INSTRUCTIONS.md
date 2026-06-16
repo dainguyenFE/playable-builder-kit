@@ -102,8 +102,20 @@ Default page name: `playable` if the user does not specify one.
 | Store CTA | `playable-store-cta` |
 | Steps / taps | `playable-interactions` |
 | AppLovin upload | `playable-applovin-compliance` |
+| Template / playable sandbox isolation | `playable-data-isolation` |
 
 Full index: **`ai/SKILLS-INDEX.md`**
+
+---
+
+## Template & playable isolation (mandatory)
+
+When editing **`data/templates/<id>/`** or **`playables/<id>/`**:
+
+1. Read **`ai/skills/playable-data-isolation/SKILL.md`**.
+2. Edit **only** the sandbox matching the preview URL — no cross-template or cross-playable patches.
+3. UI differences = JSON config + theme in that folder — do **not** fork `src/runtime/**` for one template.
+4. Bad JSON → preview shows error in the device frame only; Studio home and other previews keep working.
 
 ---
 

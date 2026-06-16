@@ -1,5 +1,6 @@
 /**
  * Fluid mobile scaling + layout insets (prompt-editable via playable.json → layout).
+ * Design size on .pb-studio__app; cqw/cqh tokens resolve on .pb-studio__content (UI) and .pb-studio__stage (bg/overlay).
  * @param {HTMLElement} app
  * @param {object} [playable]
  */
@@ -11,7 +12,7 @@ export function applyFluidViewport(app, playable = {}) {
 }
 
 /**
- * Apply design size + insets (preview device picker or export viewport).
+ * Apply design size + layout inset numbers (design px; CSS converts via content/stage container).
  * @param {HTMLElement} app
  * @param {number} w
  * @param {number} h
@@ -26,14 +27,13 @@ export function applyFluidViewportSize(app, w, h, layout = {}) {
 
   app.style.setProperty("--pb-design-w", String(w));
   app.style.setProperty("--pb-design-h", String(h));
-  app.style.setProperty("--pb-inset-x", `calc(${insetX} / ${w} * 100cqw)`);
-  app.style.setProperty("--pb-inset-y", `calc(${insetY} / ${h} * 100cqh)`);
-  app.style.setProperty("--pb-inset-bottom", `calc(${insetBottom} / ${h} * 100cqh)`);
-  app.style.setProperty("--pb-gap", `calc(${gap} / ${h} * 100cqh)`);
+  app.style.setProperty("--pb-layout-inset-x", String(insetX));
+  app.style.setProperty("--pb-layout-inset-y", String(insetY));
+  app.style.setProperty("--pb-layout-inset-bottom", String(insetBottom));
+  app.style.setProperty("--pb-layout-gap", String(gap));
   app.dataset.insetX = String(insetX);
   app.dataset.insetY = String(insetY);
   app.dataset.insetBottom = String(insetBottom);
-  app.style.fontSize = `calc(16 / ${w} * 100cqw)`;
 }
 
 /**

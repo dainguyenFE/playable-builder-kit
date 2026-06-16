@@ -276,7 +276,7 @@ export function initZonePanel({ panelEl, copyBtnEl, toggleZonesEl }) {
         userSelectedScreenId = z.screenId;
         window.__PB_HIGHLIGHT_ZONE__?.(zoneId);
         updateSelectionHighlight(zoneIndex);
-        const text = formatZoneShortChatPrompt(z);
+        const text = formatZoneShortChatPrompt(zoneIndex, z);
         const method = await addToChat(text);
         const prev = btn.textContent;
         const label = getChatTargetLabel();
@@ -318,7 +318,7 @@ export function initZonePanel({ panelEl, copyBtnEl, toggleZonesEl }) {
         selectedZoneId = null;
         window.__PB_HIGHLIGHT_ZONE__?.(null);
         render();
-        const text = formatTransitionShortChatPrompt(screen);
+        const text = formatTransitionShortChatPrompt(zoneIndex, screen);
         const method = await addToChat(text);
         const prev = btn.textContent;
         const label = getChatTargetLabel();

@@ -2,8 +2,6 @@
 
 /* Studio scenario elements — scales via --pb-design-w / --pb-design-h (default 390×844) */
 .pb-studio__app {
-  container-type: size;
-  container-name: page;
   box-sizing: border-box;
   display: flex;
   flex-direction: column;
@@ -12,38 +10,51 @@
   flex: 1;
   --pb-design-w: 390;
   --pb-design-h: 844;
+  --pb-layout-inset-x: 20;
+  --pb-layout-inset-y: 20;
+  --pb-layout-inset-bottom: 24;
+  --pb-layout-gap: 14;
   background: var(--pb-bg, #0f172a);
   color: var(--pb-fg, #fff);
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-  font-size: calc(16 / var(--pb-design-w) * 100cqw);
-  /* Content inset tokens — applied on .pb-studio__content only (bg is full-bleed) */
-  --pb-inset-x: calc(20 / var(--pb-design-w) * 100cqw);
-  --pb-inset-y: calc(20 / var(--pb-design-h) * 100cqh);
-  --pb-inset-bottom: calc(24 / var(--pb-design-h) * 100cqh);
-  --pb-gap: calc(14 / var(--pb-design-h) * 100cqh);
   overflow: hidden;
   position: relative;
 }
 
-/* Typography scales via app font-size (16px @ design width) — use em inside studio */
-.pb-studio__app .pb-headline {
+/* width:100% + padding must stay inside .pb-studio__content insets (not content-box overflow) */
+.pb-studio__app *,
+.pb-studio__app *::before,
+.pb-studio__app *::after {
+  box-sizing: border-box;
+}
+
+/* Flex column children — see content-boundary.css */
+
+/* Typography scales via content font-size (16px @ design width) — use em inside studio */
+.pb-studio__content .pb-headline {
   font-size: 1.75em;
   margin-bottom: 0.5em;
 }
-.pb-studio__app .pb-subhead {
+.pb-studio__content .pb-headline,
+.pb-studio__content .pb-subhead,
+.pb-studio__content .pb-body {
+  max-width: 100%;
+  overflow-wrap: break-word;
+}
+.pb-studio__content .pb-subhead {
+  font-size: 1em;
+}
+.pb-studio__content .pb-body {
   font-size: 0.9375em;
 }
-.pb-studio__app .pb-body {
-  font-size: 0.875em;
-}
-.pb-studio__app .pb-btn {
+.pb-studio__content .pb-btn {
   font-size: 1em;
   padding: 0.875em 1.5em;
   margin-top: 0.75em;
   border-radius: 999em;
 }
-.pb-studio__app .pb-bubble {
-  font-size: 0.875em;
+.pb-studio__content .pb-bubble {
+  font-size: 0.9375em;
   padding: 0.75em 0.9em;
 }
 
@@ -55,6 +66,12 @@
   overflow: hidden;
   position: relative;
   height: 100%;
+  container-type: size;
+  container-name: stage;
+  /* Inset tokens for overlay layer (aligned to content padding; stage width ≈ content width) */
+  --pb-inset-x: calc(var(--pb-layout-inset-x, 20) / var(--pb-design-w) * 100cqw);
+  --pb-inset-y: calc(var(--pb-layout-inset-y, 20) / var(--pb-design-h) * 100cqh);
+  --pb-inset-bottom: calc(var(--pb-layout-inset-bottom, 24) / var(--pb-design-h) * 100cqh);
 }
 
 /* Full-bleed background layer (edge-to-edge inside device frame) */
@@ -66,17 +83,25 @@
   overflow: hidden;
 }
 
-/* Padded content stack — prompt-editable via playable.layout */
+/* Padded content stack — prompt-editable via playable.layout (clip boundary: content-boundary.css) */
 .pb-studio__content {
+  container-type: size;
+  container-name: content;
   position: relative;
   z-index: 1;
   flex: 1;
   display: flex;
   flex-direction: column;
-  gap: var(--pb-gap);
   min-height: 0;
-  overflow-x: hidden;
-  overflow-y: auto;
+  font-size: calc(16 / var(--pb-design-w) * 100cqw);
+  --pb-text-sm: calc(14 / var(--pb-design-w) * 100cqw);
+  --pb-text-md: calc(15 / var(--pb-design-w) * 100cqw);
+  --pb-cta-width: 80%;
+  --pb-inset-x: calc(var(--pb-layout-inset-x, 20) / var(--pb-design-w) * 100cqw);
+  --pb-inset-y: calc(var(--pb-layout-inset-y, 20) / var(--pb-design-h) * 100cqh);
+  --pb-inset-bottom: calc(var(--pb-layout-inset-bottom, 24) / var(--pb-design-h) * 100cqh);
+  --pb-gap: calc(var(--pb-layout-gap, 14) / var(--pb-design-h) * 100cqh);
+  gap: var(--pb-gap);
   padding:
     max(var(--pb-inset-y), env(safe-area-inset-top, 0px))
     var(--pb-inset-x)
@@ -106,6 +131,27 @@
   position: relative;
   z-index: 1;
 }
+
+.pb-el--custom-typography :where(
+  .pb-headline,
+  .pb-subhead,
+  .pb-body,
+  .pb-bubble,
+  .pb-app-header__name,
+  .pb-app-header__badge,
+  .pb-ai-answer-text,
+  .pb-ai-answer-list,
+  .pb-ai-answer-list__title,
+  .pb-ai-answer-list ul,
+  .pb-ai-answer-card__title,
+  .pb-ai-answer-card__body,
+  .pb-ai-model__name,
+  .pb-ai-model-badge
+) {
+  font-size: var(--pb-zone-font-size, inherit);
+  color: var(--pb-zone-color, inherit);
+}
+
 .pb-el--overlay {
   position: absolute;
   left: var(--pb-inset-x);
@@ -272,10 +318,12 @@
 }
 .pb-cta-download-hint {
   margin: 0 auto calc(6 / var(--pb-design-h) * 100cqh);
+  max-width: 100%;
   text-align: center;
-  font-size: calc(13 / var(--pb-design-w) * 100cqw);
+  font-size: var(--pb-text-md);
   font-weight: 600;
   color: var(--pb-accent, #3b82f6);
+  overflow-wrap: break-word;
   animation: pb-anim-pulse 2s ease-in-out infinite;
 }
 @keyframes pb-cta-arrow-bounce {
@@ -441,7 +489,6 @@
   pointer-events: none;
 }
 .pb-benefit-list {
-  width: 100%;
   padding: calc(12 / var(--pb-design-h) * 100cqh) calc(14 / var(--pb-design-w) * 100cqw);
   border-radius: calc(14 / var(--pb-design-w) * 100cqw);
   background: color-mix(in srgb, var(--pb-fg, #fff) 6%, var(--pb-card, #1e293b));
@@ -449,7 +496,7 @@
 }
 .pb-benefit-list__title {
   margin: 0 0 calc(10 / var(--pb-design-h) * 100cqh);
-  font-size: calc(13 / var(--pb-design-w) * 100cqw);
+  font-size: var(--pb-text-md);
   font-weight: 700;
 }
 .pb-benefit-list ul {
@@ -461,34 +508,66 @@
   display: flex;
   align-items: flex-start;
   gap: calc(8 / var(--pb-design-w) * 100cqw);
-  font-size: calc(12 / var(--pb-design-w) * 100cqw);
+  font-size: var(--pb-text-sm);
   line-height: 1.45;
   margin-bottom: calc(6 / var(--pb-design-h) * 100cqh);
+  min-width: 0;
+}
+.pb-benefit-list__text {
+  flex: 1;
+  min-width: 0;
+  overflow-wrap: break-word;
 }
 .pb-benefit-list__check {
   color: var(--pb-accent, #3b82f6);
   font-weight: 800;
   flex-shrink: 0;
 }
+.pb-benefit-title {
+  margin: 0 0 calc(8 / var(--pb-design-h) * 100cqh);
+  font-size: var(--pb-text-md);
+  font-weight: 700;
+  text-align: left;
+  max-width: 100%;
+}
+.pb-benefit-item {
+  display: flex;
+  align-items: flex-start;
+  gap: calc(8 / var(--pb-design-w) * 100cqw);
+  padding: calc(8 / var(--pb-design-h) * 100cqh) calc(10 / var(--pb-design-w) * 100cqw);
+  border-radius: calc(10 / var(--pb-design-w) * 100cqw);
+  background: color-mix(in srgb, var(--pb-fg, #fff) 5%, var(--pb-card, #1e293b));
+  font-size: var(--pb-text-sm);
+  line-height: 1.45;
+}
+.pb-benefit-item__check {
+  color: var(--pb-accent, #3b82f6);
+  font-weight: 800;
+  flex-shrink: 0;
+}
+.pb-benefit-item__text {
+  flex: 1;
+  min-width: 0;
+  overflow-wrap: break-word;
+}
 .pb-free-badge {
   display: inline-block;
   padding: calc(6 / var(--pb-design-h) * 100cqh) calc(14 / var(--pb-design-w) * 100cqw);
   border-radius: 999px;
-  font-size: calc(12 / var(--pb-design-w) * 100cqw);
+  font-size: var(--pb-text-sm);
   font-weight: 700;
   color: var(--pb-accent, #3b82f6);
   background: color-mix(in srgb, var(--pb-accent, #3b82f6) 18%, transparent);
   border: 1px solid color-mix(in srgb, var(--pb-accent, #3b82f6) 35%, transparent);
 }
 .pb-compare-bars {
-  width: 100%;
   padding: calc(12 / var(--pb-design-h) * 100cqh) calc(14 / var(--pb-design-w) * 100cqw);
   border-radius: calc(14 / var(--pb-design-w) * 100cqw);
   background: color-mix(in srgb, var(--pb-fg, #fff) 5%, var(--pb-card, #1e293b));
 }
 .pb-compare-bars__title {
   margin: 0 0 calc(12 / var(--pb-design-h) * 100cqh);
-  font-size: calc(13 / var(--pb-design-w) * 100cqw);
+  font-size: var(--pb-text-md);
   font-weight: 700;
   text-align: center;
 }
@@ -500,7 +579,7 @@
   margin-bottom: calc(10 / var(--pb-design-h) * 100cqh);
 }
 .pb-compare-bars__label {
-  font-size: calc(11 / var(--pb-design-w) * 100cqw);
+  font-size: calc(12 / var(--pb-design-w) * 100cqw);
   color: var(--pb-muted, #94a3b8);
 }
 .pb-compare-bars__track {
@@ -531,9 +610,6 @@
 @keyframes pb-bar-grow {
   from { width: 0; }
   to { width: var(--bar-pct, 50%); }
-}
-.pb-quiz {
-  width: 100%;
 }
 .pb-quiz__question {
   margin: 0 0 calc(14 / var(--pb-design-h) * 100cqh);
@@ -941,6 +1017,14 @@
   background: linear-gradient(135deg, var(--pb-accent, #7c3aed), color-mix(in srgb, var(--pb-accent, #7c3aed) 60%, #fff));
   font-size: calc(16 / var(--pb-design-w) * 100cqw);
   color: #fff;
+}
+.pb-app-header__icon--brand {
+  background: var(--brand-color, #10a37f);
+}
+.pb-app-header__icon--brand svg {
+  display: block;
+  width: calc(20 / var(--pb-design-w) * 100cqw);
+  height: calc(20 / var(--pb-design-w) * 100cqw);
 }
 .pb-app-header__name {
   flex: 1;
@@ -1419,6 +1503,9 @@
   line-height: 1.5;
 }
 .pb-ai-answer-list {
+  width: 100%;
+  max-width: 100%;
+  min-width: 0;
   padding: calc(10 / var(--pb-design-h) * 100cqh) calc(14 / var(--pb-design-w) * 100cqw);
   border-radius: calc(12 / var(--pb-design-w) * 100cqw);
   background: color-mix(in srgb, var(--pb-fg, #fff) 5%, var(--pb-card, #1e293b));
@@ -1512,3 +1599,5 @@
 .pb-studio__overlay:has(.pb-ai-modal-switch) {
   pointer-events: auto;
 }
+
+@import "./content-boundary.css";

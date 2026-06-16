@@ -1,0 +1,20 @@
+---
+description: Template/playable data isolation — scoped edits, graceful preview failures
+globs:
+  - data/templates/**/*
+  - playables/**/*
+  - studio/**/*
+  - src/runtime/studio/**/*
+alwaysApply: false
+---
+
+# Data isolation (template & playable)
+
+**Read:** `ai/skills/playable-data-isolation/SKILL.md`
+
+## Quick rules
+
+1. **One sandbox per id** — edit only `data/templates/<id>/` or `playables/<id>/` matching the preview URL.
+2. **Bad JSON → preview error in frame only** — never crash Studio home or other previews.
+3. **UI via config** — context/scenario/playable JSON + theme; do not fork `src/runtime/**` for one template.
+4. **No cross-sandbox patches** — templates do not affect existing playables; playables do not affect templates.

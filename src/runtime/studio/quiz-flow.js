@@ -2,6 +2,7 @@
  * Interactive quiz option picker → result text → navigate.
  */
 import { trackEvent } from "./tracking.js";
+import { delayWithClock } from "./playback-clock.js";
 
 export function initQuizFlow({ screen, content, context, navigate, clock }) {
   const root = content.querySelector("[data-quiz-options]");
@@ -33,7 +34,7 @@ export function initQuizFlow({ screen, content, context, navigate, clock }) {
     }
 
     const target = opt.targetScreen || screen.clickNext?.target || screen.autoNext?.target;
-    await new Promise((r) => setTimeout(r, opt.delayMs ?? 1400));
+    await delayWithClock(clock, opt.delayMs ?? 1400);
     if (target) navigate(target);
   };
 

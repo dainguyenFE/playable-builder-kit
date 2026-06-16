@@ -1,5 +1,5 @@
 /**
- * Playable runtime — mobile 390×844 scaling (cqw/cqh on __app).
+ * Playable runtime — mobile 390×844 scaling (cqw/cqh on content container).
  * Theme via CSS variables: --pb-bg, --pb-fg, --pb-accent, --pb-muted, --pb-card
  */
 
@@ -82,6 +82,7 @@
 
 .pb-btn--cta {
   width: 100%;
+  max-width: 100%;
   background: var(--pb-accent, #22c55e);
   color: #fff;
   transition: transform 0.2s ease;

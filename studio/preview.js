@@ -67,7 +67,7 @@ function setupDownload(current) {
     downloadBtn.hidden = false;
     downloadBtn.href = `/download/template/${current.id}`;
     downloadBtn.setAttribute("download", `${current.id}.html`);
-    downloadBtn.title = "Serves pre-built HTML (run pnpm template:export after edits)";
+    downloadBtn.title = "Serves export HTML (auto-rebuilds in dev when source is newer)";
     return;
   }
   if (current.kind === "playable") {
@@ -96,29 +96,65 @@ function setupZoneInspector(current) {
   }
 }
 
-async function renderPreview(overrideThemeId) {
-  preview = await resolvePreview(overrideThemeId);
-  titleEl.textContent = preview.label;
-  if (badgeEl) {
-    badgeEl.textContent = preview.kind === "template" ? "Template preview" : "Playable";
-    badgeEl.hidden = false;
-  }
-  setupThemePicker(preview);
-  setupDownload(preview);
-  setupZoneInspector(preview);
-  root.innerHTML = "";
+function escapeHtml(s) {
+  return String(s)
+    .replace(/&/g, "&amp;")
+    .replace(/</g, "&lt;")
+    .replace(/>/g, "&gt;")
+    .replace(/"/g, "&quot;");
+}
+
+function showPreviewError(err) {
+  const file = err?.details?.file ? `<p class="studio-preview__error-file"><code>${escapeHtml(err.details.file)}</code></p>` : "";
+  root.innerHTML = `<div class="studio-preview__error" role="alert">
+    <h2 class="studio-preview__error-title">Preview unavailable</h2>
+    <p class="studio-preview__error-msg">${escapeHtml(err?.message ?? String(err))}</p>
+    ${file}
+    <p class="studio-preview__error-hint">Fix JSON for this template or playable only. Other previews are unaffected.</p>
+  </div>`;
+  root.className = "studio-preview__error-root";
+  studioPlayback = null;
+  if (zonePanel) zonePanel.hidden = true;
+  if (zoneComposeNote) zoneComposeNote.hidden = true;
+  if (toggleZonesWrap) toggleZonesWrap.hidden = true;
+  themeWrap?.setAttribute("hidden", "");
+  downloadBtn?.setAttribute("hidden", "");
+}
+
+function clearPreviewError() {
   root.className = "";
-  studioPlayback = mountPreview(preview, root);
+}
+
+async function renderPreview(overrideThemeId) {
+  try {
+    preview = await resolvePreview(overrideThemeId);
+    titleEl.textContent = preview.label;
+    if (badgeEl) {
+      badgeEl.textContent = preview.kind === "template" ? "Template preview" : "Playable";
+      badgeEl.hidden = false;
+    }
+    setupThemePicker(preview);
+    setupDownload(preview);
+    setupZoneInspector(preview);
+    root.innerHTML = "";
+    clearPreviewError();
+    try {
+      studioPlayback = mountPreview(preview, root);
+    } catch (mountErr) {
+      console.error("[preview] mount failed", mountErr);
+      showPreviewError(mountErr);
+    }
+  } catch (loadErr) {
+    console.error("[preview] load failed", loadErr);
+    titleEl.textContent = "Preview error";
+    if (badgeEl) badgeEl.hidden = true;
+    showPreviewError(loadErr);
+  }
   updatePlaybackButtons();
   requestAnimationFrame(refitDeviceFrame);
 }
 
-try {
-  await renderPreview();
-} catch (e) {
-  document.body.innerHTML = `<p style="padding:1rem">${e.message}</p>`;
-  throw e;
-}
+await renderPreview();
 
 themeSelect?.addEventListener("change", () => {
   const themeId = themeSelect.value;
@@ -129,9 +165,15 @@ themeSelect?.addEventListener("change", () => {
 });
 
 document.getElementById("btn-restart")?.addEventListener("click", () => {
+  if (!preview) return;
   root.innerHTML = "";
-  root.className = "";
-  studioPlayback = mountPreview(preview, root);
+  clearPreviewError();
+  try {
+    studioPlayback = mountPreview(preview, root);
+  } catch (mountErr) {
+    console.error("[preview] restart failed", mountErr);
+    showPreviewError(mountErr);
+  }
   updatePlaybackButtons();
   requestAnimationFrame(refitDeviceFrame);
 });

@@ -103,6 +103,8 @@ Cập nhật copy, headline, scenario theo **chủ đề** user đã trả lời
 
 Studio: **chỉ JSON**, không tạo `src/pages/<id>/` trừ khi user đổi sang scaffold.
 
+**Isolation:** sau khi tạo, mọi sửa chỉ trong `playables/<id>/` — đọc **`playable-data-isolation`**. Không sửa template gốc trừ khi user yêu cầu.
+
 ---
 
 ## Step 6 — Preview & bàn giao Marketing

@@ -175,8 +175,34 @@
           "textKey": "ctaSubhead"
         },
         {
-          "id": "benefits",
-          "type": "benefit-list"
+          "id": "benefits_title",
+          "type": "benefit-title",
+          "textKey": "benefitsTitle",
+          "hidden": false
+        },
+        {
+          "id": "ben1",
+          "type": "benefit-item",
+          "textKey": "benefit1",
+          "hidden": false
+        },
+        {
+          "id": "ben2",
+          "type": "benefit-item",
+          "textKey": "benefit2",
+          "hidden": false
+        },
+        {
+          "id": "ben3",
+          "type": "benefit-item",
+          "textKey": "benefit3",
+          "hidden": false
+        },
+        {
+          "id": "ben4",
+          "type": "benefit-item",
+          "textKey": "benefit4",
+          "hidden": false
         },
         {
           "id": "cta_button",
@@ -221,15 +247,43 @@
           "animation": "fade-in"
         },
         {
-          "id": "ben",
+          "id": "step_benefits_title",
           "atMs": 800,
           "action": "show",
-          "target": "benefits",
-          "animation": "fade-up"
+          "target": "benefits_title",
+          "animation": "fade-in"
+        },
+        {
+          "id": "step_ben1",
+          "atMs": 920,
+          "action": "show",
+          "target": "ben1",
+          "animation": "fade-in"
+        },
+        {
+          "id": "step_ben2",
+          "atMs": 1080,
+          "action": "show",
+          "target": "ben2",
+          "animation": "fade-in"
+        },
+        {
+          "id": "step_ben3",
+          "atMs": 1240,
+          "action": "show",
+          "target": "ben3",
+          "animation": "fade-in"
+        },
+        {
+          "id": "step_ben4",
+          "atMs": 1400,
+          "action": "show",
+          "target": "ben4",
+          "animation": "fade-in"
         },
         {
           "id": "pulse",
-          "atMs": 1200,
+          "atMs": 1750,
           "action": "pulse",
           "target": "cta_button"
         }

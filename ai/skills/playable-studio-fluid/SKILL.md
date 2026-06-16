@@ -11,17 +11,21 @@ Read **`playable-studio/SKILL.md`** and **`playable-mobile-scaling/SKILL.md`** (
 
 ## Fluid scaling (every device size)
 
-Studio UI lives in **`.pb-studio__app`** with `container-type: size`.
+Studio UI lives in **`.pb-studio__content`** with `container-type: size` (not full browser / `__app`).
 
 | Mechanism | Purpose |
 |-----------|---------|
 | `--pb-design-w` / `--pb-design-h` | From `playable.json` → `viewport.width/height` (default 390×844) |
-| `font-size: calc(16 / var(--pb-design-w) * 100cqw)` on app | **1em** = 16px at design width — scales on iPhone SE → Pro Max |
+| `font-size: calc(16 / var(--pb-design-w) * 100cqw)` on **content** | **1em** = 16px at design width — scales inside playable content column |
 | `calc(N / var(--pb-design-w) * 100cqw)` | Width-axis spacing (margin, padding, radius, font when not em) |
 | `calc(N / var(--pb-design-h) * 100cqh)` | Height-axis spacing |
-| `.pb-studio__app .pb-headline { font-size: 1.75em }` | Typography via **em** (preferred for text) |
+| `.pb-studio__content .pb-headline { font-size: 1.75em }` | Headline — **do not shrink** |
+| `.pb-studio__content .pb-subhead { font-size: 1em }` | Subhead (16px @ design) |
+| `.pb-studio__content .pb-body { font-size: 0.9375em }` | Body copy (15px @ design) |
+| `--pb-text-sm` / `--pb-text-md` on content | List rows / card copy (14px / 15px @ design) |
+| `--pb-cta-width: 80%` on content | CTA button = **80%** of content column, centered |
 
-**Do not** use raw `px` or root `rem` for studio campaign UI. Preview device picker changes container size — cqw/cqh + em follow automatically.
+**Do not** use raw `px` or root `rem` for studio campaign UI. `100cqw` / `100cqh` resolve against **`.pb-studio__content`** (UI) or **`.pb-studio__stage`** (background / overlay). Preview device picker changes frame size — cqw/cqh + em follow automatically.
 
 Patch viewport (rare):
 
@@ -44,7 +48,9 @@ Patch viewport (rare):
 }
 ```
 
-Maps to CSS vars on `.pb-studio__app`, applied on **`.pb-studio__content`** only (background stays full-bleed via `.pb-studio__bg`).
+Maps to CSS vars on `.pb-studio__app` (`--pb-layout-inset-*`, `--pb-layout-gap`); `100cqw`/`100cqh` conversion on **`.pb-studio__content`** (UI) and **`.pb-studio__stage`** (overlay insets). Background stays full-bleed via `.pb-studio__bg`.
+
+**Content boundary:** All screen UI must stay inside `.pb-studio__content` (padding = safe area). Never use `width: 100%` on blocks that also have horizontal padding — use `width: auto; max-width: 100%` (see `content-boundary.css`). **CTA** (`cta-button`): wrapper `.pb-el--cta-button` = `80%` content width, centered; button inside = `100%` of wrapper. Background zones only in `.pb-studio__bg`.
 
 **DOM layers:**
 - `.pb-studio__app` — full device frame, **no padding**
@@ -119,4 +125,8 @@ Preset Lottie ids: `lottie-ai-confetti`, `lottie-ai-stars`, `lottie-ai-loading`,
 
 ## Block types (elements)
 
-`background`, `hero-image`, `image`, `lottie`, `app-header`, `feature-pills`, `headline-block`, `subheadline-block`, `problem-card`, `prompt-input`, `ai-loading-card`, `ai-result-card`, `chat-bubble-user`, `chat-bubble-ai`, `typing-indicator`, `plan-board`, `image-canvas`, `image-compare`, `audio-player`, `cta-button`, `tap-hint`
+`background`, `hero-image`, `image`, `lottie`, `app-header`, `feature-pills`, `headline-block`, `subheadline-block`, `benefit-title`, `benefit-item`, `benefit-list` (legacy — prefer split items), `problem-card`, `prompt-input`, `ai-loading-card`, `ai-result-card`, `chat-bubble-user`, `chat-bubble-ai`, `typing-indicator`, `plan-board`, `image-canvas`, `image-compare`, `audio-player`, `cta-button`, `tap-hint`
+
+### Zone granularity
+
+Split independent copy lines into **separate zones** (`benefit-item` per line). Do not bundle unrelated bullets in one `benefit-list` unless they always show/hide together. See **`playable-template-authoring`** § Zone granularity.

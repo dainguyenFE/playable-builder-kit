@@ -41,5 +41,8 @@ Templates are **scaffolds only**. `pnpm playable:new` copies presets into `playa
 - Editing a template does **not** update existing playables created from it.
 - Editing one template does **not** affect other templates.
 - Regenerating the catalog (`pnpm template:catalog:generate`) only rewrites `data/templates/**`, never `playables/`.
+- Bad JSON in one sandbox shows a preview error in that frame only — other templates/playables are unaffected.
+
+AI rules: **`ai/skills/playable-data-isolation/SKILL.md`**.
 
 Shared asset paths (`data/studio/assets/`) are a global catalog — both template and playable previews resolve the same files until export embeds them inline.

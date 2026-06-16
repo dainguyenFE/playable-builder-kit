@@ -22,10 +22,7 @@ export async function buildStudioHtml(bundle, opts = {}) {
   const configJson = JSON.stringify(hydrated, null, 0);
 
   const cssBundle = readStudioStylesBundle();
-  const vp = hydrated.playable?.viewport ?? {};
-  const designW = vp.width ?? 390;
-  const designH = vp.height ?? 844;
-  const shellCss = buildExportShellCss(designW, designH);
+  const shellCss = buildExportShellCss();
 
   const esbuild = require("esbuild");
   const entry = resolve(ROOT, "src/runtime/studio/export-entry.js");
@@ -100,28 +97,29 @@ function escapeHtml(s) {
     .replace(/>/g, "&gt;");
 }
 
-/** Inline studio CSS once (strip broken @import when bundled into <style>). */
+/** Inline studio CSS once (strip @import when bundled into <style>; append content-boundary). */
 function readStudioStylesBundle() {
   const runtime = readFileSync(resolve(ROOT, "src/runtime/styles/runtime.css"), "utf8");
   let studio = readFileSync(resolve(ROOT, "src/runtime/studio/styles/studio.css"), "utf8");
+  const boundary = readFileSync(
+    resolve(ROOT, "src/runtime/studio/styles/content-boundary.css"),
+    "utf8",
+  );
   studio = studio.replace(/@import\s+["'][^"']+["']\s*;?\s*/g, "");
-  return `${runtime}\n${studio}`;
+  return `${runtime}\n${studio}\n${boundary}`;
 }
 
-/**
- * Mobile-first export shell:
- * - default / mobile: 100% × 100dvh (full ad slot)
- * - desktop (data-export-layout=desktop): design box + scale-to-fit like preview frame
- */
-function buildExportShellCss(w, h) {
+/** Full-bleed shell + export-layout.css (responsive mobile frame on wide viewports). */
+function buildExportShellCss() {
+  const exportLayout = readFileSync(
+    resolve(ROOT, "src/runtime/studio/styles/export-layout.css"),
+    "utf8",
+  );
   return `
 html,body{margin:0;width:100%;height:100%;overflow:hidden;background:#0f172a;font-family:system-ui,sans-serif}
-:root{--pb-export-design-w:${w}px;--pb-export-design-h:${h}px;--pb-export-scale:1}
-#playable-shell{position:fixed;inset:0;display:flex;overflow:hidden;background:#0f172a}
-#playable-viewport{width:100%;height:100dvh;min-height:100%;display:flex;flex-direction:column;overflow:hidden;container-type:size;container-name:page;background:var(--pb-bg,#0f172a)}
-html[data-export-layout="desktop"] #playable-shell{align-items:center;justify-content:center}
-html[data-export-layout="desktop"] #playable-viewport{width:var(--pb-export-design-w);height:var(--pb-export-design-h);min-height:0;flex-shrink:0;transform:scale(var(--pb-export-scale,1));transform-origin:center center}
+#playable-shell{position:fixed;inset:0;display:flex;overflow:hidden}
+#playable-viewport{display:flex;flex-direction:column;overflow:hidden}
 #playable-root{flex:1;min-height:0;width:100%;display:flex;flex-direction:column}
-#playable-root>.pb-studio__app{flex:1;height:100%;min-height:0;width:100%;container-type:normal;container-name:none}
+${exportLayout}
 `;
 }

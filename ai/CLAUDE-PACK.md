@@ -105,6 +105,14 @@ Vite auto-discovers `src/pages/*/index.html` — **không** sửa vite.config kh
 
 **Hard rules:** No React/Vue. No CDN (Lottie/MRAID/AppsFlyer). No `src/global.css`. No shared CSS giữa page. Prefix CSS `.route-<name>`. Không `eval`. Store → `bindStoreCta()` only.
 
+### Template & playable isolation
+
+- **Một template / một playable = một sandbox** (`data/templates/<id>/` hoặc `playables/<id>/`).
+- AI chỉ sửa folder khớp preview URL — **không** patch template/playable khác.
+- UI khác nhau = JSON config + theme trong sandbox đó — **không** fork `src/runtime/**` cho một template.
+- JSON lỗi → preview báo lỗi trong khung device; Studio home và preview khác **không** crash.
+- Skill: **`playable-data-isolation`**.
+
 ---
 
 ## UI: mobile only (390×844)

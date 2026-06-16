@@ -1,5 +1,12 @@
 {
-  "playables": [],
+  "playables": [
+    {
+      "id": "test",
+      "name": "test",
+      "engine": "studio",
+      "status": "draft"
+    }
+  ],
   "templates": [
     {
       "id": "ai-chat-ask-solve",

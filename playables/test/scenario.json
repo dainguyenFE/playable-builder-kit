@@ -1,0 +1,274 @@
+{
+  "id": "chat-1a-v3",
+  "entryScreen": "s1",
+  "screens": [
+    {
+      "id": "s1",
+      "name": "Problem hook",
+      "type": "problem",
+      "durationMs": 3500,
+      "elements": [
+        {
+          "id": "bg",
+          "type": "background",
+          "textKey": "backgroundGradient"
+        },
+        {
+          "id": "header",
+          "type": "app-header",
+          "badge": "AI Chat"
+        },
+        {
+          "id": "hl",
+          "type": "headline-block",
+          "textKey": "problemHeadline",
+          "hidden": true
+        },
+        {
+          "id": "sub",
+          "type": "subheadline-block",
+          "textKey": "problemSubhead",
+          "hidden": true
+        },
+        {
+          "id": "notes",
+          "type": "benefit-list",
+          "keys": [
+            "stickyNote1",
+            "stickyNote2",
+            "stickyNote3",
+            "stickyNote4",
+            "stickyNote5"
+          ],
+          "title": "",
+          "hidden": true
+        },
+        {
+          "id": "hint",
+          "type": "free-badge",
+          "textKey": "hintPill",
+          "hidden": true
+        }
+      ],
+      "steps": [
+        {
+          "id": "bg",
+          "atMs": 0,
+          "action": "show",
+          "target": "bg",
+          "animation": "fade-in"
+        },
+        {
+          "id": "hl",
+          "atMs": 300,
+          "action": "show",
+          "target": "hl",
+          "animation": "fade-up"
+        },
+        {
+          "id": "sub",
+          "atMs": 600,
+          "action": "show",
+          "target": "sub",
+          "animation": "fade-in"
+        },
+        {
+          "id": "notes",
+          "atMs": 900,
+          "action": "show",
+          "target": "notes",
+          "animation": "fade-up"
+        },
+        {
+          "id": "hint",
+          "atMs": 1400,
+          "action": "show",
+          "target": "hint",
+          "animation": "pop-in"
+        }
+      ],
+      "autoNext": {
+        "enabled": true,
+        "afterMs": 3500,
+        "target": "s3"
+      },
+      "clickNext": {
+        "enabled": true,
+        "target": "s3"
+      },
+      "transition": {
+        "animation": "fade-up",
+        "easing": "ease-out",
+        "durationMs": 420
+      }
+    },
+    {
+      "id": "s3",
+      "name": "AI plan stream",
+      "type": "demo",
+      "durationMs": 120000,
+      "transition": {
+        "animation": "fade"
+      },
+      "elements": [
+        {
+          "id": "bg",
+          "type": "background",
+          "textKey": "backgroundGradient"
+        },
+        {
+          "id": "resp",
+          "type": "ai-model-response",
+          "variant": "demo",
+          "textKey": "userQuestion",
+          "typography": {
+            "fontSize": 20,
+            "color": "#EF4444"
+          }
+        }
+      ],
+      "steps": [],
+      "autoNext": {
+        "enabled": true,
+        "afterStreamMs": 5000,
+        "target": "screen_cta"
+      },
+      "clickNext": {
+        "enabled": true,
+        "target": "screen_cta"
+      }
+    },
+    {
+      "id": "screen_cta",
+      "name": "CTA",
+      "type": "cta",
+      "ctaLayout": "bottom",
+      "durationMs": 60000,
+      "transition": {
+        "animation": "fade-up",
+        "easing": "ease-out",
+        "durationMs": 450
+      },
+      "elements": [
+        {
+          "id": "bg",
+          "type": "background",
+          "textKey": "backgroundGradient"
+        },
+        {
+          "id": "free_badge",
+          "type": "free-badge",
+          "textKey": "freeBadge"
+        },
+        {
+          "id": "cta_result",
+          "type": "benefit-list",
+          "keys": [
+            "ctaMon",
+            "ctaTue",
+            "ctaWed",
+            "ctaThu",
+            "ctaFri"
+          ],
+          "title": "",
+          "hidden": true
+        },
+        {
+          "id": "cta_headline",
+          "type": "headline-block",
+          "textKey": "ctaHeadline"
+        },
+        {
+          "id": "cta_sub",
+          "type": "subheadline-block",
+          "textKey": "ctaSubhead"
+        },
+        {
+          "id": "benefits",
+          "type": "benefit-list",
+          "hidden": true
+        },
+        {
+          "id": "download_hint",
+          "type": "cta-download-hint",
+          "textKey": "ctaDownloadHint",
+          "hidden": true
+        },
+        {
+          "id": "cta_arrow",
+          "type": "cta-arrow",
+          "hidden": true
+        },
+        {
+          "id": "cta_button",
+          "type": "cta-button",
+          "textKey": "cta"
+        }
+      ],
+      "steps": [
+        {
+          "id": "res",
+          "atMs": 100,
+          "action": "show",
+          "target": "cta_result",
+          "animation": "fade-up"
+        },
+        {
+          "id": "bg",
+          "atMs": 0,
+          "action": "show",
+          "target": "bg",
+          "animation": "fade-in"
+        },
+        {
+          "id": "badge",
+          "atMs": 150,
+          "action": "show",
+          "target": "free_badge",
+          "animation": "pop-in"
+        },
+        {
+          "id": "hl",
+          "atMs": 350,
+          "action": "show",
+          "target": "cta_headline",
+          "animation": "fade-up"
+        },
+        {
+          "id": "sub",
+          "atMs": 550,
+          "action": "show",
+          "target": "cta_sub",
+          "animation": "fade-in"
+        },
+        {
+          "id": "ben",
+          "atMs": 750,
+          "action": "show",
+          "target": "benefits",
+          "animation": "fade-up"
+        },
+        {
+          "id": "hint",
+          "atMs": 950,
+          "action": "show",
+          "target": "download_hint",
+          "animation": "fade-in"
+        },
+        {
+          "id": "arrow",
+          "atMs": 1150,
+          "action": "show",
+          "target": "cta_arrow",
+          "animation": "fade-in"
+        },
+        {
+          "id": "pulse",
+          "atMs": 1450,
+          "action": "pulse",
+          "target": "cta_button"
+        }
+      ]
+    }
+  ]
+}

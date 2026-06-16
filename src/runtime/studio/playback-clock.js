@@ -47,3 +47,18 @@ export function createPlaybackClock() {
     },
   };
 }
+
+/** Delay that excludes time spent paused (for streaming / async flows). */
+export async function delayWithClock(clock, ms) {
+  if (!clock?.waitWhilePaused || !clock?.elapsed) {
+    await new Promise((resolve) => setTimeout(resolve, ms));
+    return;
+  }
+  const target = clock.elapsed() + ms;
+  while (clock.elapsed() < target) {
+    await clock.waitWhilePaused();
+    const left = target - clock.elapsed();
+    if (left <= 0) break;
+    await new Promise((resolve) => setTimeout(resolve, Math.min(48, left)));
+  }
+}

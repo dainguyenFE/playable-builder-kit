@@ -229,6 +229,11 @@
           "textKey": "freeBadge"
         },
         {
+          "id": "cta_headline",
+          "type": "headline-block",
+          "textKey": "ctaHeadline"
+        },
+        {
           "id": "cta_result",
           "type": "ai-result-card",
           "textKey": "ctaResult",
@@ -236,18 +241,38 @@
           "hidden": true
         },
         {
-          "id": "cta_headline",
-          "type": "headline-block",
-          "textKey": "ctaHeadline"
-        },
-        {
           "id": "cta_sub",
           "type": "subheadline-block",
           "textKey": "ctaSubhead"
         },
         {
-          "id": "benefits",
-          "type": "benefit-list",
+          "id": "benefits_title",
+          "type": "benefit-title",
+          "textKey": "benefitsTitle",
+          "hidden": true
+        },
+        {
+          "id": "ben1",
+          "type": "benefit-item",
+          "textKey": "benefit1",
+          "hidden": true
+        },
+        {
+          "id": "ben2",
+          "type": "benefit-item",
+          "textKey": "benefit2",
+          "hidden": true
+        },
+        {
+          "id": "ben3",
+          "type": "benefit-item",
+          "textKey": "benefit3",
+          "hidden": true
+        },
+        {
+          "id": "ben4",
+          "type": "benefit-item",
+          "textKey": "benefit4",
           "hidden": true
         },
         {
@@ -304,29 +329,57 @@
           "animation": "fade-in"
         },
         {
-          "id": "ben",
+          "id": "step_benefits_title",
           "atMs": 750,
           "action": "show",
-          "target": "benefits",
-          "animation": "fade-up"
+          "target": "benefits_title",
+          "animation": "fade-in"
+        },
+        {
+          "id": "step_ben1",
+          "atMs": 870,
+          "action": "show",
+          "target": "ben1",
+          "animation": "fade-in"
+        },
+        {
+          "id": "step_ben2",
+          "atMs": 1030,
+          "action": "show",
+          "target": "ben2",
+          "animation": "fade-in"
+        },
+        {
+          "id": "step_ben3",
+          "atMs": 1190,
+          "action": "show",
+          "target": "ben3",
+          "animation": "fade-in"
+        },
+        {
+          "id": "step_ben4",
+          "atMs": 1350,
+          "action": "show",
+          "target": "ben4",
+          "animation": "fade-in"
         },
         {
           "id": "hint",
-          "atMs": 950,
+          "atMs": 1550,
           "action": "show",
           "target": "download_hint",
           "animation": "fade-in"
         },
         {
           "id": "arrow",
-          "atMs": 1150,
+          "atMs": 1750,
           "action": "show",
           "target": "cta_arrow",
           "animation": "fade-in"
         },
         {
           "id": "pulse",
-          "atMs": 1450,
+          "atMs": 2050,
           "action": "pulse",
           "target": "cta_button"
         }

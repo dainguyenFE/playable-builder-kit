@@ -1,0 +1,149 @@
+/**
+ * Content boundary — .pb-studio__content is the padded clip box for all screen UI.
+ * Background (.pb-studio__bg) stays full-bleed on .pb-studio__stage only.
+ */
+
+.pb-studio__stage {
+  min-width: 0;
+  max-width: 100%;
+}
+
+.pb-studio__content {
+  width: 100%;
+  max-width: 100%;
+  min-width: 0;
+  box-sizing: border-box;
+  overflow-x: clip;
+  overflow-y: auto;
+}
+
+/* Zone shell — stretch inside padding, never wider than content column */
+.pb-studio__content > .pb-el:not(.pb-el--background) {
+  align-self: stretch;
+  width: auto;
+  max-width: 100%;
+  min-width: 0;
+  overflow-x: clip;
+  overflow-wrap: break-word;
+}
+
+.pb-studio__content > .pb-el:not(.pb-el--background) > * {
+  max-width: 100%;
+  min-width: 0;
+}
+
+/* Block UI — use auto width (fills parent) instead of width:100% + padding overflow */
+.pb-studio__content :is(
+  .pb-headline,
+  .pb-subhead,
+  .pb-body,
+  .pb-benefit-list,
+  .pb-benefit-item,
+  .pb-benefit-title,
+  .pb-compare-bars,
+  .pb-quiz,
+  .pb-quiz__opt,
+  .pb-ai-answer-list,
+  .pb-ai-answer-card,
+  .pb-ai-answer-block,
+  .pb-ai-modal-response,
+  .pb-ai-modal-picker,
+  .pb-quote-card,
+  .pb-stat-strip,
+  .pb-feature-grid,
+  .pb-model-compare,
+  .pb-card,
+  .pb-image,
+  .pb-prompt-input,
+  .pb-ai-loading-card,
+  .pb-app-header,
+  .pb-pills,
+  .pb-cta-download-hint,
+  .pb-free-badge,
+  .pb-chat-stream__thread,
+  .pb-bubble,
+  .pb-result-card__card,
+  .pb-plan-board,
+  .pb-audio-player,
+  .pb-image-compare,
+  .pb-image-canvas
+) {
+  width: auto;
+  max-width: 100%;
+  min-width: 0;
+}
+
+.pb-studio__content :is(
+  .pb-stat-strip__item,
+  .pb-feature-grid__cell,
+  .pb-model-compare__card,
+  .pb-benefit-list li,
+  .pb-benefit-item__text,
+  .pb-benefit-list__text,
+  .pb-compare-bars__row,
+  .pb-quiz__question,
+  .pb-quiz__result,
+  .pb-ai-answer-text,
+  .pb-ai-answer-card__title,
+  .pb-ai-answer-card__body
+) {
+  min-width: 0;
+  overflow-wrap: break-word;
+}
+
+.pb-studio__content :is(.pb-image img, .pb-answer-img__photo, .pb-ai-answer-img__photo) {
+  display: block;
+  max-width: 100%;
+  height: auto;
+}
+
+.pb-studio__content .pb-btn--cta,
+.pb-studio__content .pb-btn--teaser,
+.pb-studio__content .pb-btn--primary,
+.pb-studio__content .pb-btn--secondary {
+  width: 100%;
+  max-width: 100%;
+  align-self: stretch;
+  box-sizing: border-box;
+}
+
+/* CTA zone — 80% of content column, centered */
+.pb-studio__content > .pb-el--cta-button {
+  width: var(--pb-cta-width, 80%);
+  max-width: var(--pb-cta-width, 80%);
+  align-self: center;
+}
+
+.pb-studio__overlay > .pb-el--cta-button {
+  position: absolute;
+  left: var(--pb-inset-x);
+  right: var(--pb-inset-x);
+  bottom: max(var(--pb-inset-bottom), env(safe-area-inset-bottom, 0px));
+  display: flex;
+  justify-content: center;
+  width: auto;
+  max-width: none;
+  margin: 0;
+  z-index: 5;
+}
+
+.pb-studio__overlay > .pb-el--cta-button .pb-btn--cta {
+  width: var(--pb-cta-width, 80%);
+  max-width: 100%;
+}
+
+/* Catch-all: studio blocks never wider than content column */
+.pb-studio__content [class^="pb-"] {
+  max-width: 100%;
+  box-sizing: border-box;
+}
+
+/* Flex rows inside content column */
+.pb-studio__content :is(.pb-stat-strip, .pb-feature-grid, .pb-model-compare) {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.pb-studio__content .pb-feature-grid {
+  display: grid;
+}

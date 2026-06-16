@@ -30,6 +30,7 @@ alwaysApply: true
 | Store CTA | `playable-store-cta` |
 | Interactions | `playable-interactions` |
 | AppLovin | `playable-applovin-compliance` |
+| **Template/playable isolation** | `playable-data-isolation` — mandatory for template/playable JSON edits |
 
 Build: `pnpm build:single <page>` then `pnpm verify:applovin <page>`.
 

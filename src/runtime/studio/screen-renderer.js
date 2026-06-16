@@ -1,5 +1,7 @@
 import { ANIMATION_CLASSES } from "./registries.js";
 import { findAsset, resolveAssetSrc } from "./assets.js";
+import { appHeaderIconHtml } from "./brand-icons.js";
+import { delayWithClock } from "./playback-clock.js";
 
 function resolveText(el, context, playable) {
   if (el.text) return el.text;
@@ -15,6 +17,16 @@ function escapeHtml(s) {
     .replace(/</g, "&lt;")
     .replace(/>/g, "&gt;")
     .replace(/"/g, "&quot;");
+}
+
+/** Plain copy from JSON — undo entities if bundle was HTML-embedded twice. */
+function normalizeCopyText(s) {
+  return String(s)
+    .replace(/&amp;/g, "&")
+    .replace(/&lt;/g, "<")
+    .replace(/&gt;/g, ">")
+    .replace(/&quot;/g, '"')
+    .replace(/&#39;/g, "'");
 }
 
 /** Plain CTA label — no per-character animation. */
@@ -64,6 +76,24 @@ function resolveBackgroundStyle(el, context, assets) {
   return {
     background: `radial-gradient(ellipse 130% 90% at 50% -15%, color-mix(in srgb, var(--pb-accent, #7c3aed) 38%, transparent), transparent 58%), radial-gradient(ellipse 80% 50% at 100% 100%, color-mix(in srgb, var(--pb-accent, #7c3aed) 18%, transparent), transparent 50%), var(--pb-bg, #0f172a)`,
   };
+}
+
+function applyElementTypography(node, el) {
+  const t = el.typography;
+  if (!t) return;
+  let hasCustom = false;
+  if (t.fontSize != null) {
+    node.style.setProperty(
+      "--pb-zone-font-size",
+      `calc(${Number(t.fontSize)} / var(--pb-design-w) * 100cqw)`,
+    );
+    hasCustom = true;
+  }
+  if (t.color) {
+    node.style.setProperty("--pb-zone-color", t.color);
+    hasCustom = true;
+  }
+  if (hasCustom) node.classList.add("pb-el--custom-typography");
 }
 
 function createElement(el, context, playable, assets) {
@@ -129,13 +159,19 @@ function createElement(el, context, playable, assets) {
     case "problem-card":
       node.innerHTML = `<div class="pb-card pb-card--glass"><p class="pb-body">${escapeHtml(text)}</p></div>`;
       break;
-    case "app-header":
+    case "app-header": {
+      const headerName =
+        el.name ??
+        (el.nameKey && context[el.nameKey] != null ? String(context[el.nameKey]) : null) ??
+        context.productName ??
+        "AI App";
       node.innerHTML = `<div class="pb-app-header">
-        <span class="pb-app-header__icon" aria-hidden="true">✦</span>
-        <span class="pb-app-header__name">${escapeHtml(context.productName || "AI App")}</span>
+        ${appHeaderIconHtml(el)}
+        <span class="pb-app-header__name">${escapeHtml(headerName)}</span>
         <span class="pb-app-header__badge">${escapeHtml(el.badge || context.featureBadge || "AI")}</span>
       </div>`;
       break;
+    }
     case "feature-pills": {
       const pills = (el.keys || ["feature1", "feature2", "feature3"])
         .map((k) => context[k])
@@ -318,11 +354,17 @@ function createElement(el, context, playable, assets) {
         <ul>${keys
           .map((k) => context[k])
           .filter(Boolean)
-          .map((item) => `<li><span class="pb-benefit-list__check" aria-hidden="true">✓</span>${escapeHtml(item)}</li>`)
+          .map((item) => `<li><span class="pb-benefit-list__check" aria-hidden="true">✓</span><span class="pb-benefit-list__text">${escapeHtml(normalizeCopyText(item))}</span></li>`)
           .join("")}</ul>
       </div>`;
       break;
     }
+    case "benefit-title":
+      node.innerHTML = `<p class="pb-benefit-title">${escapeHtml(normalizeCopyText(text || context.benefitsTitle || "What you'll get"))}</p>`;
+      break;
+    case "benefit-item":
+      node.innerHTML = `<div class="pb-benefit-item"><span class="pb-benefit-item__check" aria-hidden="true">✓</span><span class="pb-benefit-item__text">${escapeHtml(normalizeCopyText(text || context[el.textKey] || ""))}</span></div>`;
+      break;
     case "free-badge":
       node.innerHTML = `<span class="pb-free-badge">${escapeHtml(text || context.freeBadge || "Free to try")}</span>`;
       break;
@@ -422,6 +464,7 @@ function createElement(el, context, playable, assets) {
     default:
       node.innerHTML = `<p class="pb-body">${escapeHtml(text)}</p>`;
   }
+  applyElementTypography(node, el);
   return node;
 }
 
@@ -477,6 +520,6 @@ export async function runTypeText(node, value, speed = 28, clock) {
   for (let i = 0; i < value.length; i += 1) {
     if (clock?.waitWhilePaused) await clock.waitWhilePaused();
     target.textContent += value[i];
-    await new Promise((r) => setTimeout(r, speed));
+    await delayWithClock(clock, speed);
   }
 }

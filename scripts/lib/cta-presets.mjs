@@ -1,8 +1,11 @@
 /** CTA screen presets — bottom | center | overlay (continues from previous screen button). */
 
+import { splitBenefitBlock } from "./zone-split.mjs";
+
 const BG = { id: "bg", type: "background", textKey: "backgroundGradient" };
 
 export function ctaBottom() {
+  const benefits = splitBenefitBlock({ startMs: 750, hidden: true });
   return {
     id: "screen_cta",
     name: "CTA",
@@ -15,7 +18,7 @@ export function ctaBottom() {
       { id: "free_badge", type: "free-badge", textKey: "freeBadge" },
       { id: "cta_headline", type: "headline-block", textKey: "ctaHeadline" },
       { id: "cta_sub", type: "subheadline-block", textKey: "ctaSubhead" },
-      { id: "benefits", type: "benefit-list", hidden: true },
+      ...benefits.elements,
       { id: "download_hint", type: "cta-download-hint", textKey: "ctaDownloadHint", hidden: true },
       { id: "cta_arrow", type: "cta-arrow", hidden: true },
       { id: "cta_button", type: "cta-button", textKey: "cta" },
@@ -25,15 +28,16 @@ export function ctaBottom() {
       { id: "badge", atMs: 150, action: "show", target: "free_badge", animation: "pop-in" },
       { id: "hl", atMs: 350, action: "show", target: "cta_headline", animation: "fade-up" },
       { id: "sub", atMs: 550, action: "show", target: "cta_sub", animation: "fade-in" },
-      { id: "ben", atMs: 750, action: "show", target: "benefits", animation: "fade-up" },
-      { id: "hint", atMs: 950, action: "show", target: "download_hint", animation: "fade-in" },
-      { id: "arrow", atMs: 1150, action: "show", target: "cta_arrow", animation: "fade-in" },
-      { id: "pulse", atMs: 1450, action: "pulse", target: "cta_button" },
+      ...benefits.steps,
+      { id: "hint", atMs: benefits.lastAtMs + 200, action: "show", target: "download_hint", animation: "fade-in" },
+      { id: "arrow", atMs: benefits.lastAtMs + 400, action: "show", target: "cta_arrow", animation: "fade-in" },
+      { id: "pulse", atMs: benefits.lastAtMs + 700, action: "pulse", target: "cta_button" },
     ],
   };
 }
 
 export function ctaCenter() {
+  const benefits = splitBenefitBlock({ startMs: 800, hidden: false });
   return {
     id: "screen_cta",
     name: "CTA",
@@ -47,7 +51,7 @@ export function ctaCenter() {
       { id: "free_badge", type: "free-badge", textKey: "freeBadge" },
       { id: "cta_headline", type: "headline-block", textKey: "ctaHeadline" },
       { id: "cta_sub", type: "subheadline-block", textKey: "ctaSubhead" },
-      { id: "benefits", type: "benefit-list" },
+      ...benefits.elements,
       { id: "cta_button", type: "cta-button", textKey: "cta" },
     ],
     steps: [
@@ -55,14 +59,15 @@ export function ctaCenter() {
       { id: "badge", atMs: 200, action: "show", target: "free_badge", animation: "scale-in" },
       { id: "hl", atMs: 400, action: "show", target: "cta_headline", animation: "fade-up" },
       { id: "sub", atMs: 600, action: "show", target: "cta_sub", animation: "fade-in" },
-      { id: "ben", atMs: 800, action: "show", target: "benefits", animation: "fade-up" },
-      { id: "pulse", atMs: 1200, action: "pulse", target: "cta_button" },
+      ...benefits.steps,
+      { id: "pulse", atMs: benefits.lastAtMs + 350, action: "pulse", target: "cta_button" },
     ],
   };
 }
 
 /** Overlay CTA — dim screen, hand points at store button (matches prior cta-teaser). */
 export function ctaOverlay() {
+  const benefits = splitBenefitBlock({ startMs: 300, hidden: true });
   return {
     id: "screen_cta",
     name: "Install",
@@ -72,7 +77,7 @@ export function ctaOverlay() {
     transition: { animation: "modal", easing: "ease-out", durationMs: 480 },
     elements: [
       BG,
-      { id: "benefits", type: "benefit-list", hidden: true },
+      ...benefits.elements,
       { id: "free_badge", type: "free-badge", textKey: "freeBadge", hidden: true },
       { id: "download_hint", type: "cta-download-hint", textKey: "ctaDownloadHint", hidden: true },
       { id: "arrow_lottie", type: "lottie", assetId: "lottie-ai-stars", variant: "cta-arrow-lottie", hidden: true },
@@ -80,11 +85,11 @@ export function ctaOverlay() {
     ],
     steps: [
       { id: "bg", atMs: 0, action: "show", target: "bg", animation: "fade-in" },
-      { id: "ben", atMs: 300, action: "show", target: "benefits", animation: "fade-up" },
-      { id: "badge", atMs: 500, action: "show", target: "free_badge", animation: "pop-in" },
-      { id: "hint", atMs: 700, action: "show", target: "download_hint", animation: "fade-in" },
-      { id: "arrow", atMs: 900, action: "show", target: "arrow_lottie", animation: "fade-in" },
-      { id: "pulse", atMs: 1100, action: "pulse", target: "cta_button" },
+      ...benefits.steps,
+      { id: "badge", atMs: benefits.lastAtMs + 180, action: "show", target: "free_badge", animation: "pop-in" },
+      { id: "hint", atMs: benefits.lastAtMs + 380, action: "show", target: "download_hint", animation: "fade-in" },
+      { id: "arrow", atMs: benefits.lastAtMs + 580, action: "show", target: "arrow_lottie", animation: "fade-in" },
+      { id: "pulse", atMs: benefits.lastAtMs + 780, action: "pulse", target: "cta_button" },
     ],
   };
 }

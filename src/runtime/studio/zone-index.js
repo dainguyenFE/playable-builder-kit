@@ -7,6 +7,23 @@ import {
   estimateScreenViewMs,
   formatEstimatedViewTime,
 } from "./screen-timing.js";
+import {
+  formatExportHint,
+  formatFilesHint,
+  formatLayoutShortChatPrompt,
+  formatPlayableGuard,
+  formatScope,
+  formatScreenRef,
+  formatTransitionShortChatPrompt,
+  formatZoneRef,
+  formatZoneShortChatPrompt,
+} from "./chat-prompts.js";
+
+export {
+  formatLayoutShortChatPrompt,
+  formatTransitionShortChatPrompt,
+  formatZoneShortChatPrompt,
+} from "./chat-prompts.js";
 
 const ABSURD_CAP_MS = 30000;
 
@@ -282,6 +299,7 @@ export function buildZoneIndex(scenario, context = {}, playable = {}, opts = {})
           speed: s.speed ?? null,
           value: s.value ? String(s.value).slice(0, 80) : null,
         })),
+        assetId: el.assetId || null,
         patchPaths: patchPathForElement(el, screen.id, scope),
         promptSnippet: buildPromptSnippet(
           screenZoneNum,
@@ -357,15 +375,14 @@ export function formatZoneIndexForAI(zoneIndex, selection = {}) {
       : selection;
 
   const header = `# Playable authoring context
-Edit scope: ${zoneIndex.previewKind === "template" ? `template → ${zoneIndex.editRoot}` : `playable → ${zoneIndex.editRoot}`}
+Scope: ${formatScope(zoneIndex)}
+Files: ${zoneIndex.editRoot}/
 ${zoneIndex.sourceTemplateId ? `Source template (read-only): ${zoneIndex.sourceTemplateId}` : ""}
-Playable: ${zoneIndex.playableId || "preview-template"}
 Theme: ${zoneIndex.themeId || "—"}
-Screens: ${zoneIndex.screenCount ?? 0}
-Zones: ${zoneIndex.zoneCount ?? 0}
-Flow: ${(zoneIndex.screens ?? []).map((s) => s.screenId).join(" → ")}
+Screens: ${zoneIndex.screenCount ?? 0} · Zones: ${zoneIndex.zoneCount ?? 0}
+Flow: ${(zoneIndex.screens ?? []).map((s) => `${s.screenNumber}.${s.name}`).join(" → ")}
 Layout: insetX=${zoneIndex.layout?.insetX ?? 20} insetY=${zoneIndex.layout?.insetY ?? 20} bottom=${zoneIndex.layout?.insetBottom ?? 24} gap=${zoneIndex.layout?.gap ?? 14}
-Export: ${zoneIndex.exportCmd || "—"}
+${formatExportHint(zoneIndex)}
 `;
 
   if (selectedZoneId) {
@@ -403,62 +420,6 @@ Zones: ${s.zones.map((z) => `${z.screenZoneNumber}.${z.zoneId}`).join(", ")}`;
 }
 
 /**
- * Chat prompt for layout padding — scoped to the screen currently in the inspector.
- * @param {object} zoneIndex
- * @param {object} screen — entry from zoneIndex.screens
- */
-export function formatLayoutShortChatPrompt(zoneIndex, screen) {
-  if (!zoneIndex || !screen) return "";
-  const l = zoneIndex.layout ?? {};
-  const insetX = l.insetX ?? 20;
-  const insetY = l.insetY ?? 20;
-  const insetBottom = l.insetBottom ?? 24;
-  const gap = l.gap ?? 14;
-
-  const fileHint = `${zoneIndex.editRoot}/${zoneIndex.playableFile} → layout`;
-
-  return [
-    `Edit layout padding while previewing Screen ${screen.screenNumber} "${screen.name}" (id: ${screen.screenId}).`,
-    "",
-    `Patch ${fileHint} (layout applies to all screens in this ${zoneIndex.previewKind}).`,
-    "",
-    "Current layout:",
-    `- insetX: ${insetX} (horizontal content padding)`,
-    `- insetY: ${insetY} (top padding)`,
-    `- insetBottom: ${insetBottom} (bottom padding)`,
-    `- gap: ${gap} (vertical gap between zones)`,
-    "",
-    zoneIndex.sourceTemplateId ? `Source template (unchanged): ${zoneIndex.sourceTemplateId}` : null,
-    zoneIndex.exportCmd ? `After edits: ${zoneIndex.exportCmd}` : null,
-  ]
-    .filter(Boolean)
-    .join("\n");
-}
-
-/**
- * One-line prompt for per-zone "Add to chat" in the inspector.
- * @param {object} zone
- */
-export function formatZoneShortChatPrompt(zone) {
-  if (!zone) return "";
-  return `Edit playable zone "${zone.zoneId}" — Screen ${zone.screenNumber} zone ${zone.screenZoneNumber}.`;
-}
-
-/**
- * One-line prompt for transition "Add to chat" in the inspector.
- * @param {object} screen — entry from zoneIndex.screens
- */
-export function formatTransitionShortChatPrompt(screen) {
-  const t = screen?.transition;
-  if (!t?.hasTransition || !t.transitionId) return "";
-  const type = t.transitionType ? ` (${t.transitionType})` : "";
-  const anim = t.enterAnimation || "slide";
-  const easing = t.enterEasing || "ease";
-  const dur = t.enterDurationMs != null ? `, ${t.enterDurationMs}ms` : "";
-  return `Edit transition "${t.transitionId}"${type} — animation ${anim}, easing ${easing}${dur}.`;
-}
-
-/**
  * Chat-ready prompt for zone/screen editing (used by "Add to chat" in inspector).
  * @param {object} zoneIndex
  * @param {{ selectedScreenId?: string, selectedZoneId?: string, activeScreenId?: string }} selection
@@ -476,19 +437,18 @@ export function formatZoneChatPrompt(zoneIndex, selection = {}) {
   if (selectedZoneId) {
     const z = zoneIndex.zones.find((x) => x.zoneId === selectedZoneId);
     if (z) {
-      const lines = [
-        `Edit ${zoneIndex.previewKind} zone "${z.zoneId}" — Screen ${z.screenNumber} zone ${z.screenZoneNumber} ("${z.screenName}").`,
-        `Element: ${z.elementType}${z.textKey ? ` · copy slot context.${z.textKey}` : ""}${z.assetId ? ` · asset ${z.assetId}` : ""}.`,
-        "",
-        `Patch only files under ${zoneIndex.editRoot}/ (${zoneIndex.contextFile}, ${zoneIndex.scenarioFile}, ${zoneIndex.assetsFile}).`,
-        zoneIndex.sourceTemplateId
-          ? `Do NOT edit data/templates/${zoneIndex.sourceTemplateId}/ — this playable is a separate copy.`
-          : null,
-        zoneIndex.exportCmd ? `After edits: ${zoneIndex.exportCmd}` : null,
+      const screen = screenById(zoneIndex, z.screenId);
+      return [
+        `Edit ${formatScope(zoneIndex)} — ${formatScreenRef(screen ?? { screenNumber: z.screenNumber, name: z.screenName, screenId: z.screenId })} — ${formatZoneRef(z)}.`,
+        `Element: ${z.elementType}${z.textKey ? ` · copy context.${z.textKey}` : ""}${z.assetId ? ` · asset ${z.assetId}` : ""}.`,
+        formatFilesHint(zoneIndex),
+        formatPlayableGuard(zoneIndex),
+        formatExportHint(zoneIndex),
         "",
         ctx,
-      ].filter(Boolean);
-      return lines.join("\n");
+      ]
+        .filter(Boolean)
+        .join("\n");
     }
   }
 
@@ -496,9 +456,10 @@ export function formatZoneChatPrompt(zoneIndex, selection = {}) {
     const scr = screenById(zoneIndex, selectedScreenId);
     if (scr) {
       return [
-        `Edit screen ${scr.screenNumber} "${scr.name}" (${scr.screenId}).`,
-        `Scope: ${zoneIndex.editRoot}/`,
-        zoneIndex.exportCmd ? `After edits: ${zoneIndex.exportCmd}` : null,
+        `Edit ${formatScope(zoneIndex)} — ${formatScreenRef(scr)}.`,
+        formatFilesHint(zoneIndex),
+        formatPlayableGuard(zoneIndex),
+        formatExportHint(zoneIndex),
         "",
         ctx,
       ]
@@ -508,13 +469,10 @@ export function formatZoneChatPrompt(zoneIndex, selection = {}) {
   }
 
   return [
-    zoneIndex.previewKind === "template"
-      ? `Edit template "${zoneIndex.templateId}" only — files in ${zoneIndex.editRoot}/.`
-      : `Edit playable "${zoneIndex.playableId}" only — files in ${zoneIndex.editRoot}/.`,
-    zoneIndex.sourceTemplateId
-      ? `Created from template "${zoneIndex.sourceTemplateId}" (snapshot). Template changes do not affect this playable.`
-      : null,
-    zoneIndex.exportCmd ? `Export: ${zoneIndex.exportCmd}` : null,
+    `Edit ${formatScope(zoneIndex)} (all screens).`,
+    formatFilesHint(zoneIndex),
+    formatPlayableGuard(zoneIndex),
+    formatExportHint(zoneIndex),
     "",
     ctx,
   ]

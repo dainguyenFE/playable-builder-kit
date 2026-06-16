@@ -1,7 +1,7 @@
 /**
  * Dev: Studio UI, preview, download export, template/playable data
  */
-import { existsSync, readFileSync } from "node:fs";
+import { existsSync, readFileSync, statSync, readdirSync } from "node:fs";
 import { resolve, dirname } from "node:path";
 import { fileURLToPath } from "node:url";
 import { spawnSync } from "node:child_process";
@@ -64,17 +64,55 @@ function sendFile(res, filePath, opts = {}) {
   res.end(readFileSync(filePath));
 }
 
-function handleTemplateDownload(res, templateId) {
+function newestMtimeInPath(targetPath) {
+  if (!existsSync(targetPath)) return 0;
+  const st = statSync(targetPath);
+  if (!st.isDirectory()) return st.mtimeMs;
+  let max = st.mtimeMs;
+  for (const name of readdirSync(targetPath)) {
+    if (name === "node_modules" || name.startsWith(".")) continue;
+    max = Math.max(max, newestMtimeInPath(resolve(targetPath, name)));
+  }
+  return max;
+}
+
+function templateExportIsStale(templateId, filePath) {
+  if (!existsSync(filePath)) return true;
+  if (readFileSync(filePath).byteLength < 10_000) return true;
+  const exportMtime = statSync(filePath).mtimeMs;
+  const deps = [
+    resolve(ROOT, "src/runtime/studio"),
+    resolve(ROOT, "src/runtime/styles/runtime.css"),
+    resolve(ROOT, "scripts/lib/studio-html-build.mjs"),
+    resolve(TEMPLATES_STUDIO, templateId),
+  ];
+  return deps.some((p) => newestMtimeInPath(p) > exportMtime);
+}
+
+function ensureTemplateExport(templateId) {
   const filePath = resolve(TEMPLATES_STUDIO, templateId, "exports", `${templateId}.html`);
-  if (!existsSync(filePath)) {
-    res.statusCode = 404;
+  if (!templateExportIsStale(templateId, filePath)) {
+    return filePath;
+  }
+  console.log(`\n📤 Rebuilding template export: ${templateId} (source changed)…`);
+  const r = spawnSync("node", ["scripts/template-export.mjs", templateId], {
+    cwd: ROOT,
+    stdio: "inherit",
+  });
+  if ((r.status ?? 1) !== 0) return null;
+  if (!existsSync(filePath) || readFileSync(filePath).byteLength < 10_000) return null;
+  return filePath;
+}
+
+function handleTemplateDownload(res, templateId) {
+  const filePath = ensureTemplateExport(templateId);
+  if (!filePath) {
+    res.statusCode = 500;
     res.setHeader("Content-Type", "text/plain; charset=utf-8");
-    res.end(
-      `Template HTML not built yet.\nRun: pnpm template:export ${templateId}\n`,
-    );
+    res.end(`Template export failed — run: pnpm template:export ${templateId}\n`);
     return;
   }
-  console.log(`\n📥 Serving template export: ${templateId} (no rebuild)\n`);
+  console.log(`\n📥 Serving template export: ${templateId}\n`);
   sendFile(res, filePath, { downloadAs: `${templateId}.html` });
 }
 
@@ -99,12 +137,27 @@ function sendExportHtml(res, filePath, opts = {}) {
   return true;
 }
 
+function playableExportIsStale(playableId, filePath, engine) {
+  if (!existsSync(filePath)) return true;
+  if (readFileSync(filePath).byteLength < 10_000) return true;
+  const exportMtime = statSync(filePath).mtimeMs;
+  const deps = [resolve(ROOT, "src/runtime/studio"), resolve(ROOT, "src/runtime/styles/runtime.css")];
+  if (engine === "studio") {
+    deps.push(resolve(PLAYABLES, playableId), resolve(ROOT, "scripts/lib/studio-html-build.mjs"));
+  } else if (engine === "compose") {
+    deps.push(resolve(ROOT, "playable-templates", playableId), resolve(ROOT, "scripts/compose-build.mjs"));
+  } else {
+    deps.push(resolve(ROOT, "src/pages", playableId));
+  }
+  return deps.some((p) => newestMtimeInPath(p) > exportMtime);
+}
+
 function ensureExport(playableId) {
   const engine = resolvePlayableEngine(playableId);
   if (!engine) return null;
   const target = getExportTarget(playableId, engine);
   const filePath = resolve(ROOT, target.outputPath);
-  if (existsSync(filePath) && readFileSync(filePath).byteLength >= 10_000) {
+  if (!playableExportIsStale(playableId, filePath, engine)) {
     return { engine, target, filePath };
   }
   console.log(`\n📤 Building export: ${playableId} (${engine})…`);

@@ -1,0 +1,35 @@
+{
+  "id": "test",
+  "name": "AI Writing",
+  "viewport": {
+    "width": 390,
+    "height": 844,
+    "safeArea": true
+  },
+  "theme": {
+    "id": "midnight-blue",
+    "name": "Midnight Blue",
+    "primaryColor": "#3B82F6",
+    "backgroundColor": "#0B1220",
+    "textColor": "#F8FAFC",
+    "mutedColor": "#94A3B8",
+    "cardColor": "#1E293B"
+  },
+  "template": {
+    "id": "ai-chat-ask-solve"
+  },
+  "cta": {
+    "label": "Get the app",
+    "type": "openStore"
+  },
+  "tracking": {
+    "enabled": true
+  },
+  "layout": {
+    "insetX": 20,
+    "insetY": 20,
+    "insetBottom": 24,
+    "gap": 14
+  },
+  "themeId": "midnight-blue"
+}

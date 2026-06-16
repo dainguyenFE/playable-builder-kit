@@ -124,6 +124,8 @@ Registry `data/registry/playables.json` được cập nhật tự động (stat
 
 ## Scope isolation (bắt buộc)
 
+**Full rules:** read **`playable-data-isolation`** skill (preview fail gracefully, no cross-sandbox edits).
+
 **Template = khung sườn.** `pnpm playable:new` / `studio:create` **copy** preset JSON vào `playables/<id>/` — snapshot độc lập.
 
 | Hành động | Ảnh hưởng |
@@ -168,6 +170,29 @@ Playable
 ```
 
 Preview inspector: **Screens** list → **Transition** block → **Zones** list.
+
+## Zone granularity (bắt buộc)
+
+**Một zone = một vùng edit độc lập** trong inspector. Nếu nhiều dòng copy / bullet **không phụ thuộc nhau** (timing, ẩn/hiện, copy riêng) → **tách zone nhỏ**, không gom `benefit-list` nhiều dòng.
+
+| Pattern | ❌ Tránh | ✅ Dùng |
+|---------|----------|---------|
+| CTA benefits (4 dòng) | `benefit-list` + `keys: [benefit1…4]` | `benefit-title` + `benefit-item` × N (`ben1`…`ben4`) |
+| Summary bullets | `benefit-list` + `summary1…4` | `benefit-item` × N (`sum1`…`sum4`) — stagger `atMs` |
+| Sticky notes hook | một list zone | `benefit-item` per note (`note1`…`note5`) |
+| Suggestion chips | một list zone | `benefit-item` per chip (`chip1`…`) |
+| CTA hero checklist | `benefit-list` on CTA | `benefit-item` per line (`cta_res1`…) |
+
+**Giữ `benefit-list` (legacy)** chỉ khi mọi bullet **luôn hiện/ẩn cùng lúc** và user chỉ sửa nhóm — ưu tiên tách zone.
+
+Element types:
+- `benefit-title` — section label (`benefitsTitle`)
+- `benefit-item` — một dòng ✓ + copy (`textKey`)
+- `headline-block`, `subheadline-block` — một headline/subhead mỗi zone
+
+Helpers (scaffold): `scripts/lib/zone-split.mjs` → `splitBenefitItemZones()`, `splitBenefitBlock()`.
+
+**Layout:** UI elements live inside `.pb-studio__content` only — `content-boundary.css` clips overflow. Do not size zones with `width: 100%` + horizontal padding; use `width: auto; max-width: 100%`. Background full-bleed = `type: background` in `.pb-studio__bg` layer.
 
 | User prompt | Patch |
 |-------------|-------|

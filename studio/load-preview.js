@@ -5,8 +5,35 @@ import { hydrateAssetsBundle } from "/src/runtime/studio/assets-hydrate.js";
 
 const COMPOSE_ROUTE_CLASS = "route-template-preview";
 
+/** Scoped preview load/parse failure — handled in preview frame only. */
+export class PreviewDataError extends Error {
+  constructor(message, details = {}) {
+    super(message);
+    this.name = "PreviewDataError";
+    this.details = details;
+  }
+}
+
 let registry;
 let themesCatalog;
+
+async function safeFetchJson(url, label) {
+  let res;
+  try {
+    res = await fetch(url);
+  } catch (e) {
+    throw new PreviewDataError(`Network error loading ${label}: ${e.message}`, { file: label, url });
+  }
+  if (!res.ok) {
+    throw new PreviewDataError(`Missing or unreadable ${label} (HTTP ${res.status})`, { file: label, url });
+  }
+  const text = await res.text();
+  try {
+    return JSON.parse(text);
+  } catch (e) {
+    throw new PreviewDataError(`Invalid JSON in ${label}: ${e.message}`, { file: label, url });
+  }
+}
 
 async function loadCatalogs() {
   if (registry && themesCatalog) return;
@@ -62,10 +89,10 @@ export function getThemeOptions(preview) {
 async function loadStudioTemplate(templateId, themeId) {
   const base = `/template-data/studio/${templateId}`;
   const [playable, context, scenario, assets, templateMeta] = await Promise.all([
-    fetch(`${base}/playable.preset.json`).then((r) => r.json()),
-    fetch(`${base}/context.preset.json`).then((r) => r.json()),
-    fetch(`${base}/scenario.preset.json`).then((r) => r.json()),
-    fetch(`${base}/assets.preset.json`).then((r) => r.json()).catch(() => ({ assets: [] })),
+    safeFetchJson(`${base}/playable.preset.json`, "playable.preset.json"),
+    safeFetchJson(`${base}/context.preset.json`, "context.preset.json"),
+    safeFetchJson(`${base}/scenario.preset.json`, "scenario.preset.json"),
+    safeFetchJson(`${base}/assets.preset.json`, "assets.preset.json").catch(() => ({ assets: [] })),
     loadTemplateMeta(templateId),
   ]);
   applyThemeToPlayable(playable, templateMeta, themeId ?? themeFromUrl());
@@ -81,8 +108,8 @@ async function loadStudioTemplate(templateId, themeId) {
 async function loadComposeTemplate(templateId) {
   const base = `/template-data/compose/${templateId}`;
   const [composition, copy] = await Promise.all([
-    fetch(`${base}/composition.default.json`).then((r) => r.json()),
-    fetch(`${base}/copy/en.sample.json`).then((r) => r.json()),
+    safeFetchJson(`${base}/composition.default.json`, "composition.default.json"),
+    safeFetchJson(`${base}/copy/en.sample.json`, "copy/en.sample.json"),
   ]);
   return { engine: "compose", composition, copy };
 }
@@ -90,11 +117,11 @@ async function loadComposeTemplate(templateId) {
 async function loadStudioPlayable(playableId, themeId) {
   const base = `/playables-data/${playableId}`;
   const [playable, context, scenario, assets, manifest] = await Promise.all([
-    fetch(`${base}/playable.json`).then((r) => r.json()),
-    fetch(`${base}/context.json`).then((r) => r.json()),
-    fetch(`${base}/scenario.json`).then((r) => r.json()),
-    fetch(`${base}/assets.json`).then((r) => r.json()).catch(() => ({ assets: [] })),
-    fetch(`${base}/manifest.json`).then((r) => r.json()).catch(() => ({})),
+    safeFetchJson(`${base}/playable.json`, "playable.json"),
+    safeFetchJson(`${base}/context.json`, "context.json"),
+    safeFetchJson(`${base}/scenario.json`, "scenario.json"),
+    safeFetchJson(`${base}/assets.json`, "assets.json").catch(() => ({ assets: [] })),
+    safeFetchJson(`${base}/manifest.json`, "manifest.json").catch(() => ({})),
   ]);
   const templateId = playable.template?.id || manifest.templateId;
   const templateMeta = templateId ? await loadTemplateMeta(templateId) : { defaultTheme: playable.themeId, themes: playable.themeId ? [playable.themeId] : [] };
@@ -115,8 +142,8 @@ async function loadStudioPlayable(playableId, themeId) {
 async function loadComposePlayable(playableId) {
   const base = `/playables-data/${playableId}`;
   const [composition, copy] = await Promise.all([
-    fetch(`${base}/composition.json`).then((r) => r.json()),
-    fetch(`${base}/copy.json`).then((r) => r.json()),
+    safeFetchJson(`${base}/composition.json`, "composition.json"),
+    safeFetchJson(`${base}/copy.json`, "copy.json"),
   ]);
   return { engine: "compose", composition, copy };
 }

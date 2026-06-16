@@ -1,0 +1,13 @@
+{
+  "id": "test",
+  "name": "AI Writing",
+  "engine": "studio",
+  "templateId": "ai-chat-ask-solve",
+  "themeId": "midnight-blue",
+  "defaultTheme": "midnight-blue",
+  "themes": [
+    "midnight-blue",
+    "neon-cyan"
+  ],
+  "status": "draft"
+}

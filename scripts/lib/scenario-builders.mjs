@@ -1,5 +1,6 @@
 /** Reusable screen builders — V3 screen contract (docs/AI_PLAYABLE_USER_CASE_SCENARIOS_V3_SCREEN_DETAIL.md). */
 import { ctaBottom, ctaCenter, ctaOverlay } from "./cta-presets.mjs";
+import { splitBenefitBlock, splitBenefitItemZones } from "./zone-split.mjs";
 
 export const BG = { id: "bg", type: "background", textKey: "backgroundGradient" };
 
@@ -47,11 +48,12 @@ export function stickyNotesHookScreen({
     elements.push({ id: "sub", type: "subheadline-block", textKey: subheadKey, hidden: true });
     steps.push({ id: "sub", atMs: 600, action: "show", target: "sub", animation: "fade-in" });
   }
-  elements.push({ id: "notes", type: "benefit-list", keys: stickyKeys, title: "", hidden: true });
-  steps.push({ id: "notes", atMs: 900, action: "show", target: "notes", animation: "fade-up" });
+  const notes = splitBenefitItemZones(stickyKeys, { idPrefix: "note", startMs: 900, hidden: true, animation: "fade-up" });
+  elements.push(...notes.elements);
+  steps.push(...notes.steps);
   if (hintKey) {
     elements.push({ id: "hint", type: "free-badge", textKey: hintKey, hidden: true });
-    steps.push({ id: "hint", atMs: 1400, action: "show", target: "hint", animation: "pop-in" });
+    steps.push({ id: "hint", atMs: notes.lastAtMs + 200, action: "show", target: "hint", animation: "pop-in" });
   }
   return { id: "s1", name: "Problem hook", type: "problem", durationMs, elements, steps, ...nav(durationMs, next, "fade-up") };
 }
@@ -70,12 +72,15 @@ export function promptWithChipsScreen({
   const elements = [BG];
   if (badge) elements.push({ id: "header", type: "app-header", badge });
   elements.push({ id: "prompt", type: "prompt-input", label });
-  if (chipKeys.length) elements.push({ id: "chips", type: "benefit-list", keys: chipKeys, title: "", hidden: true });
-  if (microcopyKey) elements.push({ id: "micro", type: "subheadline-block", textKey: microcopyKey, hidden: true });
   const steps = [
     { id: "t", atMs: 400, action: "typeText", target: "prompt", value: promptText },
   ];
-  if (chipKeys.length) steps.push({ id: "chips", atMs: 1800, action: "show", target: "chips", animation: "fade-up" });
+  if (chipKeys.length) {
+    const chips = splitBenefitItemZones(chipKeys, { idPrefix: "chip", startMs: 1800, hidden: true, animation: "fade-up" });
+    elements.push(...chips.elements);
+    steps.push(...chips.steps);
+  }
+  if (microcopyKey) elements.push({ id: "micro", type: "subheadline-block", textKey: microcopyKey, hidden: true });
   if (microcopyKey) steps.push({ id: "micro", atMs: 2200, action: "show", target: "micro", animation: "fade-in" });
   return {
     id,
@@ -139,8 +144,14 @@ export function valueSummaryScreen({
     elements.push({ id: "sub", type: "subheadline-block", textKey: subheadKey, hidden: true });
     steps.push({ id: "sub", atMs: 500, action: "show", target: "sub", animation: "fade-in" });
   }
-  elements.push({ id: "cards", type: "benefit-list", keys, title: "", hidden: true });
-  steps.push({ id: "cards", atMs: subheadKey ? 800 : 600, action: "show", target: "cards", animation: "fade-up" });
+  const summary = splitBenefitItemZones(keys, {
+    idPrefix: "sum",
+    startMs: subheadKey ? 800 : 600,
+    hidden: true,
+    animation: "fade-up",
+  });
+  elements.push(...summary.elements);
+  steps.push(...summary.steps);
   return { id, name: "Summary", type: "demo", durationMs, elements, steps, ...nav(durationMs, next, "fade-up") };
 }
 
@@ -202,13 +213,14 @@ export function imageGalleryScreen({
     BG,
     { id: "hl", type: "headline-block", textKey: headlineKey, hidden: true },
     { id: "hero", type: "image-canvas", assetId, hidden: true },
-    { id: "styles", type: "benefit-list", keys: styleKeys, title: "", hidden: true },
   ];
+  const styles = splitBenefitItemZones(styleKeys, { idPrefix: "style", startMs: 900, hidden: true, animation: "fade-up" });
+  elements.push(...styles.elements);
   const steps = [
     { id: "bg", atMs: 0, action: "show", target: "bg", animation: "fade-in" },
     { id: "hl", atMs: 200, action: "show", target: "hl", animation: "fade-up" },
     { id: "hero", atMs: 500, action: "show", target: "hero", animation: "pop-in" },
-    { id: "styles", atMs: 900, action: "show", target: "styles", animation: "fade-up" },
+    ...styles.steps,
   ];
   return { id, name: "Gallery", type: "demo", durationMs, elements, steps, ...nav(durationMs, next, "pop-in") };
 }
@@ -225,13 +237,18 @@ export function agentOutputScreen({
     BG,
     { id: "hl", type: "headline-block", textKey: headlineKey, hidden: true },
     ...resultKeys.map((k, i) => ({ id: `r${i + 1}`, type: "ai-result-card", textKey: k, hidden: true })),
-    { id: "kpi", type: "benefit-list", keys: checklistKeys, title: "", hidden: true },
   ];
+  const kpi = splitBenefitItemZones(checklistKeys, {
+    idPrefix: "kpi",
+    startMs: 500 + resultKeys.length * 600 + 200,
+    hidden: true,
+  });
+  elements.push(...kpi.elements);
   const steps = [
     { id: "bg", atMs: 0, action: "show", target: "bg", animation: "fade-in" },
     { id: "hl", atMs: 200, action: "show", target: "hl", animation: "fade-up" },
     ...resultKeys.map((_, i) => ({ id: `r${i}`, atMs: 500 + i * 600, action: "show", target: `r${i + 1}`, animation: "fade-up" })),
-    { id: "kpi", atMs: 500 + resultKeys.length * 600 + 200, action: "show", target: "kpi", animation: "fade-in" },
+    ...kpi.steps,
   ];
   return { id, name: "Agent output", type: "demo", durationMs, elements, steps, ...nav(durationMs, next) };
 }
@@ -311,10 +328,11 @@ export function compareScreen({ id = "s2", next, durationMs = 5500 }) {
 export function checkpointScreen({ id = "s3", keys = ["checkpoint1", "checkpoint2", "checkpoint3"], badgeKey, next, durationMs = 5000 }) {
   const elements = [BG];
   if (badgeKey) elements.push({ id: "badge", type: "free-badge", textKey: badgeKey, hidden: true });
-  elements.push({ id: "checks", type: "benefit-list", keys, title: "", hidden: true });
+  const checks = splitBenefitItemZones(keys, { idPrefix: "check", startMs: badgeKey ? 700 : 400, hidden: true, animation: "fade-up" });
+  elements.push(...checks.elements);
   const steps = [{ id: "bg", atMs: 0, action: "show", target: "bg", animation: "fade-in" }];
   if (badgeKey) steps.push({ id: "b", atMs: 300, action: "show", target: "badge", animation: "pop-in" });
-  steps.push({ id: "c", atMs: badgeKey ? 700 : 400, action: "show", target: "checks", animation: "fade-up" });
+  steps.push(...checks.steps);
   return { id, name: "Checkpoint", type: "demo", durationMs, elements, steps, ...nav(durationMs, next, "fade-up") };
 }
 
@@ -507,14 +525,15 @@ export function ctaWithResult({
     });
     resultSteps.push({ id: "res", atMs: 100, action: "show", target: "cta_result", animation: "scale-in" });
   } else if (resultMode === "checklist" && resultKeys?.length) {
-    base.elements.splice(insertAt, 0, {
-      id: "cta_result",
-      type: "benefit-list",
+    const block = splitBenefitBlock({
       keys: resultKeys,
-      title: "",
+      titleKey: null,
+      idPrefix: "cta_res",
+      startMs: 100,
       hidden: layout !== "overlay",
     });
-    resultSteps.push({ id: "res", atMs: 100, action: "show", target: "cta_result", animation: "fade-up" });
+    base.elements.splice(insertAt, 0, ...block.elements);
+    resultSteps.push(...block.steps);
   } else if (resultMode === "image" && assetId) {
     base.elements.splice(insertAt, 0, {
       id: "cta_result",

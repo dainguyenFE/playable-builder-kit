@@ -4,6 +4,7 @@
  *
  * Usage:
  *   pnpm template:export <template-id>
+ *   pnpm template:export --all
  *   pnpm template:export --list
  *
  * Output: data/templates/<id>/exports/<id>.html
@@ -44,6 +45,33 @@ function loadTemplateBundle(templateId) {
   };
 }
 
+function exportTemplate(id) {
+  let bundle;
+  try {
+    bundle = loadTemplateBundle(id);
+  } catch (e) {
+    throw new Error(e.message);
+  }
+
+  console.log(`📤 Building template HTML: ${id}…`);
+  return buildStudioHtml(bundle, { id }).then((html) => {
+    const errors = validateStudioHtml(html);
+    if (errors.length) {
+      throw new Error(`Export validation: ${errors.join(", ")}`);
+    }
+
+    const exportsDir = resolve(TEMPLATES_ROOT, id, "exports");
+    mkdirSync(exportsDir, { recursive: true });
+    const outPath = resolve(exportsDir, `${id}.html`);
+    writeFileSync(outPath, html);
+
+    console.log(
+      `✅ ${id}: data/templates/${id}/exports/${id}.html (${(Buffer.byteLength(html) / 1024).toFixed(1)} KB)`,
+    );
+    return outPath;
+  });
+}
+
 const argv = process.argv.slice(2);
 
 if (argv[0] === "--list" || argv[0] === "-l") {
@@ -59,9 +87,30 @@ if (argv[0] === "--list" || argv[0] === "-l") {
   process.exit(0);
 }
 
+if (argv[0] === "--all" || argv[0] === "-a") {
+  const ids = listTemplates();
+  if (!ids.length) {
+    console.error("\n❌ No exportable templates found.\n");
+    process.exit(1);
+  }
+  console.log(`\n📤 Building ${ids.length} template(s)…\n`);
+  let failed = 0;
+  for (const templateId of ids) {
+    try {
+      await exportTemplate(templateId);
+    } catch (e) {
+      failed += 1;
+      console.error(`❌ ${templateId}: ${e.message}`);
+    }
+  }
+  console.log(failed ? `\n⚠️  ${failed} failed, ${ids.length - failed} succeeded.\n` : `\n✅ All ${ids.length} templates exported.\n`);
+  process.exit(failed ? 1 : 0);
+}
+
 const id = argv[0]?.trim();
 if (!id || !KEBAB.test(id)) {
   console.error("Usage: pnpm template:export <template-id>");
+  console.error("       pnpm template:export --all");
   console.error("       pnpm template:export --list");
   process.exit(1);
 }
@@ -73,29 +122,11 @@ if (!existsSync(resolve(TEMPLATES_ROOT, id))) {
   process.exit(1);
 }
 
-let bundle;
 try {
-  bundle = loadTemplateBundle(id);
+  await exportTemplate(id);
 } catch (e) {
   console.error(`\n❌ ${e.message}\n`);
   process.exit(1);
 }
 
-console.log(`\n📤 Building template HTML: ${id}…\n`);
-
-const html = await buildStudioHtml(bundle, { id });
-const errors = validateStudioHtml(html);
-if (errors.length) {
-  console.error("❌ Export validation:", errors.join(", "));
-  process.exit(1);
-}
-
-const exportsDir = resolve(TEMPLATES_ROOT, id, "exports");
-mkdirSync(exportsDir, { recursive: true });
-const outPath = resolve(exportsDir, `${id}.html`);
-writeFileSync(outPath, html);
-
-console.log(
-  `✅ Template HTML: data/templates/${id}/exports/${id}.html (${(Buffer.byteLength(html) / 1024).toFixed(1)} KB)`,
-);
 console.log(`   Download (dev): /download/template/${id}\n`);

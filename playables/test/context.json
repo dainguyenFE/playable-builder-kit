@@ -1,0 +1,91 @@
+{
+  "id": "test",
+  "freeBadge": "Free to try",
+  "ctaDownloadHint": "👇 Tap to download — no card required",
+  "benefit1": "Unlimited AI writing during trial",
+  "benefit2": "Export & share drafts in one tap",
+  "benefit3": "Rewrite in any tone instantly",
+  "benefit4": "Cancel anytime in Settings",
+  "benefitsTitle": "What you'll get",
+  "productName": "WriteFlow",
+  "backgroundGradient": "radial-gradient(ellipse 120% 80% at 50% -12%, color-mix(in srgb, #3B82F6 38%, transparent), transparent 58%), linear-gradient(180deg, #0b1220 0%, #0f172a 100%)",
+  "problemHeadline": "Stuck on what to write?",
+  "problemSubhead": "Ask AI to turn rough ideas into polished copy.",
+  "stickyNote1": "Blog intro",
+  "stickyNote2": "IG caption",
+  "stickyNote3": "Client email",
+  "stickyNote4": "Product page",
+  "stickyNote5": "Newsletter",
+  "hintPill": "Tap to ask AI",
+  "userQuestion": "Help me write a catchy blog intro about AI writing tools.",
+  "chip1": "Blog intro",
+  "chip2": "Social caption",
+  "chip3": "Email draft",
+  "chip4": "Tone polish",
+  "inputMicrocopy": "AI understands messy briefs.",
+  "aiAnswerBlocks": [
+    {
+      "type": "text",
+      "text": "Here is a polished blog intro draft:"
+    },
+    {
+      "type": "list",
+      "title": "Hook options",
+      "items": [
+        "Stop staring at a blank page — let AI draft your first line in seconds.",
+        "From messy notes to publish-ready copy, without the writer's block.",
+        "Your ideas deserve better words. AI helps you find them faster."
+      ]
+    },
+    {
+      "type": "list",
+      "title": "Suggested intro",
+      "items": [
+        "AI writing tools are changing how creators work — not by replacing your voice, but by helping you start faster, edit smarter, and ship more often."
+      ]
+    },
+    {
+      "type": "list",
+      "title": "Tone variants",
+      "items": [
+        "Professional: Clear, confident, and ready for your audience.",
+        "Friendly: Conversational and easy to read.",
+        "Bold: Punchy hooks that grab attention in the first line."
+      ]
+    },
+    {
+      "type": "list",
+      "title": "Checklist",
+      "items": [
+        "✓ Strong opening hook",
+        "✓ Clear value proposition",
+        "✓ Smooth transition to body",
+        "○ Add your personal story"
+      ]
+    },
+    {
+      "type": "card",
+      "title": "Draft · Blog intro · Ready",
+      "text": "142 words · Professional tone · SEO-friendly"
+    },
+    {
+      "type": "card",
+      "title": "Variant · Social teaser",
+      "text": "Short hook for LinkedIn or X"
+    },
+    {
+      "type": "progress",
+      "label": "Draft readiness",
+      "value": 85
+    }
+  ],
+  "ctaHeadline": "Your AI Writing Draft is Ready",
+  "ctaSubhead": "Open the full editor with tone controls and one-tap export.",
+  "ctaMon": "Mon · Blog intro draft",
+  "ctaTue": "Tue · Social captions batch",
+  "ctaWed": "Wed · Email polish pass",
+  "ctaThu": "Thu · Product page rewrite",
+  "ctaFri": "Fri · Newsletter finalize",
+  "ctaBadge": "Saved 3 hours of writing time",
+  "cta": "Open Full Editor"
+}

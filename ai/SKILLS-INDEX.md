@@ -9,7 +9,7 @@ Pick skills by task. Always read **`INSTRUCTIONS.md`** first.
 | **Create new playable** / tạo campaign | `playable-create-workflow` → `ai/CLI-MAP.md` → auto-match template + chủ đề |
 | **Delete playable** / xóa campaign | `playable-create-workflow` (§ Delete) → `pnpm playable:delete --json` → AskQuestion |
 | **Reply to Marketing** (sau tạo/sửa/xóa) | `playable-mkt-response` (**bắt buộc**) |
-| **Template authoring** / edit zone / save as template | `playable-template-authoring` → `docs/TEMPLATE_AUTHORING_MODE_PLAYABLE_STUDIO.md` |
+| **Template authoring** / edit zone / save as template | `playable-template-authoring` → `playable-data-isolation` → `docs/TEMPLATE_AUTHORING_MODE_PLAYABLE_STUDIO.md` |
 | Studio fluid UI / background zone / assets | `playable-studio-fluid` |
 | Build / export **single HTML** | `playable-single-file-deliver` → `playable-applovin-compliance` |
 | **Template / compose** / mix A+B | `playable-compose` → `playable-applovin-compliance` |
@@ -27,6 +27,7 @@ Pick skills by task. Always read **`INSTRUCTIONS.md`** first.
 | **Create playable (ask template/scaffold)** | `skills/playable-create-workflow/` |
 | **Marketing reply (short, preview link)** | `skills/playable-mkt-response/` |
 | **Template authoring / zone inspector** | `skills/playable-template-authoring/` |
+| **Data isolation (template vs playable sandbox)** | `skills/playable-data-isolation/` |
 | Single-file deliverable | `skills/playable-single-file-deliver/` |
 | New page scaffold | `skills/playable-new-route/` |
 | Studio / scenario JSON | `skills/playable-studio/` |
